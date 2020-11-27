@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy, useState } from "react";
+import "./App.scss";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 
-function App() {
+const StudentPage = lazy(() => import("./pages/StudentPage"));
+const TeacherPage = lazy(() => import("./pages/TeacherPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+
+export default function App() {
+  const [user, setUser] = useState({ id: "JD" });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <Suspense fallback={<div className="loading"></div>}>
+          <Switch>
+            <Route path="/" component={LoginPage} exact />
+            <Route path="/student" component={StudentPage} />
+            <Route path="/teacher" component={TeacherPage} />
+          </Switch>
+        </Suspense>
+      </Router>
+    </Provider>
   );
 }
-
-export default App;
