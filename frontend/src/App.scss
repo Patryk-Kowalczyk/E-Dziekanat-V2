@@ -7,3 +7,31 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
+/* 
+
+GLOBAL CLASS ELEMENTS
+
+*/
+
+/* 
+    BUTTONS
+*/
+.button {
+  color: white;
+  font-weight: 700;
+  border-radius: 5px;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  text-transform: uppercase;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+
+  &.primary {
+    background-color: $primary-color;
+  }
+
+  &:hover {
+    background-color: $primary-color-lighter;
+  }
+}

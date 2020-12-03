@@ -1,0 +1,51 @@
+@import "../../global_variables";
+
+$padding-sides: 0.5rem;
+
+.form-input {
+  position: relative;
+  margin-bottom: 1rem;
+  transition: 0.3s ease-in-out;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border-bottom: 2px solid $primary-color;
+  background-color: rgb(250, 250, 250);
+  align-items: center;
+
+  label {
+    position: absolute;
+    color: $primary-color;
+    font-size: 0.8rem;
+    top: 0.2rem;
+    opacity: 0;
+    left: $padding-sides;
+    transition: inherit;
+  }
+
+  input {
+    width: 100%;
+    padding: 1rem $padding-sides;
+    border: none;
+    transition: inherit;
+    background: none;
+
+    &:focus {
+      padding-top: 1.2rem;
+      outline: none;
+      & ~ label {
+        opacity: 1;
+      }
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+  & svg {
+    color: $font-gray;
+    width: 20px;
+    height: 20px;
+    margin: 0 0.8rem;
+  }
+}
