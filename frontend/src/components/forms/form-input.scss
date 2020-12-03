@@ -39,6 +39,9 @@ $padding-sides: 0.5rem;
       &::placeholder {
         color: transparent;
       }
+      & ~ svg {
+        color: $primary-color;
+      }
     }
   }
 
