@@ -1,3 +1,9 @@
 @import "../../global_variables";
 .user-page {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+
+.content {
+  width: 100%;
 }

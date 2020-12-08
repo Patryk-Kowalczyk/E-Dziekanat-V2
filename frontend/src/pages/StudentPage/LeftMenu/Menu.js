@@ -14,20 +14,28 @@ export default function Menu() {
   return (
     <div className="menu">
       <SingleLink
-        to="/dane-finansowe"
+        to="/student/dane-finansowe"
         name="Dane finansowe"
         icon={<MdAccountBalanceWallet />}
       />
-      <SingleLink to="/dyplom" name="Dyplom" icon={<MdAssignment />} />
-      <SingleLink to="/wiadomosci" name="Wiadomości" icon={<MdForum />} />
+      <SingleLink to="/student/dyplom" name="Dyplom" icon={<MdAssignment />} />
       <SingleLink
-        to="/ankiety-egzaminy"
+        to="/student/wiadomosci"
+        name="Wiadomości"
+        icon={<MdForum />}
+      />
+      <SingleLink
+        to="/student/ankiety-egzaminy"
         name="Ankiety/ Egzaminy"
         icon={<MdList />}
       />
-      <SingleLink to="/wybor" name="Wybór" icon={<MdCheckCircle />} />
-      <SingleLink to="/szukaj" name="Szukaj" icon={<MdSearch />} />
-      <SingleLink to="/e-learning" name="E-learning" icon={<MdComputer />} />
+      <SingleLink to="/student/wybor" name="Wybór" icon={<MdCheckCircle />} />
+      <SingleLink to="/student/szukaj" name="Szukaj" icon={<MdSearch />} />
+      <SingleLink
+        to="/student/e-learning"
+        name="E-learning"
+        icon={<MdComputer />}
+      />
     </div>
   );
 }
