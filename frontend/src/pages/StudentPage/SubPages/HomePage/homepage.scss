@@ -46,7 +46,7 @@ $padding: 1rem;
     grid-template-rows: auto 1fr;
     align-items: center;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1000px) {
       grid-column: span 2;
     }
   }
