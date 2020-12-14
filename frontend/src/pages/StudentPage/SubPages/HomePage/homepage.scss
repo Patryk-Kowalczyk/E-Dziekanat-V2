@@ -1,0 +1,108 @@
+@import "../../../../global_variables";
+
+$radius: 10px;
+$padding: 1rem;
+
+.content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1.5rem;
+  justify-content: stretch;
+  height: 100vh;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    height: auto;
+    grid-gap: 0;
+  }
+}
+
+.studenthome {
+  &__hello {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 5rem;
+    padding: 1rem 2rem;
+    color: white;
+    border-radius: $radius;
+    grid-column: span 2;
+    background: linear-gradient(
+      60deg,
+      $secondary-color,
+      lighten($secondary-color, 10%)
+    );
+
+    & p {
+      font-size: 0.9rem;
+      color: darken(white, 10%);
+    }
+  }
+
+  &__timetable {
+    padding: $padding;
+    border-radius: $radius;
+    background-color: darken($light-background, 5%);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-items: center;
+
+    @media screen and (max-width: 768px) {
+      grid-column: span 2;
+    }
+  }
+
+  &__lastgrades {
+    background-color: rgba($primary-color-lighter, 1);
+    border-radius: $radius;
+    padding: $padding;
+    color: white;
+    min-height: 200px;
+    display: grid;
+    grid-template-rows: auto auto;
+    align-items: center;
+  }
+
+  &__charts {
+    border-radius: $radius;
+    grid-column: span 2;
+    height: 200px;
+    padding: $padding;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+}
+
+table {
+  margin-top: 1rem;
+  border-radius: 3px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent;
+  & thead {
+    color: $primary-color;
+  }
+  & tr {
+    border-bottom: 1px solid rgba($font-gray, 0.3);
+    & td,
+    th {
+      padding: 0.3rem 0.1rem;
+      text-align: center;
+    }
+  }
+
+  font-size: 0.7rem;
+}
+
+table {
+  &.transparent {
+    color: white;
+    background-color: transparent;
+
+    & th {
+      color: white;
+    }
+    & tr {
+      border-bottom: 1px solid white;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "./studentpage.scss";
 import LeftMenu from "./LeftMenu";
 import UserMenu from "./UserMenu";
@@ -19,16 +19,18 @@ function App() {
   const dispatch = useDispatch();
   dispatch(login(LoggedUser));
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="user-page">
-      <LeftMenu />
+      <LeftMenu open={isMenuOpen} setopen={setIsMenuOpen} />
       <div className="content">
         <Switch>
           <Route path="/student" component={HomePage} exact />
           <Route path="/student/dane-finansowe" />
         </Switch>
       </div>
-      <UserMenu />
+      <UserMenu open={isMenuOpen} setopen={setIsMenuOpen} />
     </div>
   );
 }

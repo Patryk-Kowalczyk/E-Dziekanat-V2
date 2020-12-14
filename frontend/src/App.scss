@@ -35,3 +35,7 @@ GLOBAL CLASS ELEMENTS
     background-color: $primary-color-lighter;
   }
 }
+
+.apexcharts-toolbar {
+  z-index: 0 !important;
+}

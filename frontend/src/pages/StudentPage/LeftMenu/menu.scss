@@ -18,8 +18,40 @@ $border-radius: 2rem;
     width: 100px;
     justify-self: center;
 
+    @media screen and (max-width: 768px) {
+      margin-top: 2rem;
+    }
+
     & img {
       width: 100%;
+    }
+  }
+
+  & ~ .bglayer {
+    display: none;
+  }
+  &.active ~ .bglayer {
+    display: none;
+
+    @media screen and (max-width: 768px) {
+      display: block;
+      position: fixed;
+      height: 100vh;
+      width: 100%;
+      z-index: 1;
+      background-color: black;
+      animation: 0.3s show forwards;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    z-index: 2;
+    transition: 0.3s ease-in-out;
+    transform: translateX(-300px);
+
+    &.active {
+      transform: translateX(0px);
     }
   }
 }
@@ -56,4 +88,13 @@ $border-radius: 2rem;
 a {
   color: initial;
   text-decoration: none;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.75;
+  }
 }
