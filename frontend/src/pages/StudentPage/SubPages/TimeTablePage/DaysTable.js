@@ -1,5 +1,8 @@
 import React from "react";
 import DayTable from "./DayTable";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import { motion } from "framer-motion";
 
 const data = [
   {
@@ -29,8 +32,25 @@ const data = [
 ];
 
 export default function DaysTable() {
+  const [isCalendar, setIsCalendar] = React.useState(false);
   return (
     <div className="daystable">
+      <button
+        className="button primary"
+        onClick={() => setIsCalendar(!isCalendar)}
+      >
+        Wybierz datę
+      </button>
+      {isCalendar && (
+        <motion.div
+          className="calendar"
+          initial={{ opacity: 0, y: 300 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <Calendar />
+        </motion.div>
+      )}
+      <br />
       <table>
         <thead>
           <tr>

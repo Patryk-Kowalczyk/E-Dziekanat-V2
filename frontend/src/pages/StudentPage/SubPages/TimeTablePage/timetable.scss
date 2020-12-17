@@ -104,6 +104,7 @@
 
 .daystable {
   margin-top: 2rem;
+  position: relative;
   table {
     width: 100%;
 
@@ -122,4 +123,8 @@
       font-size: 0.8rem;
     }
   }
+}
+
+.calendar {
+  position: absolute;
 }
