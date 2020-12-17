@@ -7,12 +7,14 @@
   align-items: center;
   background-color: $light-background;
   padding: 2rem 1rem;
+  height: 100vh;
 
   @media screen and (max-width: 768px) {
     grid-row: 1;
     flex-direction: row;
     padding: 0.5rem 1rem;
     position: fixed;
+    height: auto;
     width: 100%;
     z-index: 3;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);

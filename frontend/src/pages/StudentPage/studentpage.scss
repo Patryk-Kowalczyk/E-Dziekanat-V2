@@ -2,6 +2,7 @@
 .user-page {
   display: grid;
   grid-template-columns: auto 1fr auto;
+  overflow: hidden;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -14,13 +15,8 @@
   padding: 1rem;
   overflow-y: auto;
   display: flex;
-  flex-wrap: wrap;
   justify-self: center;
-
-  & > * {
-    margin: 1rem;
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1), 1px 1px 2px rgba(0, 0, 0, 0.2);
-  }
+  max-height: 100vh;
 
   @media screen and (max-width: 768px) {
     margin-top: 3.5rem;

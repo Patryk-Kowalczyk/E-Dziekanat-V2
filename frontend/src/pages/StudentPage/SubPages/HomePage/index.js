@@ -9,12 +9,12 @@ import { useSelector } from "react-redux";
 function HomePage() {
   const user = useSelector((state) => state.auth.user);
   return (
-    <>
+    <div className="student-home-content">
       <Hello studentname={user.firstname} />
       <TodaysTimeTable />
       <LastGrades />
       <Charts />
-    </>
+    </div>
   );
 }
 
