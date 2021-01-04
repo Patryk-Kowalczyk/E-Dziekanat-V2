@@ -12,10 +12,14 @@ export default function TeacherMenuNav() {
             />
             <TeacherMenuNavLink
                 to="/teacher/oceny-czastkowe/"
-                name="Oceny cząstkowe"
+                name="Panel Ocen Cząstkowych"
                 icon={<MdLooks5/>}
             />
-            <TeacherMenuNavLink to="/teacher/oceny/" name="Oceny" icon={<MdSchool/>}/>
+            <TeacherMenuNavLink
+                to="/teacher/oceny/"
+                name="Panel Ocen Końcowych"
+                icon={<MdSchool/>}
+            />
         </div>
     );
 }
