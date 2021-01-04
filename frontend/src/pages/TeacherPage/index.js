@@ -10,6 +10,7 @@ import {Route, Switch} from "react-router-dom";
 
 const HomePage = lazy(() => import("./SubPages/HomePage"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
+const IndividualMarks = lazy(() => import("./SubPages/IndividualMarks"));
 
 const LoggedUser = {
     firstname: "Grażyna",
@@ -32,6 +33,7 @@ function App() {
                     <Switch>
                         <Route path="/teacher" component={HomePage} exact/>
                         <Route path="/teacher/plan-zajec/" component={TimeTablePage}/>
+                        <Route path="/teacher/oceny-czastkowe/" component={IndividualMarks}/>
                     </Switch>
                 </Suspense>
             </div>
