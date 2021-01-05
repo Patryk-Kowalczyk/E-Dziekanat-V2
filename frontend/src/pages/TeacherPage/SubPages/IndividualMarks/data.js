@@ -8,6 +8,7 @@ const data = [
             {
                 name: "Marcin",
                 lastName: "Wrzos",
+                uniqueNumber: 44557,
                 marks: [{
                     id: 1,
                     mark: 3,
@@ -18,6 +19,7 @@ const data = [
             {
                 name: "FILIP",
                 lastName: "XD",
+                uniqueNumber: 33221,
                 marks: [{
                     id: 1,
                     mark: 3,
@@ -32,9 +34,20 @@ const data = [
             {
                 name: "Maciek",
                 lastName: "Zklanu",
+                uniqueNumber: 112233,
                 marks: [{
                     id: 1,
                     mark: 3,
+                    description: 'wejsciówka'
+
+                }, {
+                    id: 2,
+                    mark: 2,
+                    description: 'wejsciówka'
+
+                }, {
+                    id: 3,
+                    mark: 5,
                     description: 'wejsciówka'
 
                 }]
@@ -42,6 +55,7 @@ const data = [
             {
                 name: "FILIP",
                 lastName: "zKonopi",
+                uniqueNumber: 39921,
                 marks: [{
                     id: 1,
                     mark: 3,

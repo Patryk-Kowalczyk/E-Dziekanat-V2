@@ -6,7 +6,7 @@ import SelectedTable from "./SelectedTable";
 
 const studentsGroups = data.map((item, i) => {
     return (
-        <option key={i + 1} value={item.id}>
+        <option key={item.id} value={item.id}>
             Grupa: {item.id} {"----"} {item.subject}
         </option>
     )
