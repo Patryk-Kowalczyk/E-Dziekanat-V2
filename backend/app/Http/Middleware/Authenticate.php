@@ -14,8 +14,17 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+
+        try {
+            $user = auth()->userOrFail();
+            echo "good";
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return $test;
         }
+
+//        if (! $request->expectsJson()) {
+//            //return route('login');
+//
+//        }
     }
 }
