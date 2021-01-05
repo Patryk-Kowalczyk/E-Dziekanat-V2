@@ -15,4 +15,9 @@ class Group extends Model
         return $this->hasOne(Schedule::class);
     }
 
+    public function student()
+    {
+        return $this->hasMany(Student::class,'group_id');
+    }
+
 }
