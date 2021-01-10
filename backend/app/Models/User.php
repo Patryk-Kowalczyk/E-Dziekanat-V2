@@ -20,11 +20,15 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name',
-        'lastname',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'status',
+        'phone',
+        'date_of_birth',
+        'address',
+        'gender',
     ];
 
     /**
@@ -46,16 +50,12 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-
     public function student()
     {
         return $this->hasOne(Student::class);
     }
 
-    public function educator()
-    {
-        return $this->hasOne(Educator::class);
-    }
+
 
 
     /**

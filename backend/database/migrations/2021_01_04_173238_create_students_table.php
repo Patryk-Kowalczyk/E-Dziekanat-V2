@@ -15,13 +15,10 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('album');
             $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('student_number');
-            $table->enum('gender', ['male', 'female']);
-            $table->string('phone');
-            $table->date('dateofbirth');
-            $table->string('address');
+            $table->unsignedBigInteger('user_id');
+
         });
     }
 

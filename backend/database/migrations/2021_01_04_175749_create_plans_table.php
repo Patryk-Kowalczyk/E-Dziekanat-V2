@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSchedulesTable extends Migration
+class CreatePlansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateSchedulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->time('since');
+            $table->time('to');
+            $table->string('room');
+            $table->date('date');
             $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('student_number');
-            $table->enum('gender', ['male', 'female']);
-            $table->string('phone');
-            $table->date('dateofbirth');
-            $table->string('address');
         });
     }
 

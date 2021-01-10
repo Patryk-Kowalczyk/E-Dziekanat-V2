@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEducatorsTable extends Migration
+class CreateSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateEducatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('educators', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('album');
-            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->enum('form',['W','L','Lek','A']);
+            $table->unsignedBigInteger('educator_id');
         });
     }
 
@@ -27,6 +28,6 @@ class CreateEducatorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('educators');
+        Schema::dropIfExists('subjects');
     }
 }

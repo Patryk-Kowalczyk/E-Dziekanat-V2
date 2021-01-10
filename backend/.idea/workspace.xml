@@ -20,14 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2962c564-0ff8-4457-a661-0f253f99d3d1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Models/Schedule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Subject.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Group.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Group.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_04_175749_create_schedules_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_04_175749_create_schedules_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +194,7 @@
       <workItem from="1607261000563" duration="6805000" />
       <workItem from="1608019136022" duration="33000" />
       <workItem from="1609773925988" duration="16297000" />
-      <workItem from="1609833781495" duration="3995000" />
+      <workItem from="1609833781495" duration="10990000" />
     </task>
     <servers />
   </component>
@@ -219,6 +218,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="493" y="243" key="#Composer/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1606554988515" />
+    <state x="1796" y="136" key="#Illuminated_Cloud" timestamp="1609846311925">
+      <screen x="1366" y="0" width="1680" height="1010" />
+    </state>
+    <state x="1796" y="136" key="#Illuminated_Cloud/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1609846311925" />
     <state x="2056" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1609836152329">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
@@ -243,10 +246,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1367" height="193" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1606555013647" />
-    <state x="1994" y="242" key="NewPhpClassDialog" timestamp="1609783887245">
+    <state x="1994" y="242" key="NewPhpClassDialog" timestamp="1609839163771">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1994" y="242" key="NewPhpClassDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1609783887245" />
+    <state x="1994" y="242" key="NewPhpClassDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1609839163771" />
     <state x="2160" y="443" key="NewPhpFileDialog" timestamp="1609775925429">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>

@@ -8,13 +8,9 @@ use Illuminate\Database\Eloquent\Builder;
 class Student extends Model
 {
     protected $fillable = [
+        'album',
         'user_id',
         'group_id',
-        'roll_number',
-        'gender',
-        'phone',
-        'dateofbirth',
-        'address'
     ];
 
     public function user()
