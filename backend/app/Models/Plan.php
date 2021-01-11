@@ -20,4 +20,9 @@ class Plan extends Model
         return $this->belongsTo(Student::class);
     }
 
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class,'plans_subjects','plans_id','subjects_id');
+    }
+
 }

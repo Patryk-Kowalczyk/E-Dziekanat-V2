@@ -18,5 +18,10 @@ class Subject extends Model
         return $this->hasOne(Plan::class);
     }
 
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class,'plans_subjects','subjects_id','plans_id');
+    }
+
 
 }
