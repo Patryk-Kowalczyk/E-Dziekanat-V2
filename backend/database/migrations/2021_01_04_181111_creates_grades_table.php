@@ -17,6 +17,8 @@ class CreatesGradesTable extends Migration
             $table->id();
             $table->string('value');
             $table->unsignedBigInteger('student_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

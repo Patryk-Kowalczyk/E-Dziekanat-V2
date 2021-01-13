@@ -17,12 +17,12 @@ class Plan extends Model
 
     public function group()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Group::class);
     }
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class,'plans_subjects','plans_id','subjects_id');
+        return $this->belongsToMany(Subject::class,'plans_subjects');
     }
 
 }

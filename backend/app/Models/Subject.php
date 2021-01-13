@@ -8,20 +8,19 @@ use Illuminate\Database\Eloquent\Builder;
 class Subject extends Model
 {
     protected $fillable = [
-        'id_educator',
+        'educator_id',
         'name',
         'form'
     ];
 
-    public function schedule()
-    {
-        return $this->hasOne(Plan::class);
-    }
-
     public function plans()
     {
-        return $this->belongsToMany(Plan::class,'plans_subjects','subjects_id','plans_id');
+        return $this->belongsToMany(Plan::class,'plans_subjects');
     }
 
+    public function grades()
+    {
+        return $this->belongsToMany(Grade::class,'subjects_grades');
+    }
 
 }

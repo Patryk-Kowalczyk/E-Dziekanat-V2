@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
@@ -10,12 +11,12 @@ class Group extends Model
         'name'
     ];
 
-    public function schedule()
+    public function plans()
     {
         return $this->hasMany(Plan::class);
     }
 
-    public function student()
+    public function students()
     {
         return $this->hasMany(Student::class,'group_id');
     }
