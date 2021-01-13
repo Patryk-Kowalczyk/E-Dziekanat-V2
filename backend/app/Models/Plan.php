@@ -25,4 +25,9 @@ class Plan extends Model
         return $this->belongsToMany(Subject::class,'plans_subjects');
     }
 
+    public function educator()
+    {
+        return $this->belongsTo(Educator::class);
+    }
+
 }

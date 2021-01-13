@@ -16,6 +16,7 @@ class CreateEducatorsTable extends Migration
         Schema::create('educators', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('album');
+            $table->enum('title',['Inż.','Lic.','Mgr','Dr','Dr Hab.','Prof.']);
             $table->unsignedBigInteger('user_id');
         });
     }

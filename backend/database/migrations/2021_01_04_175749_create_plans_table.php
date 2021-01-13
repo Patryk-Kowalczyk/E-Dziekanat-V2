@@ -20,6 +20,7 @@ class CreatePlansTable extends Migration
             $table->string('room');
             $table->date('date');
             $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('educator_id');
         });
     }
 

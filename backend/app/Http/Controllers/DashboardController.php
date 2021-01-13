@@ -30,17 +30,18 @@ class DashboardController extends Controller
         $studentData['group'] = $student[0]->group->name;
 
         //Pobranie planu z Current Day (Nie ma jeszcze dodanego tego warunku - Current Day)
-        $plans = Plan::with('subjects')
+        $plans = Plan::with(['subjects', 'educator'])
             ->where('plans.group_id', $student[0]->group->id)
             ->get();
 
-        $dayPlan = [];
         foreach ($plans as $plan) {
             $resultDayPlan['name'] = $plan->subjects[0]->name;
             $resultDayPlan['since'] = $plan->since;
             $resultDayPlan['to'] = $plan->to;
             $resultDayPlan['room'] = $plan->room;
             $resultDayPlan['form'] = $plan->subjects[0]->form;
+            $fullName = $plan->educator->title . ' ' . $plan->educator->user->first_name . ' ' . $plan->educator->user->last_name;
+            $resultDayPlan['educator'] = $fullName;
             $dayPlan[] = $resultDayPlan;
         }
 
@@ -58,7 +59,6 @@ class DashboardController extends Controller
             $resultLastGrades['date'] = $grade->created_at->format('Y-m-d H:i:s');
             $lastGrades[] = $resultLastGrades;
         }
-
 
         return response()->json(
             [

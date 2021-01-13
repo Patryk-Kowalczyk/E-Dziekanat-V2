@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_picture')->default('avatar.png');
-            $table->enum('status',['student','teacher','admin']);
+            $table->enum('status',['student','educator','admin']);
             $table->string('phone');
             $table->date('date_of_birth');
             $table->string('address');
