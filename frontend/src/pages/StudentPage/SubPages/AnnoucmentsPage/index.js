@@ -40,8 +40,8 @@ export default function index() {
     <div className="annoucmentspage">
       <h1>Wiadomości</h1>
       <div className="annoucmentspage-annoucments">
-        {data.map((annoucment) => {
-          return <Annoucment data={annoucment} />;
+        {data.map((annoucment, index) => {
+          return <Annoucment key={index} data={annoucment} />;
         })}
       </div>
     </div>
