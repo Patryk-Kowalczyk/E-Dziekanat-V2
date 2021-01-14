@@ -19,7 +19,6 @@ use App\Http\Controllers\DashboardController;
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
-
     ], function ($router) {
         Route::post('/login', [AuthController::class, 'login']);
         Route::post('/register', [AuthController::class, 'register']);
@@ -28,3 +27,6 @@ Route::group([
         Route::get('/user-profile', [AuthController::class, 'userProfile']);
         Route::get('/dashboard', [DashboardController::class, 'index']);
 });
+
+
+

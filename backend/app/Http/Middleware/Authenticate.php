@@ -2,7 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class Authenticate extends Middleware
 {
@@ -15,16 +21,9 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
 
-//        try {
-//            $user = auth()->userOrFail();
-//            echo "good";
-//        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-//            return $test;
-//        }
 
-//        if (! $request->expectsJson()) {
-//            //return route('login');
-//
-//        }
+       if (!$request->expectsJson()) {
+           return route('login');
+       }
     }
 }
