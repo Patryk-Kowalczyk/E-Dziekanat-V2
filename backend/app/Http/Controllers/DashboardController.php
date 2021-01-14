@@ -13,6 +13,7 @@ use App\Models\Subject;
 use App\Models\Educator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth;
 use Exception;
 
@@ -23,8 +24,9 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+
         try {
-            auth()->check();
+
 
             //Pobranie danych studenta
             $student = Student::with(['User', 'Group'])->where('students.user_id', Auth::id())->first();
@@ -66,12 +68,20 @@ class DashboardController extends Controller
                 $lastGrades[] = $resultLastGrades;
             }
 
+            $avgGrades=Grade::where('student_id',Auth::id())
+                ->join('subjects_grades','grades.id','=','subjects_grades.grade_id')
+                ->join('subjects','subjects_grades.subject_id','=','subjects.id')
+                ->groupBy('subjects.name')
+                ->select('subjects.name',DB::raw('avg(grades.value) as avg'))
+                ->get();
+
 
             return response()->json(
                 [
                     'student_data' => $studentData,
                     'day_plan' => $dayPlan,
                     'last_grades' => $lastGrades,
+                    'avg_grades' => $avgGrades,
                 ], 200);
 
         } catch (Exception $e) {
