@@ -61,7 +61,8 @@
 }
 
 .weektable-legend {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   margin: 1rem 0;
 
   & > * {

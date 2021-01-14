@@ -51,23 +51,25 @@ export default function DaysTable() {
         </motion.div>
       )}
       <br />
-      <table>
-        <thead>
-          <tr>
-            <th>Od</th>
-            <th>Do</th>
-            <th>Nazwa</th>
-            <th>Prowadzący</th>
-            <th>Sala</th>
-            <th>Forma</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => {
-            return <DayTable data={item} key={index} />;
-          })}
-        </tbody>
-      </table>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Od</th>
+              <th>Do</th>
+              <th>Nazwa</th>
+              <th>Prowadzący</th>
+              <th>Sala</th>
+              <th>Forma</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item, index) => {
+              return <DayTable data={item} key={index} />;
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -95,34 +95,36 @@ export default function WeekTable() {
         <h3>14-12-2020 - 20-12-2020</h3>
         <div className="paginate-button">{">"}</div>
       </div>
-      <div className="weektable-days">
-        <div className="weektable-hours">
-          <h5>Godziny</h5>
-          {HOURS.map((hour, index) => (
-            <div className="weektable-hour" key={index}>
-              {hour} - {END_HOURS[index]}
-            </div>
-          ))}
-        </div>
-        <div className="weektable-day">
-          <h5>Poniedziałek</h5>
-          <DayRows daydata={data.poniedzialek} />
-        </div>
-        <div className="weektable-day">
-          <h5>Wtorek</h5>
-          <DayRows daydata={data.wtorek} />
-        </div>
-        <div className="weektable-day">
-          <h5>Środa</h5>
-          <DayRows daydata={data.sroda} />
-        </div>
-        <div className="weektable-day">
-          <h5>Czwartek</h5>
-          <DayRows daydata={data.czwartek} />
-        </div>
-        <div className="weektable-day">
-          <h5>Piątek</h5>
-          <DayRows daydata={data.piatek} />
+      <div className="table-container">
+        <div className="weektable-days">
+          <div className="weektable-hours">
+            <h5>Godziny</h5>
+            {HOURS.map((hour, index) => (
+              <div className="weektable-hour" key={index}>
+                {hour} - {END_HOURS[index]}
+              </div>
+            ))}
+          </div>
+          <div className="weektable-day">
+            <h5>Poniedziałek</h5>
+            <DayRows daydata={data.poniedzialek} />
+          </div>
+          <div className="weektable-day">
+            <h5>Wtorek</h5>
+            <DayRows daydata={data.wtorek} />
+          </div>
+          <div className="weektable-day">
+            <h5>Środa</h5>
+            <DayRows daydata={data.sroda} />
+          </div>
+          <div className="weektable-day">
+            <h5>Czwartek</h5>
+            <DayRows daydata={data.czwartek} />
+          </div>
+          <div className="weektable-day">
+            <h5>Piątek</h5>
+            <DayRows daydata={data.piatek} />
+          </div>
         </div>
       </div>
       <div className="weektable-legend">

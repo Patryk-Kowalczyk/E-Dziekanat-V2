@@ -76,39 +76,39 @@ $padding: 1rem;
     display: grid;
     grid-template-rows: auto 1fr;
   }
-}
 
-table {
-  margin-top: 1rem;
-  border-radius: 3px;
-  width: 100%;
-  border-collapse: collapse;
-  background-color: transparent;
-  & thead {
-    color: $primary-color;
-  }
-  & tr {
-    border-bottom: 1px solid rgba($font-gray, 0.3);
-    & td,
-    th {
-      padding: 0.3rem 0.1rem;
-      text-align: center;
-    }
-  }
-
-  font-size: 0.7rem;
-}
-
-table {
-  &.transparent {
-    color: white;
+  & table {
+    margin-top: 1rem;
+    border-radius: 3px;
+    width: 100%;
+    border-collapse: collapse;
     background-color: transparent;
-
-    & th {
-      color: white;
+    & thead {
+      color: $primary-color;
     }
     & tr {
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid rgba($font-gray, 0.3);
+      & td,
+      th {
+        padding: 0.3rem 0.1rem;
+        text-align: center;
+      }
+    }
+
+    font-size: 0.7rem;
+  }
+
+  & table {
+    &.transparent {
+      color: white;
+      background-color: transparent;
+
+      & th {
+        color: white;
+      }
+      & tr {
+        border-bottom: 1px solid white;
+      }
     }
   }
 }
