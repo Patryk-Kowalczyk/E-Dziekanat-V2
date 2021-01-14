@@ -9,7 +9,7 @@ export default () => {
       return response;
     },
     (error) => {
-      if (error.response.status !== 402) {
+      if (error.response.status !== 401) {
         return new Promise((resolve, reject) => {
           reject(error);
         });

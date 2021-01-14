@@ -14,6 +14,9 @@ const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
 const FinalGradesPage = lazy(() => import("./SubPages/FinalGradesPage"));
 const PartialGradesPage = lazy(() => import("./SubPages/PartialGradesPage"));
 const AnnoucmentsPage = lazy(() => import("./SubPages/AnnoucmentsPage"));
+const AnnoucmentPage = lazy(() =>
+  import("./SubPages/AnnoucmentsPage/AnnoucmentPage")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +52,12 @@ function App() {
               path="/student/oceny-czastkowe"
               component={PartialGradesPage}
             />
-            <Route path="/student/wiadomosci" component={AnnoucmentsPage} />
+            <Route
+              path="/student/wiadomosci"
+              exact
+              component={AnnoucmentsPage}
+            />
+            <Route path="/student/wiadomosci/:id" component={AnnoucmentPage} />
           </Switch>
         </Suspense>
       </div>
