@@ -1,0 +1,81 @@
+@import "../../../../global_variables";
+
+.partialgrades {
+  width: 100%;
+  @include customH1;
+
+  & h4,
+  p {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  &-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-top: 2rem;
+    max-height: calc(100% - 5rem);
+  }
+
+  &-list {
+    background-color: darken(white, 5);
+    padding: 1rem 0.5rem;
+    border-radius: 5px;
+    & ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      & li {
+        padding: 0.4rem 0.6rem;
+        margin: 0.3rem 0;
+        background-color: white;
+        font-size: 0.8rem;
+        cursor: pointer;
+
+        &.active {
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+
+  &-table {
+    background-color: $secondary-color-lighter;
+    max-height: 100%;
+    margin-left: 1rem;
+    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+table.gradestable {
+  color: white;
+  width: 100%;
+
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: 5px;
+
+  & th {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  & tr {
+    &:nth-child(2n) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  & td {
+  }
+
+  & th,
+  td {
+    padding: 0.3rem 0.3rem;
+  }
+}

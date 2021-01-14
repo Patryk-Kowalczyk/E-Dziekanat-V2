@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TableRow from "./TableRow";
+import axios from "axios";
+import header from "../../../../services/auth-header";
 
 const sampleTable = [
   {
@@ -18,7 +20,30 @@ const sampleTable = [
   },
 ];
 
+// function Rows() {
+//   const [data, setData] = useState([]);
+//   setData(useSelector((state) => state.info.day_plan));
+//   const renderRows = data.map((row, index) => {
+//     return <TableRow key={index} row={row} />;
+//   });
+//   return <>{renderRows}</>;
+// }
+
 export default function TodaysTimeTable() {
+  const [data, setData] = useState([]);
+
+  const config = {
+    headers: header(),
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://createosm.pl/IPZ/backend/public/api/auth/dashboard", config)
+      .then((response) => {
+        setData(response.data.day_plan);
+      })
+      .catch((err) => console.error(err));
+  }, []);
   return (
     <div className="studenthome__timetable">
       <h3>Plan zajęć na dziś:</h3>
@@ -33,7 +58,7 @@ export default function TodaysTimeTable() {
           </tr>
         </thead>
         <tbody>
-          {sampleTable.map((row, index) => {
+          {data.map((row, index) => {
             return <TableRow key={index} row={row} />;
           })}
         </tbody>

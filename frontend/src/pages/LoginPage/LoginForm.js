@@ -4,8 +4,13 @@ import "./page.scss";
 import { MdBusinessCenter, MdFace, MdPerson, MdLock } from "react-icons/md";
 import FormInput from "../../components/forms/FormInput";
 
+import { login } from "../../actions/auth";
+import AuthService from "../../services/auth.service";
+import { useDispatch } from "react-redux";
+
 export default function LoginForm() {
   const [isStudent, setIsStudent] = useState(true);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -16,9 +21,28 @@ export default function LoginForm() {
     clearErrors,
   } = useForm();
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(data);
+
+    let status = "";
+    if (data.isStudent) {
+      status = "student";
+    } else {
+      status = "teacher";
+    }
+
+    const response = await AuthService.login(data.id, data.password, status)
+      .then((response) => {
+        dispatch(login(response.access_token));
+        window.location.replace(`/${status}`);
+      })
+      .catch((err) => {
+        setError("serverError", "err");
+      });
+  };
+
+  const handleChange = () => {
+    clearErrors();
   };
 
   return (
@@ -33,6 +57,7 @@ export default function LoginForm() {
         reference={register}
         placeholder="Identyfikator"
         icon={<MdPerson />}
+        handleChange={handleChange}
       />
       <FormInput
         type="password"
@@ -41,7 +66,13 @@ export default function LoginForm() {
         reference={register}
         placeholder="Hasło"
         icon={<MdLock />}
+        handleChange={handleChange}
       />
+      {errors.serverError && (
+        <p className="error">
+          Podano niepoprawny indeks, lub hasło. <br /> Spróbuj jeszcze raz.
+        </p>
+      )}
       <br />
       <input type="submit" className="button primary" value="Zaloguj się" />
       <p className="form-loginas__title">Zaloguj się jako:</p>

@@ -3,12 +3,14 @@ import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import refresh from "./services/refresh";
 
 const StudentPage = lazy(() => import("./pages/StudentPage"));
 const TeacherPage = lazy(() => import("./pages/TeacherPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 
 export default function App() {
+  refresh();
   return (
     <Provider store={store}>
       <Router>

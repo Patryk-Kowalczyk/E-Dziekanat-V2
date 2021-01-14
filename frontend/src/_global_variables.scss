@@ -3,8 +3,48 @@ $primary-color-lighter: rgb(41, 41, 247);
 $secondary-color: rgb(3, 144, 190);
 $secondary-color-lighter: rgb(0, 145, 194);
 $tertiary-color: #2c973e;
+$error: rgb(187, 66, 66);
 
 $light-background: #fafafa;
 
 $primary-font-color: rgb(58, 58, 58);
 $font-gray: rgb(70, 70, 70);
+
+$lecture-color: rgb(73, 163, 0);
+$laboratory-color: rgb(4, 0, 248);
+$langcourse-color: rgb(210, 53, 77);
+
+@mixin customH1 {
+  & h1 {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: "";
+      bottom: -10px;
+      width: 10%;
+      height: 3px;
+      background-color: $primary-color;
+    }
+  }
+}
+@mixin legendColors($property, $color) {
+  &-#{$property} {
+    position: relative;
+    padding-left: 0.2rem;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 2px;
+      background-color: $color;
+    }
+  }
+}
+
+.color {
+  @include legendColors(lecture, $lecture-color);
+  @include legendColors(laboratory, $laboratory-color);
+  @include legendColors(langcourse, $langcourse-color);
+}

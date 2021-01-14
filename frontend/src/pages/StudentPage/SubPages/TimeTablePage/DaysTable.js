@@ -63,8 +63,8 @@ export default function DaysTable() {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => {
-            return <DayTable data={item} />;
+          {data.map((item, index) => {
+            return <DayTable data={item} key={index} />;
           })}
         </tbody>
       </table>

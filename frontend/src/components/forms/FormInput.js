@@ -11,6 +11,7 @@ function FormInput(props) {
         required={props.required}
         ref={props.reference}
         placeholder={props.placeholder}
+        onChange={props.handleChange}
       />
       {props.icon}
       <label>{props.placeholder}</label>

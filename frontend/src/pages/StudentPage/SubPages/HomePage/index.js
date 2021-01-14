@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./homepage.scss";
 import Hello from "./Hello";
 import TodaysTimeTable from "./TodaysTimeTable";
@@ -10,7 +10,7 @@ function HomePage() {
   const user = useSelector((state) => state.auth.user);
   return (
     <div className="student-home-content">
-      <Hello studentname={user.firstname} />
+      <Hello studentname={user.first_name} />
       <TodaysTimeTable />
       <LastGrades />
       <Charts />

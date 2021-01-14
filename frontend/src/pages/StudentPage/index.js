@@ -1,26 +1,37 @@
-import React, { Suspense, useState, lazy } from "react";
+import React, { Suspense, useState, lazy, useEffect } from "react";
 import "./studentpage.scss";
 import LeftMenu from "./LeftMenu";
 import UserMenu from "./UserMenu";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions/auth";
+import { setInfo } from "../../actions/info";
+import header from "../../services/auth-header";
+import axios from "axios";
 
 const HomePage = lazy(() => import("./SubPages/HomePage"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
 const FinalGradesPage = lazy(() => import("./SubPages/FinalGradesPage"));
-
-const LoggedUser = {
-  firstname: "Jan",
-  lastname: "Kowalski",
-  index: "jk12345",
-  avatar:
-    "https://www.tm-town.com/assets/default_male600x600-79218392a28f78af249216e097aaf683.png",
-};
+const PartialGradesPage = lazy(() => import("./SubPages/PartialGradesPage"));
 
 function App() {
   const dispatch = useDispatch();
-  dispatch(login(LoggedUser));
+
+  const config = {
+    headers: header(),
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://createosm.pl/IPZ/backend/public/api/auth/dashboard", config)
+      .then((response) => {
+        console.log(response);
+        const data = response.data.student_data;
+        dispatch(login(data));
+        dispatch(setInfo({ day_plan: response.data.day_plan }));
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -33,6 +44,10 @@ function App() {
             <Route path="/student" component={HomePage} exact />
             <Route path="/student/plan-zajec" component={TimeTablePage} />
             <Route path="/student/oceny" component={FinalGradesPage} />
+            <Route
+              path="/student/oceny-czastkowe"
+              component={PartialGradesPage}
+            />
           </Switch>
         </Suspense>
       </div>
