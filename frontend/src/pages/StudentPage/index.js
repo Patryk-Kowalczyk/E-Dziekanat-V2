@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(API_URL + "auth/dashboard", config)
+      .get(API_URL + "dashboard", config)
       .then((response) => {
         console.log(response);
         const data = response.data.student_data;

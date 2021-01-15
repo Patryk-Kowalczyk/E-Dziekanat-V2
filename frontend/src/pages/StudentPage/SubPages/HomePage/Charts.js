@@ -14,7 +14,6 @@ export default function Charts() {
 
   const seriesData = data.map((subject) => subject.avg);
   const labelsData = data.map((subject) => subject.name);
-  console.log(seriesData, labelsData);
 
   const series = [
     {
