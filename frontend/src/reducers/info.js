@@ -8,7 +8,6 @@ function infoReducer(state = initialState, action) {
   switch (type) {
     case SET_INFO:
       return { ...payload };
-
     default:
       return state;
   }

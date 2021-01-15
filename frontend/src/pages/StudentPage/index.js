@@ -8,6 +8,7 @@ import { login } from "../../actions/auth";
 import { setInfo } from "../../actions/info";
 import header from "../../services/auth-header";
 import axios from "axios";
+import API_URL from "../../services/API_URL";
 
 const HomePage = lazy(() => import("./SubPages/HomePage"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
@@ -27,12 +28,18 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://createosm.pl/IPZ/backend/public/api/auth/dashboard", config)
+      .get(API_URL + "auth/dashboard", config)
       .then((response) => {
         console.log(response);
         const data = response.data.student_data;
         dispatch(login(data));
-        dispatch(setInfo({ day_plan: response.data.day_plan }));
+        dispatch(
+          setInfo({
+            day_plan: response.data.day_plan,
+            avg_grades: response.data.avg_grades,
+            last_grades: response.data.last_grades,
+          })
+        );
       })
       .catch((err) => console.error(err));
   }, []);

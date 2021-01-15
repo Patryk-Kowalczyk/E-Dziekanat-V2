@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import TableRow from "./TableRow";
-import axios from "axios";
 import header from "../../../../services/auth-header";
+import { useSelector } from "react-redux";
 
-const sampleTable = [
-  {
-    name: "Podstawy ochrony informacji",
-    since: "08:15",
-    to: "10:00",
-    room: "WI WI1-Zaj_zdalne",
-    form: "W",
-  },
-  {
-    name: "Angielski",
-    since: "10:15",
-    to: "12:00",
-    room: "WI WI1-Zaj_zdalne",
-    form: "L",
-  },
-];
+// const sampleTable = [
+//   {
+//     name: "Podstawy ochrony informacji",
+//     since: "08:15",
+//     to: "10:00",
+//     room: "WI WI1-Zaj_zdalne",
+//     form: "W",
+//   },
+//   {
+//     name: "Angielski",
+//     since: "10:15",
+//     to: "12:00",
+//     room: "WI WI1-Zaj_zdalne",
+//     form: "L",
+//   },
+// ];
 
 // function Rows() {
 //   const [data, setData] = useState([]);
@@ -30,20 +30,15 @@ const sampleTable = [
 // }
 
 export default function TodaysTimeTable() {
+  const info = useSelector((state) => state.info.day_plan) || [];
   const [data, setData] = useState([]);
 
-  const config = {
-    headers: header(),
-  };
-
   useEffect(() => {
-    axios
-      .get("http://createosm.pl/IPZ/backend/public/api/auth/dashboard", config)
-      .then((response) => {
-        setData(response.data.day_plan);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+    if (info.length !== data.length) {
+      setData(info);
+    }
+  }, [info]);
+
   return (
     <div className="studenthome__timetable">
       <h3>Plan zajęć na dziś:</h3>

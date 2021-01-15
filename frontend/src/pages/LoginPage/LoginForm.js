@@ -37,6 +37,7 @@ export default function LoginForm() {
         window.location.replace(`/${status}`);
       })
       .catch((err) => {
+        console.log("err");
         setError("serverError", "err");
       });
   };
