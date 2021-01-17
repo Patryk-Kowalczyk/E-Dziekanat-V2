@@ -1,9 +1,10 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +19,21 @@ use App\Http\Controllers\DashboardController;
 
 Route::group([
     'middleware' => 'api',
+    'namespace'  => 'App\Http\Controllers\Auth',
     'prefix' => 'auth'
     ], function ($router) {
-        Route::post('/login', [AuthController::class, 'login']);
-        Route::post('/register', [AuthController::class, 'register']);
-        Route::post('/logout', [AuthController::class, 'logout']);
-        Route::post('/refresh', [AuthController::class, 'refresh']);
-        Route::get('/user-profile', [AuthController::class, 'userProfile']);
-        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::post('login', 'AuthController@login');
+        Route::post('register', 'AuthController@register');
+        Route::post('logout', 'AuthController@logout');
+        Route::post('refresh', 'AuthController@refresh');
+});
+
+Route::group([
+    'middleware' => 'api',
+    'namespace'  => 'App\Http\Controllers\Student',
+], function ($router) {
+    Route::get('dashboard', 'DashboardController@index');
+    Route::get('partialGrades', 'PartialGradesController@index');
 });
 
 

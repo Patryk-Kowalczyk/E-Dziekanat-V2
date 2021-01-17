@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Builder;
 class Subject extends Model
 {
     protected $fillable = [
-        'educator_id',
-        'name',
-        'form'
+
     ];
+
+    protected $hidden = ['pivot','id','educator_id'];
 
     public function plans()
     {
