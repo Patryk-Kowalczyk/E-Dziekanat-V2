@@ -49,24 +49,29 @@ function App() {
   return (
     <div className="user-page">
       <LeftMenu open={isMenuOpen} setopen={setIsMenuOpen} />
-      <div className="content">
-        <Suspense fallback={<div className="loading"></div>}>
-          <Switch>
-            <Route path="/student" component={HomePage} exact />
-            <Route path="/student/plan-zajec" component={TimeTablePage} />
-            <Route path="/student/oceny" component={FinalGradesPage} />
-            <Route
-              path="/student/oceny-czastkowe"
-              component={PartialGradesPage}
-            />
-            <Route
-              path="/student/wiadomosci"
-              exact
-              component={AnnoucmentsPage}
-            />
-            <Route path="/student/wiadomosci/:id" component={AnnoucmentPage} />
-          </Switch>
-        </Suspense>
+      <div className="content-box">
+        <div className="content">
+          <Suspense fallback={<div className="loading"></div>}>
+            <Switch>
+              <Route path="/student" component={HomePage} exact />
+              <Route path="/student/plan-zajec" component={TimeTablePage} />
+              <Route path="/student/oceny" component={FinalGradesPage} />
+              <Route
+                path="/student/oceny-czastkowe"
+                component={PartialGradesPage}
+              />
+              <Route
+                path="/student/wiadomosci"
+                exact
+                component={AnnoucmentsPage}
+              />
+              <Route
+                path="/student/wiadomosci/:id"
+                component={AnnoucmentPage}
+              />
+            </Switch>
+          </Suspense>
+        </div>
       </div>
       <UserMenu open={isMenuOpen} setopen={setIsMenuOpen} />
     </div>
