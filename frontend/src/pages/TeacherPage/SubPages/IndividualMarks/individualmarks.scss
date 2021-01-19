@@ -20,7 +20,8 @@
 
 }
 
-.buttonForm {
+.buttonForm,
+.divPlus {
   background: linear-gradient(
                   60deg,
                   $primary-color,
@@ -42,6 +43,21 @@
     background: white;
     color: black;
   }
+}
+
+.divPlus {
+  font-size: 25px;
+  line-height: 25px;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  margin: auto;
+  margin-top: 10px;
+  background: linear-gradient(
+                  60deg,
+                  $tertiary-color,
+                  lighten($tertiary-color, 10%)
+  );
 }
 
 .inputForm {
