@@ -1,0 +1,64 @@
+{
+  "groups": [
+    {
+      "group_id": "221A",
+      "subject": "MSZ2 - L",
+      "squad": [
+        {
+          "first_name": "Marcin",
+          "last_name": "Wrzos",
+          "unique_number": 44557,
+          "marks": [
+            {
+              "id": 1,
+              "mark": 3,
+              "description": "wejsciówka"
+            },
+            {
+              "id": 2,
+              "mark": 4,
+              "description": "wejsciówka"
+            },
+            {
+              "id": 3,
+              "mark": 5,
+              "description": "kolokwium"
+            },
+            {
+              "id": 4,
+              "mark": 3,
+              "description": "zadanie domowe"
+            }
+          ]
+        },
+        {
+          "first_name": "Kowalczyk",
+          "last_name": "Patryk",
+          "unique_number": 44332,
+          "marks": [
+            {
+              "id": 1,
+              "mark": 5,
+              "description": "wejsciówka"
+            },
+            {
+              "id": 2,
+              "mark": 5,
+              "description": "kolokwium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group_id": "333",
+      "subject": "MSZ1 - A",
+      "squad": []
+    },
+    {
+      "group_id": "111",
+      "subject": "MSZ2 - A",
+      "squad": []
+    }
+  ]
+}

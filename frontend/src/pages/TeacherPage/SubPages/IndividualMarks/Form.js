@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import "./individualmarks.scss";
-import data from "./data";
+// import data from "./data";
 import SelectedTable from "./SelectedTable";
+import data from "../../endpoints/marks.json";
 
-
-const studentsGroups = data.map((item, i) => {
+const studentsGroups = [...data.groups].map((item, i) => {
     return (
-        <option key={item.id} value={item.id}>
-            Grupa: {item.id} {"----"} {item.subject}
+        <option key={item.group_id} value={item.group_id}>
+            Grupa: {item.group_id} {"----"} {item.subject}
         </option>
     )
 })

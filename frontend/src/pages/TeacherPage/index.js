@@ -16,14 +16,6 @@ const HomePage = lazy(() => import("./SubPages/HomePage"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
 const IndividualMarks = lazy(() => import("./SubPages/IndividualMarks"));
 
-const LoggedUser = {
-    firstname: "Grażyna",
-    lastname: "Żarko",
-    index: "gż3322",
-    avatar:
-        "https://tmtown.s3.amazonaws.com/uploads/user/image/328772/super_large_hochnadel_avatar.jpg",
-};
-
 
 function App() {
     const dispatch = useDispatch();
@@ -33,6 +25,7 @@ function App() {
             day_plan: data.day_plan,
             meetings: data.meetings
         }))
+
 
     // const config = {
     //     headers: header(),
