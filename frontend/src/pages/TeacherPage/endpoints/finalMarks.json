@@ -1,7 +1,7 @@
 {
   "groups": [
     {
-      "group_id": "221A",
+      "group_id": "1111",
       "subject": "MSZ2 - L",
       "squad": [
         {
@@ -15,6 +15,24 @@
           "last_name": "Patryk",
           "unique_number": 44332,
           "mark": 5
+        },
+        {
+          "first_name": "Jędrzej",
+          "last_name": "Burek",
+          "unique_number": 112233,
+          "mark": 1
+        },
+        {
+          "first_name": "Pioter",
+          "last_name": "Szlest",
+          "unique_number": 44213,
+          "mark": 1
+        },
+        {
+          "first_name": "Marcin",
+          "last_name": "Bogaty",
+          "unique_number": 43112,
+          "mark": 1
         }
       ]
     },

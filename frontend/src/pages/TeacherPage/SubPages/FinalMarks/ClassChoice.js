@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import "./finalMarks.scss";
-import data from "../../endpoints/marks.json";
+import data from "../../endpoints/finalMarks.json";
 import {useDispatch, useSelector} from "react-redux";
 import {setClasses} from "../../../../actions/classes";
 import {setMarks} from "../../../../actions/marks";
