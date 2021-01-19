@@ -27,7 +27,7 @@ const LoggedUser = {
 
 function App() {
     const dispatch = useDispatch();
-    dispatch(login(LoggedUser));
+    dispatch(login(data.teacher_data));
     dispatch(
         setInfo({
             day_plan: data.day_plan,
