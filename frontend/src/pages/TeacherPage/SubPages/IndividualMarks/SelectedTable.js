@@ -1,11 +1,12 @@
-import React from 'react';
-import data from "../../endpoints/marks.json";
+import React, {useState} from 'react';
 import "./individualmarks.scss";
-
+import Form from "./Form";
+import {useSelector} from "react-redux";
 
 const SelectedTable = ({selected}) => {
-        const dataFilter = [...data.groups].filter((item, i) => item.group_id === selected)
+        const groupsData = useSelector((state) => state.classes.groups) || [];
 
+        const dataFilter = groupsData.filter((item, i) => item.group_id === selected)
 
         const studentsGroup = [...dataFilter].map((item, i) => {
             return (
@@ -27,12 +28,7 @@ const SelectedTable = ({selected}) => {
                             //     </div>
                             // </>
                             //    ZROBIE TYLKO OSOBY
-                            <div key={element.unique_number} className="nameLastName">
-                                {element.first_name}
-                                {" "}
-                                {element.last_name}
-                            </div>
-
+                            <Form key={element.first_name + element.uniqueID} element={element}/>
 
                         )
                     }
