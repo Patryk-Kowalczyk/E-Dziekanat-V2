@@ -47,30 +47,24 @@
       "form": "L"
     }
   ],
-  "last_grades": [
+  "meetings": [
     {
-      "name": "Podstawy informacji",
-      "form": "W",
-      "value": "4",
-      "date": "2021-01-13 14:25"
+      "name": "Negocjacje podwyżki",
+      "who": "Dziekan",
+      "time": "14:00",
+      "date": "2021-02-04"
     },
     {
-      "name": "Podstawy informacji",
-      "form": "W",
-      "value": "5",
-      "date": "2021-01-13 14:25"
+      "name": "poprawa egzaminu",
+      "who": "Michał Janek",
+      "time": "17.00",
+      "date": "2021-02-04"
     },
     {
-      "name": "Sztuczna inteligencja",
-      "form": "W",
-      "value": "3",
-      "date": "2021-01-12 21:42"
-    },
-    {
-      "name": "Zarzadzanie informacja",
-      "form": "L",
-      "value": "3",
-      "date": "2021-01-06 09:27"
+      "name": "Rozmowa o pracy magisterskiej",
+      "who": "Jędrzej Burek",
+      "time": "19.00",
+      "date": "2021-02-05"
     }
   ],
   "avg_grades": [

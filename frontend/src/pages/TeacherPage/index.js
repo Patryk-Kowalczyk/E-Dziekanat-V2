@@ -31,6 +31,7 @@ function App() {
     dispatch(
         setInfo({
             day_plan: data.day_plan,
+            meetings: data.meetings
         }))
 
     // const config = {
