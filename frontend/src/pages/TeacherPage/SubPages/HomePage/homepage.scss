@@ -47,8 +47,7 @@ $padding: 1rem;
     padding: $padding;
     border-radius: $radius;
     background-color: darken($light-background, 5%);
-    min-height: 33%;
-
+    padding-bottom: 25px;
     @media screen and (max-width: 1000px) {
       grid-column: span 2;
     }
@@ -68,10 +67,11 @@ $padding: 1rem;
   &__meetings {
     border-radius: $radius;
     grid-column: span 2;
-    height: 200px;
     padding: $padding;
     display: grid;
     grid-template-rows: auto 1fr;
+    padding-bottom: 25px;
+
   }
 }
 
