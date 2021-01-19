@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import Input from "./Input";
+import {useDispatch} from "react-redux";
+import {setClasses} from "../../../../actions/classes";
+import data from "../../endpoints/marks.json";
 
 const Form = ({element}) => {
     const [isOpenForm, setOpenForm] = useState(false);
@@ -7,7 +10,7 @@ const Form = ({element}) => {
 
     const [isVisible, setIsVisible] = useState(false);
     const [visibleValueDesc, setVisibleValueDesc] = useState('');
-    const [visibleValueMark, setVisibleValueMark] = useState('');
+    const [visibleValueMark, setVisibleValueMark] = useState();
 
 
     const handleOnChangeDescription = (e) => {
@@ -21,6 +24,19 @@ const Form = ({element}) => {
         formMarksUpdate(edit)
     }
     const handleOnClick = (e) => {
+        e.preventDefault()
+        const edit = [...formMarks];
+        edit[edit.length] = {
+            id: edit.length,
+            mark: Number(visibleValueMark),
+            description: visibleValueDesc,
+        }
+        formMarksUpdate(edit)
+        setVisibleValueMark();
+        setVisibleValueDesc('');
+        setIsVisible(false);
+        console.log(edit);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
 
     }
     return (
@@ -46,11 +62,12 @@ const Form = ({element}) => {
                         })}
                         {isVisible === true ? (
                                 <>
-                                    <input type="text" className="inputForm" value={visibleValueDesc}
-                                           onChange={setVisibleValueDesc}
+                                    <input type="text" className="inputForm"
+                                           value={visibleValueDesc}
+                                           onChange={(e) => setVisibleValueDesc(e.target.value)}
                                            placeholder={"Kategoria"}/>
                                     <input type="text" className="inputForm" value={visibleValueMark}
-                                           onChange={setVisibleValueMark}
+                                           onChange={(e) => setVisibleValueMark(e.target.value)}
                                            placeholder={"Ocena"}
                                     />
 
@@ -58,7 +75,7 @@ const Form = ({element}) => {
                             )
                             : null}
                         <div className="divPlus" onClick={() => setIsVisible(!isVisible)}>+</div>
-                        <button className="buttonForm">Submit</button>
+                        <button onClick={handleOnClick} className="buttonForm">Submit</button>
                     </form>
                 </div>
             )}

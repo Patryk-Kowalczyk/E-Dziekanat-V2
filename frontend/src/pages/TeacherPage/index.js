@@ -15,6 +15,7 @@ import data from './endpoints/dashboard.json';
 const HomePage = lazy(() => import("./SubPages/HomePage"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
 const IndividualMarks = lazy(() => import("./SubPages/IndividualMarks"));
+const FinalMarks = lazy(() => import("./SubPages/FinalMarks"));
 
 
 function App() {
@@ -25,30 +26,6 @@ function App() {
             day_plan: data.day_plan,
             meetings: data.meetings
         }))
-
-
-    // const config = {
-    //     headers: header(),
-    // };
-    //
-    // useEffect(() => {
-    //     axios
-    //         .get(API_URL + "dashboard", config)
-    //         .then((response) => {
-    //             console.log(response);
-    //             const data = response.data.student_data;
-    //             dispatch(login(data));
-    //             dispatch(
-    //                 setInfo({
-    //                     day_plan: response.data.day_plan,
-    //                     avg_grades: response.data.avg_grades,
-    //                     last_grades: response.data.last_grades,
-    //                 })
-    //             );
-    //         })
-    //         .catch((err) => console.error(err));
-    // }, []);
-
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -61,11 +38,12 @@ function App() {
                         <Route path="/teacher" component={HomePage} exact/>
                         <Route path="/teacher/plan-zajec/" component={TimeTablePage}/>
                         <Route path="/teacher/oceny-czastkowe/" component={IndividualMarks}/>
+                        <Route path="/teacher/oceny/" component={FinalMarks}/>
+
                     </Switch>
                 </Suspense>
             </div>
             <TeacherMenu open={isMenuOpen} setopen={setIsMenuOpen}/>
-
         </div>
     );
 }

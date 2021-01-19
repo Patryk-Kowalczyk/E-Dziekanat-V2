@@ -66,19 +66,5 @@
       "time": "19.00",
       "date": "2021-02-05"
     }
-  ],
-  "my_classes": [
-    {
-      "name": "Podstawy informacji",
-      "avg": 4.5
-    },
-    {
-      "name": "Sztuczna inteligencja",
-      "avg": 3
-    },
-    {
-      "name": "Zarzadzanie informacja",
-      "avg": 3
-    }
   ]
 }

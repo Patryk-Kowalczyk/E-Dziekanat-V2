@@ -10,22 +10,22 @@
           "unique_number": 44557,
           "marks": [
             {
-              "id": 1,
-              "mark": 3,
-              "description": "wejsciówka"
+              "id": 0,
+              "mark": 2,
+              "description": "kolos"
             },
             {
-              "id": 2,
+              "id": 1,
               "mark": 4,
               "description": "wejsciówka"
             },
             {
-              "id": 3,
+              "id": 2,
               "mark": 5,
               "description": "kolokwium"
             },
             {
-              "id": 4,
+              "id": 3,
               "mark": 3,
               "description": "zadanie domowe"
             }
@@ -37,12 +37,12 @@
           "unique_number": 44332,
           "marks": [
             {
-              "id": 1,
+              "id": 0,
               "mark": 5,
               "description": "wejsciówka"
             },
             {
-              "id": 2,
+              "id": 1,
               "mark": 5,
               "description": "kolokwium"
             }
