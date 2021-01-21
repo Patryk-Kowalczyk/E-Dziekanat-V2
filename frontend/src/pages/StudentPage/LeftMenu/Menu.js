@@ -6,9 +6,10 @@ import {
   MdForum,
   MdList,
   MdCheckCircle,
-  MdSearch,
   MdComputer,
 } from "react-icons/md";
+
+import { FaUserGraduate } from "react-icons/fa";
 
 export default function Menu() {
   return (
@@ -30,12 +31,12 @@ export default function Menu() {
         icon={<MdList />}
       />
       <SingleLink to="/student/wybor" name="Wybór" icon={<MdCheckCircle />} />
-      <SingleLink to="/student/szukaj" name="Szukaj" icon={<MdSearch />} />
       <SingleLink
         to="/student/e-learning"
         name="E-learning"
         icon={<MdComputer />}
       />
+      <SingleLink to="/student/uczen" name="Uczeń" icon={<FaUserGraduate />} />
     </div>
   );
 }

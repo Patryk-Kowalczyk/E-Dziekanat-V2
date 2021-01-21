@@ -42,7 +42,7 @@ export default function TodaysTimeTable() {
   return (
     <div className="studenthome__timetable">
       <h3>Plan zajęć na dziś:</h3>
-      <table>
+      <table className="primary-table">
         <thead>
           <tr>
             <th>Nazwa</th>

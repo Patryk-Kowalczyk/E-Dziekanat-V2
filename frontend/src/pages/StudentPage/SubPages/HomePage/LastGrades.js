@@ -40,7 +40,7 @@ export default function LastGrades() {
   return (
     <div className="studenthome__lastgrades">
       <h3>Ostatnie oceny</h3>
-      <table className="transparent">
+      <table className="primary-table transparent">
         <thead>
           <tr>
             <th>Przedmiot</th>

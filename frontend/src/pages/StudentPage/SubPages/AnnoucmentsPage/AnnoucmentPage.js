@@ -1,5 +1,6 @@
 import React from "react";
 import "./annoucmentspage.scss";
+import Skeleton from "../../../../components/Skeleton";
 
 const data = {
   id: 613,
@@ -17,6 +18,7 @@ export default function AnnoucmentPage() {
       <p className="date">
         Dodano: {data.date} przez {data.added_by}
       </p>
+      <Skeleton count={3} />
       <p className="text">{data.text}</p>
     </div>
   );

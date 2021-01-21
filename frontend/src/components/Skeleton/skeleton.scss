@@ -1,0 +1,45 @@
+.skeleton {
+  display: block;
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 0.1rem;
+  border-radius: 5px;
+  position: relative;
+
+  &-container {
+    display: inline;
+    width: 100%;
+  }
+
+  &.round {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 200px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      #ffffff 50%,
+      transparent 100%
+    );
+    animation: load 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes load {
+  from {
+    left: -200px;
+  }
+  to {
+    left: 100%;
+  }
+}

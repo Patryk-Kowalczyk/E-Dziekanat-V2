@@ -18,6 +18,10 @@ const AnnoucmentsPage = lazy(() => import("./SubPages/AnnoucmentsPage"));
 const AnnoucmentPage = lazy(() =>
   import("./SubPages/AnnoucmentsPage/AnnoucmentPage")
 );
+const FinancialData = lazy(() => import("./SubPages/FinancialData"));
+const FinancialPayments = lazy(() =>
+  import("./SubPages/FinancialData/FinancialPayments.js")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +72,15 @@ function App() {
               <Route
                 path="/student/wiadomosci/:id"
                 component={AnnoucmentPage}
+              />
+              <Route
+                path="/student/dane-finansowe"
+                exact
+                component={FinancialData}
+              />
+              <Route
+                path="/student/dane-finansowe/:id"
+                component={FinancialPayments}
               />
             </Switch>
           </Suspense>
