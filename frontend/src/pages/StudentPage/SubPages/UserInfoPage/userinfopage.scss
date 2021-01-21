@@ -1,0 +1,52 @@
+@import "../../../../global_variables";
+
+.userinfopage {
+  width: 100%;
+  @include customH1;
+
+  &-container {
+    margin-top: 2rem;
+    background-color: rgba(0, 0, 0, 0.08);
+    height: calc(100% - 4rem);
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 2rem 1rem;
+  }
+  &-info {
+    & p {
+      display: flex;
+      align-items: center;
+    }
+    & span {
+      font-weight: 700;
+      font-size: 1.2rem;
+      width: 150px;
+    }
+
+    & input {
+      border: 1px solid $font-gray;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    & .icon {
+      color: white;
+      border-radius: 3px;
+      margin-left: 0.3rem;
+      cursor: pointer;
+      padding: 0.2rem;
+      font-size: 1.2rem;
+
+      &.edit {
+        background-color: $secondary-color;
+      }
+      &.check {
+        background-color: $tertiary-color;
+      }
+      &.close {
+        background-color: $error;
+      }
+    }
+  }
+}
