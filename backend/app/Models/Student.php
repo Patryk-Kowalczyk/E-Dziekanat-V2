@@ -34,4 +34,15 @@ class Student extends Model
         return $this->hasMany(FinalGrade::class);
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    //===================================================//
+    public function getGroupId()
+    {
+        return $this->group->id;
+    }
+
 }

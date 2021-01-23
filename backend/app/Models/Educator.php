@@ -26,6 +26,13 @@ class Educator extends Model
         return $this->hasMany(Plan::class,'educator_id');
     }
 
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    //=========================================//
+
     public function getFullName()
     {
         return $this->title.' '. $this->user->first_name. ' '.$this->user->last_name;

@@ -35,6 +35,12 @@ Route::group([
     Route::get('dashboard', 'DashboardController@index');
     Route::get('partialGrades', 'PartialGradesController@index');
     Route::get('finalGrade', 'FinalGradeController@index');
+    Route::post('planDay', 'PlanController@dayIndex');
+    Route::post('planWeek', 'PlanController@weekIndex');
+    Route::get('payments', 'PaymentController@index');
+    Route::post('paymentDetails', 'PaymentController@show');
+    Route::get('messages', 'MessageController@index');
+    Route::post('messageDetails', 'MessageController@show');
 });
 
 
