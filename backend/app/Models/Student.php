@@ -28,4 +28,10 @@ class Student extends Model
         return $this->hasMany(Grade::class);
     }
 
+    public function finalgrades()
+    {
+
+        return $this->hasMany(FinalGrade::class);
+    }
+
 }

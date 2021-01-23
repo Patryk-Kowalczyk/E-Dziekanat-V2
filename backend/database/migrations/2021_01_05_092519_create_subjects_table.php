@@ -14,10 +14,12 @@ class CreateSubjectsTable extends Migration
     public function up()
     {
         Schema::create('subjects', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
-            $table->enum('form',['W','L','Lek','A']);
-            $table->unsignedBigInteger('educator_id');
+            $table->enum('form',['W','L','Lek','A','OK']);
+            $table->integer('hours')->nullable();
+            $table->integer('ECTS')->nullable();
+            $table->unsignedBigInteger('educator_id')->nullable();
         });
     }
 

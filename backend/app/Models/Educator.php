@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Educator extends Model
 {
     protected $fillable = [
-        'user_id',
-        'gender',
-        'phone',
-        'dateofbirth',
-        'address'
+            'title'
     ];
 
     public function user()
@@ -21,12 +18,17 @@ class Educator extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class);
+        return $this->hasMany(Subject::class);
     }
 
     public function plan()
     {
         return $this->hasMany(Plan::class,'educator_id');
+    }
+
+    public function getFullName()
+    {
+        return $this->title.' '. $this->user->first_name. ' '.$this->user->last_name;
     }
 
 }

@@ -34,6 +34,7 @@ Route::group([
 ], function ($router) {
     Route::get('dashboard', 'DashboardController@index');
     Route::get('partialGrades', 'PartialGradesController@index');
+    Route::get('finalGrade', 'FinalGradeController@index');
 });
 
 

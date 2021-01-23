@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\DB;
 
 class PartialGradesController extends Controller
 {
-    public $student;
 
     public function __construct()
     {
@@ -29,10 +28,10 @@ class PartialGradesController extends Controller
             $q->select(
                 ['grades.category', 'grades.value', 'grades.comments', 'grades.created_at as date']
             )->where('grades.student_id', Auth::id());
-        }])->get();
+        }])->where('subjects.form', '!=', 'OK')->get();
+
 
         return response()->json(['partial_grades' => $partialGrades]);  //Pobranie ocen cząstkowych studenta
     }
-
 
 }

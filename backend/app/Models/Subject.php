@@ -11,7 +11,7 @@ class Subject extends Model
 
     ];
 
-    protected $hidden = ['pivot','id','educator_id'];
+    protected $hidden = ['pivot','id','educator_id','first_term','first_repeat','second_repeat','committee','promotion','ECTS'];
 
     public function plans()
     {
@@ -23,10 +23,16 @@ class Subject extends Model
         return $this->belongsToMany(Grade::class,'subjects_grades');
     }
 
-    public function educators()
+    public function educator()
     {
-        return $this->belongsToMany(Grade::class,'subjects_educators');
+        return $this->belongsTo(Educator::class);
     }
+
+    public function finalgrades()
+    {
+        return $this->hasMany(FinalGrade::class);
+    }
+
 
 
 }
