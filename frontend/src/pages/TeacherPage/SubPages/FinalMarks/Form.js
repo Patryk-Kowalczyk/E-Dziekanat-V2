@@ -9,8 +9,6 @@ const Form = ({element}) => {
         console.log(
             formMark, element.first_name, element.unique_number
         );
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-
     }
     return (
         <>

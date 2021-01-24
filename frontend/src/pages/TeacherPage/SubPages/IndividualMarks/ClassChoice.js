@@ -8,7 +8,7 @@ import {setClasses} from "../../../../actions/classes";
 const studentsGroups = [...data.groups].map((item, i) => {
     return (
         <option key={item.group_id} value={item.group_id}>
-            Grupa: {item.group_id} {"----"} {item.subject}
+            Grupa: {item.group_id} {"----"} {item.subject} {"----"} {item.form}
         </option>
     )
 })

@@ -26,10 +26,12 @@ const Form = ({element}) => {
     const handleOnClick = (e) => {
         e.preventDefault()
         const edit = [...formMarks];
-        edit[edit.length] = {
-            id: edit.length,
-            mark: Number(visibleValueMark),
-            description: visibleValueDesc,
+        if(visibleValueMark){
+            edit[edit.length] = {
+                id: edit.length,
+                mark: Number(visibleValueMark),
+                description: visibleValueDesc,
+            }
         }
         formMarksUpdate(edit)
         setVisibleValueMark();
@@ -74,7 +76,9 @@ const Form = ({element}) => {
                                 </>
                             )
                             : null}
-                        <div className="divPlus" onClick={() => setIsVisible(!isVisible)}>+</div>
+                        {isVisible === false ? (
+                            <div className="divPlus" onClick={() => setIsVisible(!isVisible)}>+</div>
+                        ) : <div className="divPlus" onClick={() => setIsVisible(!isVisible)}>-</div>}
                         <button onClick={handleOnClick} className="buttonForm">Submit</button>
                     </form>
                 </div>

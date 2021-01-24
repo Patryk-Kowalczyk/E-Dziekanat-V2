@@ -2,7 +2,8 @@
   "groups": [
     {
       "group_id": "221A",
-      "subject": "MSZ2 - L",
+      "subject": "MSZ2",
+      "form": "L",
       "squad": [
         {
           "first_name": "Marcin",
@@ -10,22 +11,22 @@
           "unique_number": 44557,
           "marks": [
             {
-              "id": 0,
+              "id": 445570,
               "mark": 2,
               "description": "kolos"
             },
             {
-              "id": 1,
+              "id": 445571,
               "mark": 4,
               "description": "wejsciówka"
             },
             {
-              "id": 2,
+              "id": 445572,
               "mark": 5,
               "description": "kolokwium"
             },
             {
-              "id": 3,
+              "id": 445573,
               "mark": 3,
               "description": "zadanie domowe"
             }
@@ -52,12 +53,14 @@
     },
     {
       "group_id": "333",
-      "subject": "MSZ1 - A",
+      "subject": "MSZ1",
+      "form": "A",
       "squad": []
     },
     {
       "group_id": "111",
-      "subject": "MSZ2 - A",
+      "subject": "MSZ2",
+      "form": "A",
       "squad": []
     }
   ]
