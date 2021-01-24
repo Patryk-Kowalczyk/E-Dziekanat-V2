@@ -9,18 +9,25 @@ const Form = ({element}) => {
     const [formMarks, formMarksUpdate] = useState(element.marks);
 
     const [isVisible, setIsVisible] = useState(false);
-    const [visibleValueDesc, setVisibleValueDesc] = useState('');
+    const [visibleValueCategory, setVisibleValueCategory] = useState('');
     const [visibleValueMark, setVisibleValueMark] = useState();
+    const [visibleValueComment, setVisibleValueComment] = useState('');
 
 
-    const handleOnChangeDescription = (e) => {
+
+    const handleOnChangeCategory = (e) => {
         const edit = [...formMarks];
-        edit[e.target.placeholder].description = e.target.value;
+        edit[e.target.placeholder].category = e.target.value;
+        formMarksUpdate(edit)
+    }
+    const handleOnChangeComments = (e) => {
+        const edit = [...formMarks];
+        edit[e.target.placeholder].comments = e.target.value;
         formMarksUpdate(edit)
     }
     const handleOnChangeMark = (e) => {
         const edit = [...formMarks];
-        edit[e.target.placeholder].mark = e.target.value;
+        edit[e.target.placeholder].mark = Number(e.target.value);
         formMarksUpdate(edit)
     }
     const handleOnClick = (e) => {
@@ -30,12 +37,15 @@ const Form = ({element}) => {
             edit[edit.length] = {
                 id: edit.length,
                 mark: Number(visibleValueMark),
-                description: visibleValueDesc,
+                category: visibleValueCategory,
+                comments: visibleValueComment,
+                date:''
             }
         }
         formMarksUpdate(edit)
         setVisibleValueMark();
-        setVisibleValueDesc('');
+        setVisibleValueCategory('');
+        setVisibleValueComment('');
         setIsVisible(false);
         console.log(edit);
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -49,30 +59,43 @@ const Form = ({element}) => {
             {isOpenForm && (
                 <div className="marksForm">
                     <form>
+                        <input className="inputForm" value={"Kategoria"} disabled/>
+                        <input className="inputForm" value={"Ocena"} disabled/>
+                        <input className="inputForm" value={"Komentarz"} disabled/>
                         {formMarks.map((e, i) => {
                             return (
                                 <div>
                                     <Input valueI={i}
-                                           valueInput={formMarks[i].description}
-                                           handleOnChange={handleOnChangeDescription}/>
+                                           valueInput={formMarks[i].category}
+                                           handleOnChange={handleOnChangeCategory
+                                           }/>
                                     <Input valueI={i}
                                            valueInput={formMarks[i].mark}
-                                           handleOnChange={handleOnChangeMark}/>
+                                           handleOnChange={handleOnChangeMark}
+                                    />
+                                    <Input valueI={i}
+                                           valueInput={formMarks[i].comments}
+                                           handleOnChange={handleOnChangeComments}
+                                    />
                                     <br/>
+
                                 </div>
                             )
                         })}
                         {isVisible === true ? (
                                 <>
                                     <input type="text" className="inputForm"
-                                           value={visibleValueDesc}
-                                           onChange={(e) => setVisibleValueDesc(e.target.value)}
+                                           value={visibleValueCategory}
+                                           onChange={(e) => setVisibleValueCategory(e.target.value)}
                                            placeholder={"Kategoria"}/>
                                     <input type="text" className="inputForm" value={visibleValueMark}
                                            onChange={(e) => setVisibleValueMark(e.target.value)}
                                            placeholder={"Ocena"}
                                     />
-
+                                    <input type="text" className="inputForm" value={visibleValueComment}
+                                           onChange={(e) => setVisibleValueComment(e.target.value)}
+                                           placeholder={"Komentarz"}
+                                    />
                                 </>
                             )
                             : null}

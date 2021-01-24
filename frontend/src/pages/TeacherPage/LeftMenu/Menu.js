@@ -23,16 +23,15 @@ export default function Menu() {
                 name="Wiadomości"
                 icon={<MdForum/>}
             />
-            <SingleLink
-                to="/teacher/zarzadzanie-grupami"
-                name="Zarządzanie grupami"
-                icon={<MdList/>}
-            />
             <SingleLink to="/teacher/szukaj" name="Szukaj" icon={<MdSearch/>}/>
             <SingleLink
                 to="/teacher/e-learning"
                 name="E-learning"
-                icon={<MdComputer/>}
+                icon={<MdComputer/>
+
+                }
+                href
+
             />
         </div>
     );

@@ -16,7 +16,10 @@ const HomePage = lazy(() => import("./SubPages/HomePage"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
 const IndividualMarks = lazy(() => import("./SubPages/IndividualMarks"));
 const FinalMarks = lazy(() => import("./SubPages/FinalMarks"));
-
+const AnnoucmentsPage = lazy(() => import("./SubPages/AnnoucmentsPage"));
+const AnnoucmentPage = lazy(() =>
+    import("./SubPages/AnnoucmentsPage/AnnoucmentPage")
+);
 
 function App() {
     const dispatch = useDispatch();
@@ -39,6 +42,12 @@ function App() {
                         <Route path="/teacher/plan-zajec/" component={TimeTablePage}/>
                         <Route path="/teacher/oceny-czastkowe/" component={IndividualMarks}/>
                         <Route path="/teacher/oceny/" component={FinalMarks}/>
+                        <Route
+                            path="/teacher/wiadomosci"
+                            exact
+                            component={AnnoucmentsPage}
+                        />
+                        <Route path="/teacher/wiadomosci/:id" component={AnnoucmentPage} />
 
                     </Switch>
                 </Suspense>

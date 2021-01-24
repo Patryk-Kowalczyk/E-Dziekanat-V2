@@ -13,22 +13,30 @@
             {
               "id": 445570,
               "mark": 2,
-              "description": "kolos"
+              "category": "kolos",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
             },
             {
               "id": 445571,
               "mark": 4,
-              "description": "wejsciówka"
+              "category": "wejsciówka",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
             },
             {
               "id": 445572,
               "mark": 5,
-              "description": "kolokwium"
+              "category": "kolokwium",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
             },
             {
               "id": 445573,
               "mark": 3,
-              "description": "zadanie domowe"
+              "category": "zadanie domowe",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
             }
           ]
         },
@@ -40,12 +48,16 @@
             {
               "id": 0,
               "mark": 5,
-              "description": "wejsciówka"
+              "category": "wejsciówka",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
             },
             {
               "id": 1,
               "mark": 5,
-              "description": "kolokwium"
+              "category": "kolokwium",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
             }
           ]
         }
