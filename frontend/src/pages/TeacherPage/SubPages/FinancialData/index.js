@@ -26,7 +26,7 @@ function FinancialData() {
         const config = {
             headers: header(),
         };
-        axios.get(API_URL + "educator/payments", config).then((response) => {
+        axios.get(API_URL + "payments", config).then((response) => {
             setData(response.data.payments);
         });
     }, []);

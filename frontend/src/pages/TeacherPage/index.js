@@ -15,7 +15,7 @@ import {setMarks} from "../../actions/marks";
 
 const HomePage = lazy(() => import("./SubPages/HomePage"));
 const FinancialData = lazy(() => import("./SubPages/FinancialData"));
-
+const FinancialPayments = lazy(() => import("./SubPages/FinancialData/FinancialPayments"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
 const IndividualMarks = lazy(() => import("./SubPages/IndividualMarks"));
 const FinalMarks = lazy(() => import("./SubPages/FinalMarks"));
@@ -87,8 +87,12 @@ function App() {
                         <Route path="/educator" component={HomePage} exact/>
                         <Route path="/educator/plan-zajec/" component={TimeTablePage}/>
                         <Route path="/educator/oceny-czastkowe/" component={IndividualMarks}/>
-                        <Route path="/educator/dane-finansowe" component={FinancialData}/>
-                        <Route path="/educator/oceny/" component={FinalMarks}/>
+                        <Route path="/educator/dane-finansowe"  exact component={FinancialData}/>
+                        <Route
+                            path="/educator/dane-finansowe/:id"
+                            component={FinancialPayments}
+                        />
+                        <Route path="/educator/oceny/" component={FinalMarks} />
                         <Route
                             path="/educator/wiadomosci"
                             exact

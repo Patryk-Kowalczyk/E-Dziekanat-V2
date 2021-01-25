@@ -5,33 +5,6 @@ import axios from "axios";
 import header from "../../../../services/auth-header";
 import API_URL from "../../../../services/API_URL";
 
-// const data = [
-//   {
-//     assinged: 12.4,
-//     assingedDate: "20.07.2020",
-//     paid: 12.4,
-//     paidDate: "20.07.2020",
-//   },
-//   {
-//     assinged: 12.4,
-//     assingedDate: "20.07.2020",
-//     paid: 12.4,
-//     paidDate: "20.07.2020",
-//   },
-//   {
-//     assinged: 12.4,
-//     assingedDate: "20.07.2020",
-//     paid: 0,
-//     paidDate: "20.07.2020",
-//   },
-//   {
-//     assinged: 12.4,
-//     assingedDate: "20.07.2020",
-//     paid: 12.4,
-//     paidDate: "20.07.2020",
-//   },
-// ];
-
 export default function FinancialPayments() {
     const { id } = useParams();
     const [data, setData] = useState(null);
@@ -40,8 +13,9 @@ export default function FinancialPayments() {
         const config = {
             headers: header(),
         };
+        console.log(id)
         axios
-            .post(API_URL + "educator/paymentDetails", { payment_id: id }, config)
+            .post(API_URL + "paymentDetails", { payment_id: id }, config)
             .then((response) => {
                 setData(response.data.payments);
             });
