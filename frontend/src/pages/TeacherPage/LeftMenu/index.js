@@ -8,7 +8,7 @@ export default function index({open, setopen}) {
     return (
         <>
             <nav className={`mainmenu ${open && "active"}`}>
-                <Link to="/teacher" className="mainmenu__logo">
+                <Link to="/educator" className="mainmenu__logo">
                     <img src={logoSmall} alt="ZUT Logo"/>
                 </Link>
                 <Menu/>

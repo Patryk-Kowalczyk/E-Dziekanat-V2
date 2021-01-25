@@ -3,7 +3,7 @@ import Input from "../IndividualMarks/Input";
 
 const Form = ({element}) => {
     const [isOpenForm, setOpenForm] = useState(false);
-    const [formMark, formMarksUpdate] = useState(element.mark || null);
+    const [formMark, formMarksUpdate] = useState(element.first_term || null);
     const handleOnClick = (e) => {
         e.preventDefault()
         console.log(

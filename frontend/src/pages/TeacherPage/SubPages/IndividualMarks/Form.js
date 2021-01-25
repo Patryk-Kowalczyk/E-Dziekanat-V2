@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {setClasses} from "../../../../actions/classes";
 import data from "../../endpoints/marks.json";
 
-const Form = ({element}) => {
+const Form = ({element,infoGroup,infoForm,infoSubject}) => {
     const [isOpenForm, setOpenForm] = useState(false);
     const [formMarks, formMarksUpdate] = useState(element.marks);
 
@@ -32,8 +32,16 @@ const Form = ({element}) => {
     }
     const handleOnClick = (e) => {
         e.preventDefault()
+        console.log(infoForm)
+        const info = {
+            "group_id": infoGroup,
+            "subject": infoSubject,
+            "form": infoForm,
+        }
+
         const edit = [...formMarks];
         if(visibleValueMark){
+
             edit[edit.length] = {
                 id: edit.length,
                 mark: Number(visibleValueMark),
@@ -43,11 +51,14 @@ const Form = ({element}) => {
             }
         }
         formMarksUpdate(edit)
+        const editAndInfo = [info,...edit]
+        const myJsonString = JSON.stringify(editAndInfo);
+
         setVisibleValueMark();
         setVisibleValueCategory('');
         setVisibleValueComment('');
         setIsVisible(false);
-        console.log(edit);
+        console.log(myJsonString);
         // eslint-disable-next-line react-hooks/rules-of-hooks
 
     }

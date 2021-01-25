@@ -12,7 +12,7 @@ const SelectedTable = ({selected}) => {
             return (
                 item.squad.map((element, i) => {
                         return (
-                            <Form key={element.unique_number} element={element}/>
+                            <Form key={element.unique_number} element={element} infoGroup={item.group_id} infoForm={item.form} infoSubject={item.subject} />
                         )
                     }
                 ))

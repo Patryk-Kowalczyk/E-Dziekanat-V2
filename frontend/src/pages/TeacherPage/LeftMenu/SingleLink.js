@@ -10,12 +10,10 @@ function SingleLink({ to, name, icon,href }) {
         }
     }
     return (
-        <>
         <NavLink to={to} activeClassName="current" className="menu__item" onClick={hrefFunction}>
             {icon}
             {name}
         </NavLink>
-        </>
     );
 }
 

@@ -17,15 +17,15 @@ export default function Menu() {
                 name="Dane finansowe"
                 icon={<MdAccountBalanceWallet/>}
             />
-            <SingleLink to="/teacher/dyplomanci" name="Dyplomanci" icon={<MdAssignment/>}/>
+            <SingleLink to="/educator/dyplomanci" name="Dyplomanci" icon={<MdAssignment/>}/>
             <SingleLink
-                to="/teacher/wiadomosci"
+                to="/educator/wiadomosci"
                 name="Wiadomości"
                 icon={<MdForum/>}
             />
-            <SingleLink to="/teacher/szukaj" name="Szukaj" icon={<MdSearch/>}/>
+            <SingleLink to="/educator/szukaj" name="Szukaj" icon={<MdSearch/>}/>
             <SingleLink
-                to="/teacher/e-learning"
+                to="/educator/e-learning"
                 name="E-learning"
                 icon={<MdComputer/>
 

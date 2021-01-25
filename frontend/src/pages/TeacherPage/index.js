@@ -1,4 +1,4 @@
-import React, {Suspense, useState, lazy} from "react";
+import React, {Suspense, useState, lazy, useEffect} from "react";
 import "./teacherpage.scss";
 import LeftMenu from "./LeftMenu";
 
@@ -10,7 +10,6 @@ import axios from "axios";
 import API_URL from "../../services/API_URL";
 import {setInfo} from "../../actions/info";
 import header from "../../services/auth-header";
-import data from './endpoints/dashboard.json';
 
 const HomePage = lazy(() => import("./SubPages/HomePage"));
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
@@ -23,12 +22,29 @@ const AnnoucmentPage = lazy(() =>
 
 function App() {
     const dispatch = useDispatch();
-    dispatch(login(data.teacher_data));
-    dispatch(
-        setInfo({
-            day_plan: data.day_plan,
-            meetings: data.meetings
-        }))
+
+    const config = {
+        headers: header(),
+    };
+
+    useEffect(() => {
+        axios
+            .get(API_URL + "educator/dashboard", config)
+            .then((response) => {
+                console.log(response);
+                const data = response.data.teacher_data;
+                console.log(data)
+                dispatch(login(data));
+                dispatch(
+                    setInfo({
+                        day_plan: response.data.day_plan,
+                        meetings: response.data.meetings,
+                    })
+                );
+            })
+            .catch((err) => console.error(err));
+    }, [])
+
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -38,16 +54,16 @@ function App() {
             <div className="content">
                 <Suspense fallback={<div className="loading"></div>}>
                     <Switch>
-                        <Route path="/teacher" component={HomePage} exact/>
-                        <Route path="/teacher/plan-zajec/" component={TimeTablePage}/>
-                        <Route path="/teacher/oceny-czastkowe/" component={IndividualMarks}/>
-                        <Route path="/teacher/oceny/" component={FinalMarks}/>
+                        <Route path="/educator" component={HomePage} exact/>
+                        <Route path="/educator/plan-zajec/" component={TimeTablePage}/>
+                        <Route path="/educator/oceny-czastkowe/" component={IndividualMarks}/>
+                        <Route path="/educator/oceny/" component={FinalMarks}/>
                         <Route
-                            path="/teacher/wiadomosci"
+                            path="/educator/wiadomosci"
                             exact
                             component={AnnoucmentsPage}
                         />
-                        <Route path="/teacher/wiadomosci/:id" component={AnnoucmentPage} />
+                        <Route path="/educator/wiadomosci/:id" component={AnnoucmentPage} />
 
                     </Switch>
                 </Suspense>
