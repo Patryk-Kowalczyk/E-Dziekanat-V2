@@ -44,6 +44,17 @@
       max-width: 400px;
     }
   }
+
+  &-hiuser {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    & button {
+      margin-top: 2rem;
+    }
+  }
 }
 
 .form-loginas {
