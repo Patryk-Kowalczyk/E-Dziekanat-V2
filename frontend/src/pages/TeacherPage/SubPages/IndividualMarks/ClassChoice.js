@@ -1,26 +1,45 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./individualmarks.scss";
 import SelectedTable from "./SelectedTable";
-import data from "../../endpoints/marks.json";
 import {useDispatch, useSelector} from "react-redux";
 import {setClasses} from "../../../../actions/classes";
+import axios from "axios";
+import API_URL from "../../../../services/API_URL";
+import header from "../../../../services/auth-header";
 
-const studentsGroups = [...data.groups].map((item, i) => {
-    return (
-        <option key={item.group_id} value={item.group_id}>
-            Grupa: {item.group_id} {"----"} {item.subject} {"----"} {item.form}
-        </option>
-    )
-})
+
 
 const ClassChoice = () => {
     const dispatch = useDispatch();
-    dispatch(
-        setClasses({
-            groups: data.groups,
-        }))
-
+    const data = useSelector((state) => state.classes.groups) || [];
     const [selectedOption, choicedSelectedOption] = useState(0);
+    const config = {
+        headers: header(),
+    };
+
+    useEffect(() => {
+        axios
+            .get(API_URL + "educator/partialGradesList",config)
+            .then((response) => {
+                const data = response.data;
+                console.log(data)
+                 dispatch(
+                     setClasses({
+                       groups: data.groups,
+                    }))
+
+
+            })
+            .catch((err) => console.error(err));
+    }, [])
+
+    const studentsGroups = [...data].map((item, i) => {
+        return (
+            <option key={item.id_subject} value={item.name}>
+                {item.name} {"----"} {item.form}
+            </option>
+        )
+    })
 
     const handleChange = (e) => {
         choicedSelectedOption(e.target.value)
@@ -30,7 +49,7 @@ const ClassChoice = () => {
             <div className="classChoice">
                 <form>
                     <select value={selectedOption} onChange={handleChange}>
-                        <option value={0}>WYBIERZ KLASĘ</option>
+                        <option value={0}>WYBIERZ GRUPĘ</option>
                         {studentsGroups}
                     </select>
                 </form>
