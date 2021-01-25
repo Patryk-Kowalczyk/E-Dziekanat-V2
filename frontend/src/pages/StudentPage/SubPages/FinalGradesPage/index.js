@@ -1,73 +1,84 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./finalgrades.scss";
+import axios from "axios";
+import header from "../../../../services/auth-header";
+import API_URL from "../../../../services/API_URL";
 
 //Nazwa przedmiotu	Typ 	Wystawił	Liczba godzin	I termin	I poprawka	II poprawka	Komis	Awans	Pkt. ECTS
 
-const data = [
-  {
-    name: "Aplikacje internetowe 1",
-    teacher: "Andrzej Jakiś",
-    forms: [
-      {
-        type: "Laboratorium",
-        teacher: "Andzej Jakiś",
-        hours: 30,
-        firstTerm: null,
-        firstRepeat: null,
-        secondRepeat: null,
-        committee: null,
-        awans: null,
-      },
-      {
-        type: "Wykład",
-        teacher: "Andzej Jakiś",
-        hours: 30,
-        firstTerm: null,
-        firstRepeat: null,
-        secondRepeat: null,
-        committee: null,
-        awans: null,
-      },
-    ],
-    ects: 3,
-    finalGrade: null,
-  },
-  {
-    name: "Zarządzanie informacją 2",
-    teacher: "Andrzej Jakiś",
-    forms: [
-      {
-        type: "Laboratorium",
-        teacher: "Andzej Jakiś",
-        hours: 30,
-        firstTerm: null,
-        firstRepeat: 4.5,
-        secondRepeat: null,
-        committee: null,
-        awans: null,
-      },
-      {
-        type: "Wykład",
-        teacher: "Andzej Jakiś",
-        hours: 30,
-        firstTerm: 4,
-        firstRepeat: null,
-        secondRepeat: null,
-        committee: null,
-        awans: null,
-      },
-    ],
-    ects: 5,
-    finalGrade: 4,
-  },
-];
+// const data = [
+//   {
+//     name: "Aplikacje internetowe 1",
+//     teacher: "Andrzej Jakiś",
+//     forms: [
+//       {
+//         type: "Laboratorium",
+//         teacher: "Andzej Jakiś",
+//         hours: 30,
+//         firstTerm: null,
+//         firstRepeat: null,
+//         secondRepeat: null,
+//         committee: null,
+//         awans: null,
+//       },
+//       {
+//         type: "Wykład",
+//         teacher: "Andzej Jakiś",
+//         hours: 30,
+//         firstTerm: null,
+//         firstRepeat: null,
+//         secondRepeat: null,
+//         committee: null,
+//         awans: null,
+//       },
+//     ],
+//     ects: 3,
+//     finalGrade: null,
+//   },
+//   {
+//     name: "Zarządzanie informacją 2",
+//     teacher: "Andrzej Jakiś",
+//     forms: [
+//       {
+//         type: "Laboratorium",
+//         teacher: "Andzej Jakiś",
+//         hours: 30,
+//         firstTerm: null,
+//         firstRepeat: 4.5,
+//         secondRepeat: null,
+//         committee: null,
+//         awans: null,
+//       },
+//       {
+//         type: "Wykład",
+//         teacher: "Andzej Jakiś",
+//         hours: 30,
+//         firstTerm: 4,
+//         firstRepeat: null,
+//         secondRepeat: null,
+//         committee: null,
+//         awans: null,
+//       },
+//     ],
+//     ects: 5,
+//     finalGrade: 4,
+//   },
+// ];
+
+var groupBy = function (xs, key) {
+  return xs.reduce(function (rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, []);
+};
 
 function TimeTablePage(props) {
-  const [infoToShow, setInfoToShow] = React.useState(null);
+  const [data, setData] = useState(null);
+  const [infoToShow, setInfoToShow] = useState(null);
 
   const whichInfoShow = () => {
     if (infoToShow) {
-      return data.filter((subject) => subject.name === infoToShow)[0];
+      return data[infoToShow];
     } else {
       return null;
     }
@@ -75,59 +86,69 @@ function TimeTablePage(props) {
 
   const info = whichInfoShow();
 
+  const config = {
+    headers: header(),
+  };
+  useEffect(() => {
+    axios.get(API_URL + "student/finalGrade", config).then((response) => {
+      const res = response.data.final_grade;
+      setData(groupBy(res, "name"));
+    });
+  }, []);
   return (
     <div className="finalgrades">
       <h1>Oceny końcowe</h1>
       <div className="finalgrades-container">
         <div className="finalgrades-subjects">
-          {data.map((subject) => {
-            return (
-              <div
-                className="finalgrades-subjects__item"
-                key={subject.name}
-                onClick={() => setInfoToShow(subject.name)}
-              >
-                <p>{subject.name}</p>
-              </div>
-            );
-          })}
+          {data ? (
+            Object.keys(data).map((subject) => {
+              return (
+                <div
+                  className="finalgrades-subjects__item"
+                  key={subject}
+                  onClick={() => setInfoToShow(subject)}
+                >
+                  <p>{subject}</p>
+                </div>
+              );
+            })
+          ) : (
+            <div className="loading"></div>
+          )}
         </div>
         <div className="finalgrades-details">
           {info ? (
             <>
-              <h3>{info.name}</h3>
-              <p>
-                Ocena:{" "}
-                <span className="grade">{info.finalGrade || "Brak"}</span>
-              </p>
-              <p>Ects: {info.ects}</p>
-              <br />
+              <h3>{info[0].name}</h3>
               <h5 className="linebottom">Formy:</h5>
-              {info.forms.map((form) => (
-                <div className="finalgrades-details__form">
+              {info.map((form, index) => (
+                <div className="finalgrades-details__form" key={index}>
                   <p>
-                    Forma: <strong>{form.type}</strong>
+                    Forma: <strong>{form.form}</strong>
                   </p>
                   <p>
-                    Prowadzący: <strong>{form.teacher}</strong>
+                    ECTS: <strong>{form.ECTS}</strong>
+                  </p>
+                  <p>
+                    Prowadzący: <strong>{form.educator}</strong>
                   </p>
                   <p>
                     Ilość godzin: <strong>{form.hours}</strong>
                   </p>
                   <p>
-                    Pierwszy termin: <strong>{form.firstTerm}</strong>
+                    Pierwszy termin: <strong>{form.first_term}</strong>
                   </p>
                   <p>
-                    Pierwsza poprawa: <strong>{form.firstRepeat}</strong>
+                    Pierwsza poprawa: <strong>{form.first_repeat}</strong>
                   </p>
                   <p>
-                    Druga poprawa: <strong>{form.secondRepeat}</strong>
+                    Druga poprawa: <strong>{form.second_repeat}</strong>
                   </p>
                   <p>
                     Komisja: <strong>{form.committee}</strong>
                   </p>
                   <p>
-                    Awans: <strong>{form.awans}</strong>
+                    Awans: <strong>{form.promotion}</strong>
                   </p>
                 </div>
               ))}

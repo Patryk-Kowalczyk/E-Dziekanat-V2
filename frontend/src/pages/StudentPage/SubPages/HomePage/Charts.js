@@ -12,7 +12,7 @@ export default function Charts() {
     }
   }, [info]);
 
-  const seriesData = data.map((subject) => subject.avg);
+  const seriesData = data.map((subject) => subject.avg.toFixed(2));
   const labelsData = data.map((subject) => subject.name);
 
   const series = [

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./annoucmentspage.scss";
 import { MdUnfoldMore } from "react-icons/md";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import header from "../../../../services/auth-header";
+import API_URL from "../../../../services/API_URL";
 
 const data = [
   {
@@ -35,15 +38,33 @@ const Annoucment = ({ data }) => {
   );
 };
 
-export default function index() {
+const AnnoucmentPage = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const config = {
+      headers: header(),
+    };
+    axios.get(API_URL + "student/messages", config).then((response) => {
+      setData(response.data.message);
+    });
+  }, []);
   return (
     <div className="annoucmentspage">
       <h1>Wiadomości</h1>
       <div className="annoucmentspage-annoucments">
-        {data.map((annoucment, index) => {
-          return <Annoucment key={index} data={annoucment} />;
-        })}
+        {data ? (
+          data.map((annoucment, index) => {
+            return <Annoucment key={index} data={annoucment} />;
+          })
+        ) : (
+          <h3>Jeszcze nie ma żadnych wiadomości</h3>
+        )}
       </div>
     </div>
   );
+};
+
+export default function index(props) {
+  return <AnnoucmentPage {...props} />;
 }

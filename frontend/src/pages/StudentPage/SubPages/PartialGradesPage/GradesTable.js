@@ -22,7 +22,7 @@ export default function GradesTable({ grades }) {
                   <tr key={index}>
                     <td>{`${index + 1}.`}</td>
                     <td>{grade.category}</td>
-                    <td>{grade.grade}</td>
+                    <td>{grade.value}</td>
                     <td>{grade.date}</td>
                     <td>{grade.comments}</td>
                   </tr>
@@ -33,6 +33,8 @@ export default function GradesTable({ grades }) {
         </div>
       </>
     );
+  } else if (grades && grades.length === 0) {
+    return <p>Ten przedmiot nie posiada jeszcze ocen.</p>;
   } else {
     return <p>Wybierz przedmiot z listy.</p>;
   }
