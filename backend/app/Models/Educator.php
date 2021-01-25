@@ -31,6 +31,11 @@ class Educator extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function meetings()
+    {
+        return $this->hasMany(Meeting::class);
+    }
+
     //=========================================//
 
     public function getFullName()

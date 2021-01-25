@@ -42,7 +42,6 @@ class MessageController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
         $message=Message::find($request['id']);
 
         $result['id']=$message->id;

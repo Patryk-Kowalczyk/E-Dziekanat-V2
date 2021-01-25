@@ -56,8 +56,7 @@ class DashboardController extends Controller
             $resultDayPlan['to'] = $plan->to;
             $resultDayPlan['room'] = $plan->room;
             $resultDayPlan['form'] = $plan->subjects[0]->form;
-            $fullName = $plan->educator->title . ' ' . $plan->educator->user->first_name . ' ' . $plan->educator->user->last_name;
-            $resultDayPlan['educator'] = $fullName;
+            $resultDayPlan['educator'] = $plan->educator->getFullName();
             $dayPlan[] = $resultDayPlan;
         }
         return $dayPlan;

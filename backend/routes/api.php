@@ -30,7 +30,17 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
+    'namespace'  => 'App\Http\Controllers',
+], function ($router) {
+    Route::get('dataUser', 'PersonDataController@index');
+    Route::post('updateData', 'PersonDataController@update');
+});
+
+
+Route::group([
+    'middleware' => 'api',
     'namespace'  => 'App\Http\Controllers\Student',
+    'prefix' => 'student'
 ], function ($router) {
     Route::get('dashboard', 'DashboardController@index');
     Route::get('partialGrades', 'PartialGradesController@index');
@@ -41,6 +51,18 @@ Route::group([
     Route::post('paymentDetails', 'PaymentController@show');
     Route::get('messages', 'MessageController@index');
     Route::post('messageDetails', 'MessageController@show');
+});
+
+Route::group([
+    'middleware' => 'api',
+    'namespace'  => 'App\Http\Controllers\Educator',
+    'prefix' => 'educator'
+], function ($router) {
+    Route::get('dashboard', 'DashboardController@index');
+    Route::get('partialGradesList', 'PartialGradesController@index');
+    Route::post('partialGradesStore', 'PartialGradesController@store');
+    Route::get('finalGradesList', 'FinalGradesController@index');
+    Route::post('finalGradesStore', 'FinalGradesController@store');
 });
 
 

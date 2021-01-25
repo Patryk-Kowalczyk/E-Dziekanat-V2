@@ -19,7 +19,7 @@ class Grade extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class,'subjects_grades');
+        return $this->belongsToMany(Subject::class,'subjects_grades')->withPivot('subject_id');
     }
 
     public function student()
