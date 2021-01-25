@@ -6,14 +6,6 @@ import header from "../../../../services/auth-header";
 import API_URL from "../../../../services/API_URL";
 import Skeleton from "../../../../components/Skeleton";
 
-const data = {
-    wydzial: "Informatyki",
-    kierunek: "Informatyka",
-    specjalizacja: "ISI",
-    semestr: 5,
-    tel: "123456789",
-    email: "mail@mail.to",
-};
 
 const config = {
     headers: header(),
@@ -46,21 +38,18 @@ const UserInfoPage = () => {
                     <>
                         <div className="userinfopage-info">
                             <p>
-                                <span>Wydział: </span>
-                                {data.faculty}
+                                <span>Dane osobowe: </span>
+                                {data.name}
                             </p>
                             <p>
-                                <span>Kierunek: </span>
-                                {data.field_of_study}
+                                <span>Data urodzenia: </span>
+                                {data.date_of_birth}
                             </p>
                             <p>
-                                <span>Specjalizacja: </span>
-                                {data.specialization}
+                                <span>Adres: </span>
+                                {data.address}
                             </p>
-                            <p>
-                                <span>Semestr: </span>
-                                {data.semester}
-                            </p>
+
                         </div>
                         <div className="userinfopage-info changable">
                             <p>

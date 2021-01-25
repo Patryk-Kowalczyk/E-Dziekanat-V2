@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function SingleLink({ to, name, icon,href }) {
     const hrefFunction = () => {
         if(href){
-            window.location.href = 'https://e-edukacja.zut.edu.pl/';
+            window.open( 'https://e-edukacja.zut.edu.pl/');
             return null;
         }
     }

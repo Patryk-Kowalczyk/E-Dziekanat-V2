@@ -27,11 +27,9 @@ export default function Menu() {
             />
             <SingleLink to="/educator/szukaj" name="Szukaj" icon={<MdSearch/>}/>
             <SingleLink
-                to="/educator/e-learning"
+                to="/educator"
                 name="E-learning"
-                icon={<MdComputer/>
-
-                }
+                icon={<MdComputer/>}
                 href
 
             />
