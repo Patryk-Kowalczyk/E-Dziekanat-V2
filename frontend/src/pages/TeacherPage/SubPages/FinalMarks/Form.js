@@ -13,7 +13,7 @@ const Form = ({element}) => {
     const [firstRepeat, setFirstRepeat] = useState(element.first_repeat || '');
     const [secondRepeat, setSecondRepeat] = useState(element.second_repeat ||'');
     const [committee, setCommittee] = useState(element.committee ||'');
-    const [promotion, setPromotion] = useState(element.promition || '');
+    const [promotion, setPromotion] = useState(element.promotion || '');
     const dispatch = useDispatch()
     const handleOnClick = (e) => {
         e.preventDefault()
@@ -25,14 +25,13 @@ const Form = ({element}) => {
             committee: committee === '' ? null : Number(committee),
             promotion: promotion === '' ? null : Number(promotion),
         }
-
         const config = {
             headers: header(),
         };
         axios
             .post(API_URL + "educator/finalGradesStore",info, config)
             .then((response) => {
-                console.log(response);
+                // console.log(response);
             })
             .catch((err) => console.error(err));
 
