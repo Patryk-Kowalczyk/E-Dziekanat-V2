@@ -10,8 +10,12 @@ import axios from "axios";
 import API_URL from "../../services/API_URL";
 import {setInfo} from "../../actions/info";
 import header from "../../services/auth-header";
+import {setClasses} from "../../actions/classes";
+import {setMarks} from "../../actions/marks";
 
 const HomePage = lazy(() => import("./SubPages/HomePage"));
+const FinancialData = lazy(() => import("./SubPages/FinancialData"));
+
 const TimeTablePage = lazy(() => import("./SubPages/TimeTablePage"));
 const IndividualMarks = lazy(() => import("./SubPages/IndividualMarks"));
 const FinalMarks = lazy(() => import("./SubPages/FinalMarks"));
@@ -19,7 +23,9 @@ const AnnoucmentsPage = lazy(() => import("./SubPages/AnnoucmentsPage"));
 const AnnoucmentPage = lazy(() =>
     import("./SubPages/AnnoucmentsPage/AnnoucmentPage")
 );
-
+const TeacherInfo = lazy(() =>
+    import("./SubPages/TeacherInfoPage")
+);
 function App() {
     const dispatch = useDispatch();
 
@@ -31,9 +37,7 @@ function App() {
         axios
             .get(API_URL + "educator/dashboard", config)
             .then((response) => {
-                console.log(response);
                 const data = response.data.teacher_data;
-                console.log(data)
                 dispatch(login(data));
                 dispatch(
                     setInfo({
@@ -41,6 +45,32 @@ function App() {
                         meetings: response.data.meetings,
                     })
                 );
+            })
+            .catch((err) => console.error(err));
+
+        axios
+            .get(API_URL + "educator/partialGradesList",config)
+            .then((response) => {
+                const data = response.data;
+                dispatch(
+                    setClasses({
+                        groups: data.groups,
+                    }))
+
+
+            })
+            .catch((err) => console.error(err));
+
+        axios
+            .get(API_URL + "educator/finalGradesList",config)
+            .then((response) => {
+                const data = response.data;
+                dispatch(
+                    setMarks({
+                        finalGrades: data.finalGrades,
+                    }))
+
+
             })
             .catch((err) => console.error(err));
     }, [])
@@ -57,6 +87,7 @@ function App() {
                         <Route path="/educator" component={HomePage} exact/>
                         <Route path="/educator/plan-zajec/" component={TimeTablePage}/>
                         <Route path="/educator/oceny-czastkowe/" component={IndividualMarks}/>
+                        <Route path="/educator/dane-finansowe" component={FinancialData}/>
                         <Route path="/educator/oceny/" component={FinalMarks}/>
                         <Route
                             path="/educator/wiadomosci"
@@ -64,6 +95,7 @@ function App() {
                             component={AnnoucmentsPage}
                         />
                         <Route path="/educator/wiadomosci/:id" component={AnnoucmentPage} />
+                        <Route path="/educator/ustawienia/" component={TeacherInfo} />
 
                     </Switch>
                 </Suspense>

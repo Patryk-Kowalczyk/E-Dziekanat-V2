@@ -4,15 +4,17 @@ import Form from "./Form";
 import {useSelector} from "react-redux";
 
 const SelectedTable = ({selected}) => {
-        const groupsData = useSelector((state) => state.marks.groups) || [];
+        const groupsData = useSelector((state) => state.marks.finalGrades) || [];
 
-        const dataFilter = groupsData.filter((item, i) => item.group_id === selected)
+        const dataFilter = groupsData.filter((item, i) => item.id_subject === Number(selected))
+        console.log(dataFilter)
+        console.log(selected)
 
         const studentsGroup = [...dataFilter].map((item, i) => {
             return (
                 item.squad.map((element, i) => {
                         return (
-                            <Form key={element.unique_number} element={element}/>
+                            <Form key={"form" + element.id_finalgrade} element={element}/>
                         )
                     }
                 ))

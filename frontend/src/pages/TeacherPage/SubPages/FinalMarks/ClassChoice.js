@@ -1,27 +1,19 @@
 import React, {useState} from 'react';
 import "./finalMarks.scss";
-import data from "../../endpoints/finalMarks.json";
-import {useDispatch, useSelector} from "react-redux";
-import {setClasses} from "../../../../actions/classes";
-import {setMarks} from "../../../../actions/marks";
 import SelectedTable from "./SelectedTable";
-
-const studentsGroups = [...data.groups].map((item, i) => {
-    return (
-        <option key={item.group_id} value={item.group_id}>
-            Grupa: {item.group_id} {"----"} {item.subject} {"----"} {item.form}
-        </option>
-    )
-})
+import {useSelector} from "react-redux";
 
 const ClassChoice = () => {
-    const dispatch = useDispatch();
-    dispatch(
-        setMarks({
-            groups: data.groups,
-        }))
-
+    const data = useSelector((state) => state.marks.finalGrades) || [];
     const [selectedOption, choicedSelectedOption] = useState(0);
+
+    const studentsGroups = [...data].map((item, i) => {
+        return (
+            <option key={item.id_subject} value={item.id_subject}>
+                {item.name} {"----"} {item.form}
+            </option>
+        )
+    })
 
     const handleChange = (e) => {
         choicedSelectedOption(e.target.value)
@@ -31,7 +23,7 @@ const ClassChoice = () => {
             <div className="classChoice">
                 <form>
                     <select value={selectedOption} onChange={handleChange}>
-                        <option value={0}>WYBIERZ KLASĘ</option>
+                        <option value={0}>WYBIERZ GRUPĘ</option>
                         {studentsGroups}
                     </select>
                 </form>

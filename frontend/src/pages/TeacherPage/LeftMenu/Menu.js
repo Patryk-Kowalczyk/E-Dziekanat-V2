@@ -7,13 +7,15 @@ import {
     MdList,
     MdSearch,
     MdComputer,
+    MdSettings
 } from "react-icons/md";
+import {FaUserGraduate} from "react-icons/fa";
 
 export default function Menu() {
     return (
         <div className="menu">
             <SingleLink
-                to="/teacher/dane-finansowe"
+                to="/educator/dane-finansowe"
                 name="Dane finansowe"
                 icon={<MdAccountBalanceWallet/>}
             />
@@ -33,6 +35,8 @@ export default function Menu() {
                 href
 
             />
+            <SingleLink to="/educator/ustawienia" name="Ustawienia" icon={<MdSettings />} />
+
         </div>
     );
 }

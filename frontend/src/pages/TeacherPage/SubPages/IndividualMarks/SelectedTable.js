@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./individualmarks.scss";
 import Form from "./Form";
 import {useSelector} from "react-redux";
@@ -10,7 +10,13 @@ const SelectedTable = ({selected}) => {
             return (
                 item.squad.map((element, i) => {
                         return (
-                            <Form key={Number(element.album)} selected={Number(selected)} element={element} infoGroup={element.group} infoForm={item.form} infoSubject={item.name}  s_id={item.id_subject} />
+                            <Form key={Number(element.album)}
+                                  selected={Number(selected)}
+                                  element={element}
+                                  infoGroup={element.group}
+                                  infoForm={item.form}
+                                  infoSubject={item.name}
+                                  s_id={item.id_subject} />
                         )
                     }
                 ))

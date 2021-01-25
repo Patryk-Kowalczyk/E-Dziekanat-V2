@@ -3,6 +3,8 @@ import Input from "./Input";
 import axios from "axios";
 import API_URL from "../../../../services/API_URL";
 import header from "../../../../services/auth-header";
+import {setClasses} from "../../../../actions/classes";
+import {useDispatch} from "react-redux";
 
 
 const Form = ({element,infoGroup,infoForm,s_id}) => {
@@ -10,7 +12,7 @@ const Form = ({element,infoGroup,infoForm,s_id}) => {
         formMarksUpdate([...element.marks])
     },[element])
 
-
+    const dispatch = useDispatch()
     const [isOpenForm, setOpenForm] = useState(false);
     const [formMarks, formMarksUpdate] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
@@ -66,6 +68,19 @@ const Form = ({element,infoGroup,infoForm,s_id}) => {
             })
             .catch((err) => console.error(err));
 
+        axios
+            .get(API_URL + "educator/partialGradesList",config)
+            .then((response) => {
+                const data = response.data;
+                console.log(data)
+                dispatch(
+                    setClasses({
+                        groups: data.groups,
+                    }))
+
+
+            })
+            .catch((err) => console.error(err));
         setVisibleValueMark();
         setVisibleValueCategory('');
         setVisibleValueComment('');
