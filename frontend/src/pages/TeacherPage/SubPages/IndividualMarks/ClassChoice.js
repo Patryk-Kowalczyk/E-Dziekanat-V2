@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,createContext,useContext} from 'react';
 import "./individualmarks.scss";
 import SelectedTable from "./SelectedTable";
 import {useDispatch, useSelector} from "react-redux";
@@ -6,7 +6,9 @@ import {setClasses} from "../../../../actions/classes";
 import axios from "axios";
 import API_URL from "../../../../services/API_URL";
 import header from "../../../../services/auth-header";
+import App from "../../../../App";
 
+export const AppContext = React.createContext([false, () => {}]);
 
 
 const ClassChoice = () => {
@@ -35,7 +37,7 @@ const ClassChoice = () => {
 
     const studentsGroups = [...data].map((item, i) => {
         return (
-            <option key={item.id_subject} value={item.name}>
+            <option key={item.id_subject} value={item.id_subject}>
                 {item.name} {"----"} {item.form}
             </option>
         )
