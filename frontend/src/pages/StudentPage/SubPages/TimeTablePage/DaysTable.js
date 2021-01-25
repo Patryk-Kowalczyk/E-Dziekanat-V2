@@ -40,7 +40,7 @@ const getDate = (date, changeState) => {
     headers: header(),
   };
   axios
-    .post(API_URL + "student/planDay", { dateOfDay: date }, config)
+    .post(API_URL + "planDay", { dateOfDay: date }, config)
     .then((response) => {
       changeState(response.data.plan_day);
     });

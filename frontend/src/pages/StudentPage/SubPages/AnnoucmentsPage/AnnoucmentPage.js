@@ -23,7 +23,7 @@ export default function AnnoucmentPage() {
       headers: header(),
     };
     axios
-      .post(API_URL + "student/messageDetails", { id: id }, config)
+      .post(API_URL + "messageDetails", { id: id }, config)
       .then((response) => {
         setData(response.data.message);
       });

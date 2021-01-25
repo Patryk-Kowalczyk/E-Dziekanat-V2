@@ -45,7 +45,7 @@ const AnnoucmentPage = () => {
     const config = {
       headers: header(),
     };
-    axios.get(API_URL + "student/messages", config).then((response) => {
+    axios.get(API_URL + "messages", config).then((response) => {
       setData(response.data.message);
     });
   }, []);

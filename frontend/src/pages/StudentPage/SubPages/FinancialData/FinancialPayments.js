@@ -41,7 +41,7 @@ export default function FinancialPayments() {
       headers: header(),
     };
     axios
-      .post(API_URL + "student/paymentDetails", { payment_id: id }, config)
+      .post(API_URL + "paymentDetails", { payment_id: id }, config)
       .then((response) => {
         setData(response.data.payments);
       });
@@ -74,7 +74,9 @@ export default function FinancialPayments() {
                     <td>{row.assinged_date}</td>
                     <td>{row.paid}</td>
                     <td>{row.paid_date}</td>
-                    <td>{row.paid - row.assinged}</td>
+                    <td>
+                      {(parseFloat(row.paid) || 0) - parseFloat(row.assinged)}
+                    </td>
                   </tr>
                 );
               })
@@ -84,14 +86,19 @@ export default function FinancialPayments() {
             {data ? (
               <tr>
                 <td colSpan={2}>
-                  {data.reduce((sum, row) => sum + row.assinged, 0)}
+                  {data.reduce((sum, row) => sum + parseFloat(row.assinged), 0)}
                 </td>
                 <td colSpan={2}>
-                  {data.reduce((sum, row) => sum + row.paid, 0)}
+                  {data.reduce(
+                    (sum, row) => sum + parseFloat(row.paid) || 0,
+                    0
+                  )}
                 </td>
                 <td>
                   {data.reduce(
-                    (sum, row) => sum + (row.paid - row.assinged),
+                    (sum, row) =>
+                      sum +
+                      ((parseFloat(row.paid) || 0) - parseFloat(row.assinged)),
                     0
                   )}
                 </td>

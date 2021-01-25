@@ -16,55 +16,55 @@ const DAYS = [
   "Niedziela",
 ];
 
-const data = {
-  poniedzialek: [
-    {
-      from: "8:15",
-      to: "10:00",
-      name: "Podstawy ochrony informacji",
-      teacher: "Andrzej Jakiś",
-      room: "202",
-      form: "L",
-    },
-    {
-      from: "12:15",
-      to: "14:00",
-      name: "Podstawy ochrony informacji",
-      teacher: "Andrzej Jakiś",
-      room: "204",
-      form: "W",
-    },
-    {
-      from: "14:15",
-      to: "16:00",
-      name: "ZI",
-      teacher: "Andrzej Jakiś",
-      room: "204",
-      form: "W",
-    },
-  ],
-  wtorek: [
-    {
-      from: "8:15",
-      to: "10:00",
-      name: "Podstawy ochrony informacji",
-      teacher: "Andrzej Jakiś",
-      room: "202",
-      form: "L",
-    },
-    {
-      from: "10:15",
-      to: "12:00",
-      name: "Podstawy ochrony informacji",
-      teacher: "Andrzej Jakiś",
-      room: "204",
-      form: "W",
-    },
-  ],
-  sroda: [],
-  czwartek: [],
-  piatek: [],
-};
+// const data = {
+//   poniedzialek: [
+//     {
+//       from: "8:15",
+//       to: "10:00",
+//       name: "Podstawy ochrony informacji",
+//       teacher: "Andrzej Jakiś",
+//       room: "202",
+//       form: "L",
+//     },
+//     {
+//       from: "12:15",
+//       to: "14:00",
+//       name: "Podstawy ochrony informacji",
+//       teacher: "Andrzej Jakiś",
+//       room: "204",
+//       form: "W",
+//     },
+//     {
+//       from: "14:15",
+//       to: "16:00",
+//       name: "ZI",
+//       teacher: "Andrzej Jakiś",
+//       room: "204",
+//       form: "W",
+//     },
+//   ],
+//   wtorek: [
+//     {
+//       from: "8:15",
+//       to: "10:00",
+//       name: "Podstawy ochrony informacji",
+//       teacher: "Andrzej Jakiś",
+//       room: "202",
+//       form: "L",
+//     },
+//     {
+//       from: "10:15",
+//       to: "12:00",
+//       name: "Podstawy ochrony informacji",
+//       teacher: "Andrzej Jakiś",
+//       room: "204",
+//       form: "W",
+//     },
+//   ],
+//   sroda: [],
+//   czwartek: [],
+//   piatek: [],
+// };
 
 const getMonday = (d) => {
   d = new Date(d);
@@ -128,7 +128,7 @@ export default function WeekTable() {
     };
     axios
       .post(
-        API_URL + "student/planWeek",
+        API_URL + "planWeek",
         {
           dateStart: parseDateFormat(monday),
           dateEnd: parseDateFormat(sunday),
