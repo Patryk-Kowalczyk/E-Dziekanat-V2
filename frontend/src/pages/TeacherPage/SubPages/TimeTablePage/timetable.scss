@@ -5,6 +5,7 @@
   flex-direction: column;
   width: 100%;
   padding: 1rem;
+  min-height: calc(100vh - 6rem);
 
   background: #fdfdfd;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
@@ -35,7 +36,7 @@
   &-days {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(8, 1fr);
   }
 
   &-hours,
@@ -46,6 +47,7 @@
     & h5 {
       font-size: 1.2rem;
       color: $primary-color;
+      padding: 0px 0.2rem;
     }
   }
 
@@ -61,7 +63,8 @@
 }
 
 .weektable-legend {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   margin: 1rem 0;
 
   & > * {
@@ -69,34 +72,10 @@
   }
 }
 
-@mixin legendColors($property, $color) {
-  &-#{$property} {
-    position: relative;
-    padding-left: 0.2rem;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 2px;
-      background-color: $color;
-    }
-  }
-}
-
-.color {
-  @include legendColors(lecture, rgb(73, 163, 0));
-  @include legendColors(laboratory, rgb(4, 0, 248));
-  @include legendColors(langcourse, rgb(210, 53, 77));
-}
-
 .weektable-paginate {
   display: flex;
   justify-content: center;
   margin: 1rem 0;
-
   & .paginate-button {
     margin: 0 1rem;
     cursor: pointer;
@@ -107,7 +86,6 @@
 .daystable {
   margin-top: 2rem;
   position: relative;
-
   table {
     width: 100%;
 
