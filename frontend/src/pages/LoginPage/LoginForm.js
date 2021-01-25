@@ -28,7 +28,7 @@ export default function LoginForm() {
     if (data.isStudent) {
       status = "student";
     } else {
-      status = "teacher";
+      status = "educator";
     }
 
     const response = await AuthService.login(data.id, data.password, status)

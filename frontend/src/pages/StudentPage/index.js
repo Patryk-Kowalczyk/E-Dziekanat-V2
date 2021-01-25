@@ -33,7 +33,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(API_URL + "dashboard", config)
+      .get(API_URL + "student/dashboard", config)
       .then((response) => {
         console.log(response);
         const data = response.data.student_data;

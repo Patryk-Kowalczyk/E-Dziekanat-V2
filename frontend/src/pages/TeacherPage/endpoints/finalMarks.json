@@ -1,0 +1,74 @@
+{
+  "groups": [
+    {
+      "group_id": "1111",
+      "subject": "MSZ2",
+      "form" : "L",
+      "squad": [
+        {
+          "first_name": "Marcin",
+          "last_name": "Wrzos",
+          "unique_number": 44557,
+          "first_term": 2,
+          "first_repeat": null,
+          "second_repeat": null,
+          "committee": null,
+          "promotion": null
+        },
+        {
+          "first_name": "Kowalczyk",
+          "last_name": "Patryk",
+          "unique_number": 44332,
+          "first_term": 2,
+          "first_repeat": null,
+          "second_repeat": null,
+          "committee": null,
+          "promotion": null
+        },
+        {
+          "first_name": "Jędrzej",
+          "last_name": "Burek",
+          "unique_number": 112233,
+          "first_term": 2,
+          "first_repeat": null,
+          "second_repeat": null,
+          "committee": null,
+          "promotion": null
+        },
+        {
+          "first_name": "Pioter",
+          "last_name": "Szlest",
+          "unique_number": 44213,
+          "first_term": 2,
+          "first_repeat": null,
+          "second_repeat": null,
+          "committee": null,
+          "promotion": null
+        },
+        {
+          "first_name": "Marcin",
+          "last_name": "Bogaty",
+          "unique_number": 43112,
+          "first_term": 2,
+          "first_repeat": null,
+          "second_repeat": null,
+          "committee": null,
+          "promotion": null
+           }
+      ]
+    },
+    {
+      "group_id": "333",
+      "subject": "MSZ1",
+      "form" : "A",
+      "squad": []
+    },
+    {
+      "group_id": "111",
+      "subject": "MSZ2",
+      "form" : "A",
+      "form" : "A",
+      "squad": []
+    }
+  ]
+}

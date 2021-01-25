@@ -1,26 +1,10 @@
 import React from "react";
-
-const data = [
-    {
-        sprawa: "Negocjacje podwyżki",
-        kto: "Dziekan",
-        godzina: '14:00',
-        data: "2020-01-04",
-    }, {
-        sprawa: "Poprawa egzaminu",
-        kto: "Michał Janek",
-        godzina: '17.00',
-        data: "2020-01-04",
-    }, {
-        sprawa: "Rozmowa o pracy magisterskiej",
-        kto: "Jędrzej Burek",
-        godzina: '11.00',
-        data: "2020-01-05",
-    },
+import {useSelector} from "react-redux";
 
 
-];
 export default function Meetings() {
+    const info = useSelector((state) => state.info.meetings) || [];
+
     return (
         <div className="teacherhome__meetings">
             <h3>Najbliższe zaplanowane spotkania: </h3>
@@ -35,13 +19,13 @@ export default function Meetings() {
                     </tr>
                     </thead>
                     <tbody>
-                    {data.map((row, index) => {
+                    {info.map((row, index) => {
                         return (
                             <tr key={index}>
-                                <td>{row.sprawa}</td>
-                                <td>{row.kto}</td>
-                                <td>{row.godzina}</td>
-                                <td>{row.data}</td>
+                                <td>{row.name}</td>
+                                <td>{row.who}</td>
+                                <td>{row.time}</td>
+                                <td>{row.date}</td>
                             </tr>
                         );
                     })}

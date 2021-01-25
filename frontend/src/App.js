@@ -18,7 +18,7 @@ export default function App() {
           <Switch>
             <Route path="/" component={LoginPage} exact />
             <Route path="/student" component={StudentPage} />
-            <Route path="/teacher" component={TeacherPage} />
+            <Route path="/educator" component={TeacherPage} />
           </Switch>
         </Suspense>
       </Router>

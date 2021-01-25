@@ -6,17 +6,17 @@ export default function TeacherMenuNav() {
     return (
         <div className="usermenu__nav">
             <TeacherMenuNavLink
-                to="/teacher/plan-zajec/"
+                to="/educator/plan-zajec/"
                 name="Plan zajęć"
                 icon={<MdViewComfy/>}
             />
             <TeacherMenuNavLink
-                to="/teacher/oceny-czastkowe/"
+                to="/educator/oceny-czastkowe/"
                 name="Panel Ocen Cząstkowych"
                 icon={<MdLooks5/>}
             />
             <TeacherMenuNavLink
-                to="/teacher/oceny/"
+                to="/educator/oceny/"
                 name="Panel Ocen Końcowych"
                 icon={<MdSchool/>}
             />

@@ -12,14 +12,14 @@ export default function index() {
             <div className="timetable-pick">
                 <div className="picker">
                     <NavLink
-                        to="/teacher/plan-zajec/dzien"
+                        to="/educator/plan-zajec/dzien"
                         className="pick"
                         activeClassName="active"
                     >
                         Dzienny
                     </NavLink>
                     <NavLink
-                        to="/teacher/plan-zajec/tydzien"
+                        to="/educator/plan-zajec/tydzien"
                         className="pick"
                         activeClassName="active"
                     >
@@ -30,14 +30,14 @@ export default function index() {
             <div className="timetable-table">
                 <Suspense fallback={<div className="loading"></div>}>
                     <Switch>
-                        <Route path="/teacher/plan-zajec/dzien" component={DaysTable}/>
+                        <Route path="/educator/plan-zajec/dzien" component={DaysTable}/>
                         <Route
                             exact
-                            path="/teacher/plan-zajec/tydzien"
+                            path="/educator/plan-zajec/tydzien"
                             component={WeekTable}
                         />
                         <Route exact>
-                            <Redirect to="/teacher/plan-zajec/tydzien"/>
+                            <Redirect to="/educator/plan-zajec/tydzien"/>
                         </Route>
                     </Switch>
                 </Suspense>

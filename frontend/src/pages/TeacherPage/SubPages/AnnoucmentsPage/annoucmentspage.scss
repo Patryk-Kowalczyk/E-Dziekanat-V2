@@ -1,0 +1,59 @@
+@import "../../../../global_variables";
+
+.annoucmentspage {
+  @include customH1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &-annoucments {
+    margin-top: 2rem;
+    overflow-y: auto;
+  }
+
+  &-item {
+    padding: 1rem 2rem;
+    background-color: darken(white, 10);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin: 1.5rem 0;
+    display: grid;
+
+    & .button {
+      justify-self: end;
+      padding: 0.5rem 1rem;
+    }
+
+    & h2 {
+      font-weight: 700;
+      color: $primary-color;
+    }
+
+    & .date {
+      font-size: 0.7rem;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    & .text {
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+.annoucment-page {
+  background-color: lighten($primary-color-lighter, 43);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 3rem 2rem;
+  & h1 {
+    color: $primary-color;
+  }
+  & .date {
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  & .text {
+    margin-top: 1rem;
+  }
+}

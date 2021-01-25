@@ -1,30 +1,16 @@
-import React from 'react';
-import data from "./data";
+import React, {useState} from 'react';
 import "./individualmarks.scss";
-
+import Form from "./Form";
+import {useSelector} from "react-redux";
 
 const SelectedTable = ({selected}) => {
-        const dataFilter = [...data].filter((item, i) => item.id === Number(selected))
-
-
-        const studentsGroup = [...dataFilter].map((item, i) => {
+    const groupsData = useSelector((state) => state.classes.groups) || [];
+    const dataFilter = groupsData.filter((item, i) => item.id_subject === Number(selected))
+    const studentsGroup = [...dataFilter].map((item, i) => {
             return (
                 item.squad.map((element, i) => {
                         return (
-                            <>
-                                <div key={element.uniqueID} className="nameLastName">
-                                    {element.name}
-                                    {element.lastName}
-                                    <div style={{paddingLeft: "10px"}}>{"Oceny: "}</div>
-                                    {element.marks.map((e, i) => {
-                                        return (
-                                            <div style={{paddingLeft: "10px"}} className="mark" key={e.id}>
-                                                <div className="mark2">{e.mark}</div>
-                                            </div>)
-                                    })}
-                                    <button>Edytuj</button>
-                                </div>
-                            </>
+                            <Form key={Number(element.album)} selected={Number(selected)} element={element} infoGroup={element.group} infoForm={item.form} infoSubject={item.name}  s_id={item.id_subject} />
                         )
                     }
                 ))

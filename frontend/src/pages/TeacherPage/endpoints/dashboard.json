@@ -1,0 +1,70 @@
+{
+  "teacher_data": {
+    "first_name": "Grażyna",
+    "last_name": "Żarko",
+    "degree": "Mgr.",
+    "profile_picture": "https://tmtown.s3.amazonaws.com/uploads/user/image/328772/super_large_hochnadel_avatar.jpg"
+  },
+  "day_plan": [
+    {
+      "name": "Matematyka Stosowana ze Statystyką 1",
+      "since": "08:15:00",
+      "to": "11:15:00",
+      "group": "1 - wykladowa",
+      "room": "11",
+      "form": "W"
+    },
+    {
+      "name": "Matematyka Stosowana ze Statystyką 1",
+      "since": "12:00:00",
+      "to": "14:00:00",
+      "group": "333B",
+      "room": "5",
+      "form": "A"
+    },
+    {
+      "name": "Algebra Liniowa",
+      "since": "14:15:00",
+      "to": "15:00:00",
+      "group": "-",
+      "room": "10",
+      "form": "konsultacje"
+    },
+    {
+      "name": "Matematyka Stosowana ze Statystyką 2",
+      "since": "15:15:00",
+      "to": "17:00:00",
+      "group": "222B",
+      "room": "112",
+      "form": "L"
+    },
+    {
+      "name": "Matematyka Stosowana ze Statystyką 2",
+      "since": "17:00:00",
+      "to": "19:00:00",
+      "group": "221A",
+      "room": "123",
+      "form": "L"
+    }
+  ],
+  "meetings": [
+    {
+      "name": "Negocjacje podwyżki",
+      "who": "Dziekan",
+      "time": "14:00",
+      "date": "2021-02-04"
+    },
+    {
+      "name": "poprawa egzaminu",
+      "who": "Michał Janek",
+      "time": "17.00",
+      "date": "2021-02-04"
+    },
+    {
+      "name": "Rozmowa o pracy magisterskiej",
+      "who": "Jędrzej Burek",
+      "time": "19.00",
+      "date": "2021-02-05"
+    }
+  ]
+}

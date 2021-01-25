@@ -1,0 +1,36 @@
+{
+
+  0: {
+    id: 445570,
+    mark: 2,
+    category: "kolos",
+    comments: "5/10 pkt",
+    date: "2021-01-13"
+  },
+  1: {
+    id: 445571,
+    mark: 4,
+    category: "wejsciówka",
+    comments: "5/10 pkt",
+    date: "2021-01-13"
+  },
+  2: {
+    id: 445572,
+    mark: 5,
+    category: "kolokwium",
+    comments: "5/10 pkt",
+    date: "2021-01-13"
+  },
+  3: {
+    id: 445573,
+    mark: 3,
+    category: "zadanie domowe",
+    comments: "5/10 pkt",
+    date: "2021-01-13"
+  },
+
+  "info": {
+
+  }
+}
+

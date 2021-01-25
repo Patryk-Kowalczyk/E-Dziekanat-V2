@@ -8,9 +8,10 @@ import Meetings from "./Meetings";
 
 function HomePage() {
     const user = useSelector((state) => state.auth.user);
+    console.log(user)
     return (
         <div className="teacher-home-content">
-            <Hello teachername={user.firstname}/>
+            <Hello user={user}/>
             <TodaysTimeTable/>
             <Meetings/>
         </div>

@@ -1,0 +1,79 @@
+{
+  "groups": [
+    {
+      "group_id": "221A",
+      "subject": "MSZ2",
+      "form": "L",
+      "squad": [
+        {
+          "first_name": "Marcin",
+          "last_name": "Wrzos",
+          "unique_number": 44557,
+          "marks": [
+            {
+              "id": 445570,
+              "mark": 2,
+              "category": "kolos",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
+            },
+            {
+              "id": 445571,
+              "mark": 4,
+              "category": "wejsciówka",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
+            },
+            {
+              "id": 445572,
+              "mark": 5,
+              "category": "kolokwium",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
+            },
+            {
+              "id": 445573,
+              "mark": 3,
+              "category": "zadanie domowe",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
+            }
+          ]
+        },
+        {
+          "first_name": "Kowalczyk",
+          "last_name": "Patryk",
+          "unique_number": 44332,
+          "marks": [
+            {
+              "id": 0,
+              "mark": 5,
+              "category": "wejsciówka",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
+            },
+            {
+              "id": 1,
+              "mark": 5,
+              "category": "kolokwium",
+              "comments": "5/10 pkt",
+              "date": "2021-01-13"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group_id": "333",
+      "subject": "MSZ1",
+      "form": "A",
+      "squad": []
+    },
+    {
+      "group_id": "111",
+      "subject": "MSZ2",
+      "form": "A",
+      "squad": []
+    }
+  ]
+}

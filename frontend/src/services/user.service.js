@@ -13,7 +13,7 @@ class UserService {
   }
 
   getTracherBoard() {
-    return axios.get(API_URL + "teacher");
+    return axios.get(API_URL + "educator");
   }
 }
 

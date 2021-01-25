@@ -1,37 +1,133 @@
-import React, {useState} from 'react';
-import "./individualmarks.scss";
-import data from "./data";
-import SelectedTable from "./SelectedTable";
+import React, {useState,useEffect} from 'react';
+import Input from "./Input";
+import axios from "axios";
+import API_URL from "../../../../services/API_URL";
+import header from "../../../../services/auth-header";
 
 
-const studentsGroups = data.map((item, i) => {
-    return (
-        <option key={item.id} value={item.id}>
-            Grupa: {item.id} {"----"} {item.subject}
-        </option>
-    )
-})
+const Form = ({element,infoGroup,infoForm,s_id}) => {
+    useEffect(()=>{
+        formMarksUpdate([...element.marks])
+    },[element])
 
 
-const Form = () => {
-    const [selectedOption, choicedSelectedOption] = useState(0);
+    const [isOpenForm, setOpenForm] = useState(false);
+    const [formMarks, formMarksUpdate] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
+    const [visibleValueCategory, setVisibleValueCategory] = useState('');
+    const [visibleValueMark, setVisibleValueMark] = useState();
+    const [visibleValueComment, setVisibleValueComment] = useState('');
 
-    const handleChange = (e) => {
-        choicedSelectedOption(e.target.value)
+
+    const handleOnChangeCategory = (e) => {
+        const edit = [...formMarks];
+        edit[e.target.placeholder].category = e.target.value;
+        formMarksUpdate(edit)
+    }
+    const handleOnChangeComments = (e) => {
+        const edit = [...formMarks];
+        edit[e.target.placeholder].comments = e.target.value;
+        formMarksUpdate(edit)
+    }
+    const handleOnChangeMark = (e) => {
+        const edit = [...formMarks];
+        edit[e.target.placeholder].value = Number(e.target.value);
+        formMarksUpdate(edit)
+    }
+    const handleOnClick = (e) => {
+        e.preventDefault()
+        console.log(infoForm)
+        const info = {
+            "subject_id": s_id,
+            "album": element.album,
+        }
+
+        const edit = [...formMarks];
+        if(visibleValueMark){
+
+            edit[edit.length] = {
+                id:"new",
+                value: Number(visibleValueMark),
+                category: visibleValueCategory,
+                comments: visibleValueComment,
+                date:''
+            }
+        }
+        formMarksUpdate(edit)
+        const editAndInfo = [info,...edit]
+
+        const config = {
+            headers: header(),
+        };
+        axios
+            .post(API_URL + "educator/partialGradesStore",editAndInfo, config)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((err) => console.error(err));
+
+        setVisibleValueMark();
+        setVisibleValueCategory('');
+        setVisibleValueComment('');
+        setIsVisible(false);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+
     }
     return (
         <>
-            <div className="classChoice">
-                <form>
-                    <select value={selectedOption} onChange={handleChange}>
-                        <option value={0}>WYBIERZ KLASĘ</option>
-                        {studentsGroups}
-                    </select>
-                </form>
+            <div key={element.unique_number} className="nameLastName" onClick={() => setOpenForm(!isOpenForm)}>
+                {element.first_name + " " + element.last_name + " -- Grupa -- " + infoGroup}
             </div>
-            <div className="classTable">
-                <SelectedTable selected={selectedOption}/>
-            </div>
+            {isOpenForm && (
+                <div className="marksForm">
+                    <form>
+                        <input className="inputForm" value={"Kategoria"} disabled/>
+                        <input className="inputForm" value={"Ocena"} disabled/>
+                        <input className="inputForm" value={"Komentarz"} disabled/>
+                        {[...formMarks].map((e, i) => {
+                            return (
+                                <div>
+                                    <Input valueI={i}
+                                           valueInput={formMarks[i].category}
+                                           handleOnChange={handleOnChangeCategory
+                                           }/>
+                                    <Input valueI={i}
+                                           valueInput={formMarks[i].value}
+                                           handleOnChange={handleOnChangeMark}
+                                    />
+                                    <Input valueI={i}
+                                           valueInput={formMarks[i].comments}
+                                           handleOnChange={handleOnChangeComments}
+                                    />
+                                    <br/>
+
+                                </div>
+                            )
+                        })}
+                        {isVisible === true ? (
+                                <>
+                                    <input type="text" className="inputForm"
+                                           value={visibleValueCategory}
+                                           onChange={(e) => setVisibleValueCategory(e.target.value)}
+                                           placeholder={"Kategoria"}/>
+                                    <input type="text" className="inputForm" value={visibleValueMark}
+                                           onChange={(e) => setVisibleValueMark(e.target.value)}
+                                           placeholder={"Ocena"}
+                                    />
+                                    <input type="text" className="inputForm" value={visibleValueComment}
+                                           onChange={(e) => setVisibleValueComment(e.target.value)}
+                                           placeholder={"Komentarz"}
+                                    />
+                                </>
+                            )
+                            : null}
+                        {isVisible === false ? (
+                            <div className="divPlus" onClick={() => setIsVisible(!isVisible)}>+</div>
+                        ) : <div className="divPlus" onClick={() => setIsVisible(!isVisible)}>-</div>}
+                        <button onClick={handleOnClick} className="buttonForm">Submit</button>
+                    </form>
+                </div>
+            )}
         </>
     );
 };
