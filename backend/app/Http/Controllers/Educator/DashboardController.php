@@ -7,6 +7,7 @@ use App\Models\Educator;
 use App\Models\Meeting;
 use App\Models\Plan;
 use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +28,6 @@ class DashboardController extends Controller
                 'teacher_data' => $this->dataEducator(), //Pobranie danych nauczyciela
                 'day_plan' => $this->dayPlan(), //Pobranie planu z Current Day (Brak warunku)
                 'meetings' => $this->meetings(),  //Pobranie ostatnich ocen
-//                'avg_grades' => $this->avgGrades(),  //Pobranie średnich ocen
             ], 200);
     }
 
@@ -44,6 +44,7 @@ class DashboardController extends Controller
     {
         $plans = Plan::with(['subjects', 'group'])
             ->where('plans.educator_id', $this->educator->id)
+            ->where('date',Carbon::now()->format('Y-m-d'))
             ->get();
 
         foreach ($plans as $plan) {

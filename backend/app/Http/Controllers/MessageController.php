@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Validator;
 
 class MessageController extends Controller

@@ -43,7 +43,7 @@ class FinalGradesController extends Controller
                 $resultStudent['first_term'] = $final->first_term;
                 $resultStudent['first_repeat'] = $final->first_repeat;
                 $resultStudent['second_repeat'] = $final->second_repeat;
-                $resultStudent['committe'] = $final->committe;
+                $resultStudent['committee'] = $final->committee;
                 $resultStudent['promotion'] = $final->promotion;
                 $tempStudent[] = $resultStudent;
             }

@@ -8,6 +8,7 @@ use App\Http\Traits\dateFormatTrait;
 use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Plan;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -44,12 +45,14 @@ class DashboardController extends Controller
         return $studentData;
     }
 
-    private function dayPlan(): array
+    private function dayPlan()
     {
+
         $plans = Plan::with(['subjects', 'educator'])
             ->where('plans.group_id', $this->student->group->id)
+            ->where('date',Carbon::now()->format('Y-m-d'))
             ->get();
-
+        $dayPlan=[];
         foreach ($plans as $plan) {
             $resultDayPlan['name'] = $plan->subjects[0]->name;
             $resultDayPlan['since'] = $plan->since;

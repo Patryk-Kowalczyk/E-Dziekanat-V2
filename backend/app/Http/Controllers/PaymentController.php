@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\Paymentsdetails;
 use App\Models\Student;
@@ -19,9 +18,8 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $studentId = Student::where('user_id', Auth::id())->first();
 
-        $payments = Payment::where('student_id', $studentId->id)->get()->makeHidden('student_id');
+        $payments = Payment::where('user_id', Auth::id())->get()->makeHidden('user_id');
 
         return response()->json(['payments' => $payments]);
     }

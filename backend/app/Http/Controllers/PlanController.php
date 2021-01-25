@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\dateFormatTrait;
@@ -34,13 +34,13 @@ class PlanController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $Student = Student::where('user_id', Auth::id())->first();
-
+        $user = User::find(Auth::id());
         $from = $request['dateStart'];
         $to = $request['dateEnd'];
-
-
-        $plans = Plan::whereBetween('date', [$from, $to])->where('group_id', $Student->group->id)->get();
+        if($user->status=="student")
+            $plans = Plan::whereBetween('date', [$from, $to])->where('group_id', $user->student->group->id)->get();
+        if($user->status=="educator")
+            $plans = Plan::whereBetween('date', [$from, $to])->where('educator_id', $user->educator->id)->get();
 
         //To trzeba wrzucic do traits
         $days = [];
@@ -60,7 +60,8 @@ class PlanController extends Controller
                     $result['since'] = $plan->since;
                     $result['to'] = $plan->to;
                     $result['name'] = $plan->subjects[0]->name;
-                    $result['teacher'] = $plan->educator->getFullName();
+                    if($user->status=="student")
+                        $result['teacher'] = $plan->educator->getFullName();
                     $result['room'] = $plan->room;
                     $result['form'] = $plan->subjects[0]->form;
                     $planDay[] = $result;
@@ -80,19 +81,27 @@ class PlanController extends Controller
         $validator = Validator::make($request->all(), [
             'dateOfDay' => 'required|date',
         ]);
+
+
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-        $Student = Student::where('user_id', Auth::id())->first();
+
+        $user = User::find(Auth::id());
         $day = $request['dateOfDay'];
 
-        $plan = Plan::where('date', $day)->where('group_id', $Student->group->id)->get();
+        if($user->status=="student")
+            $plan = Plan::where('date', $day)->where('group_id', $user->student->group->id)->get();
+        if($user->status=="educator")
+            $plan = Plan::where('date', $day)->where('educator_id', $user->educator->id)->orderBy('since')->get();
+
 
         $planOfDay = [];
         foreach ($plan as $lesson) {
             $result['since']=$lesson->since;
             $result['to']=$lesson->to;
-            $result['teacher']=$lesson->educator->getFullName();
+            if($user->status=="student")
+                $result['teacher'] = $lesson->educator->getFullName();
             $result['name']=$lesson->subjects[0]->name;
             $result['room']=$lesson->room;
             $result['form']=$lesson->subjects[0]->form;

@@ -15,19 +15,39 @@ class PersonDataController extends Controller
         $this->middleware('auth:api');
     }
 
+    public function info()
+    {
+        $user=User::findorfail(Auth::id());
+        return response()->json([
+            'name'=>$user->first_name,
+            'status'=>$user->status,
+        ]);
+    }
+
     public function index()
     {
-        $data = User::with('Student')->find(Auth::id());
-
-        $userData['id']=$data->id;
-        $userData['name']=$data->getName();
-        $userData['album']=$data->student->album;
-        $userData['faculty']=$data->student->faculty;
-        $userData['field_of_study']=$data->student->field_of_study;
-        $userData['specialization']=$data->student->specialization;
-        $userData['semester']=$data->student->semester;
-        $userData['phone']=$data->phone;
-        $userData['email']=$data->email;
+        $data = User::with(['Student','Educator'])->find(Auth::id());
+        if($data->status=="student") {
+            $userData['id'] = $data->id;
+            $userData['name'] = $data->getName();
+            $userData['album'] = $data->student->album;
+            $userData['date_of_birth'] = $data->date_of_birth;
+            $userData['faculty'] = $data->student->faculty;
+            $userData['field_of_study'] = $data->student->field_of_study;
+            $userData['specialization'] = $data->student->specialization;
+            $userData['semester'] = $data->student->semester;
+            $userData['phone'] = $data->phone;
+            $userData['email'] = $data->email;
+        }
+        if($data->status=="educator") {
+            $userData['id'] = $data->id;
+            $userData['name'] = $data->educator->getFullName();
+            $userData['album'] = $data->educator->album;
+            $userData['date_of_birth'] = $data->date_of_birth;
+            $userData['phone'] = $data->phone;
+            $userData['email'] = $data->email;
+            $userData['address'] = $data->address;
+        }
 
         return response()->json(['user_data'=>$userData]);
     }

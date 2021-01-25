@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\FinalGrade;
 use App\Models\Educator;
@@ -12,16 +13,18 @@ use Illuminate\Support\Facades\Auth;
 
 class FinalGradeController extends Controller
 {
+    public $student;
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->student = Student::where('students.user_id', Auth::id())->first();
     }
 
 
     public function index()
     {
         $subjectsWithFinalGrades = Subject::with(['finalgrades' => function ($q) {
-            $q->where('final_grades.student_id', Auth::id());
+            $q->where('final_grades.student_id', $this->student->id);
         }])->get();
 
         $FinalGrades = [];
