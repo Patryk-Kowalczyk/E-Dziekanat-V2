@@ -13,7 +13,7 @@ const Annoucment = ({ data }) => {
             <h2>{data.title}</h2>
             <p className="date">{data.date}</p>
             <p className="text">{data.text}</p>
-            <Link to={`/student/wiadomosci/${data.id}`}>
+            <Link to={`/educator/wiadomosci/${data.id}`}>
                 <button className="button primary">
                     <MdUnfoldMore />
                     <p>Więcej</p>
