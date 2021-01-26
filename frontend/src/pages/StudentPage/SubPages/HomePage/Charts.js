@@ -42,7 +42,7 @@ export default function Charts() {
     <div className="studenthome__charts">
       <h3>Obecna średnia z ocen</h3>
       <div className="studenthome__charts-chart">
-        {data.length > 0 ? (
+        {data ? (
           <Chart options={options} series={series} type="bar" height={"100%"} />
         ) : (
           <div className="loading"></div>

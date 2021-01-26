@@ -1,0 +1,14 @@
+@import "../../../../global_variables";
+
+.pollspage {
+  @include customH1;
+  width: 100%;
+
+  &-container {
+    min-height: calc(100vh - 6rem);
+    margin-top: 2rem;
+    background-color: darken(white, 5);
+    border-radius: 10px;
+    padding: 2rem 1rem;
+  }
+}

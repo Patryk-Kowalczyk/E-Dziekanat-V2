@@ -50,16 +50,22 @@ export default function LastGrades() {
           </tr>
         </thead>
         <tbody>
-          {info.map((row, index) => {
-            return (
-              <tr key={index}>
-                <td>{row.name}</td>
-                <td>{row.form}</td>
-                <td>{row.value}</td>
-                <td>{row.date}</td>
-              </tr>
-            );
-          })}
+          {info.length > 0 ? (
+            info.map((row, index) => {
+              return (
+                <tr key={index}>
+                  <td>{row.name}</td>
+                  <td>{row.form}</td>
+                  <td>{row.value}</td>
+                  <td>{row.date}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan={4}>Obecnie jeszcze nie ma ocen</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
