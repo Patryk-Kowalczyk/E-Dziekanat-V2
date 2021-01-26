@@ -24,6 +24,7 @@ const FinancialPayments = lazy(() =>
 );
 const UserInfoPage = lazy(() => import("./SubPages/UserInfoPage"));
 const SelectionPage = lazy(() => import("./SubPages/SelectionPage"));
+const Select = lazy(() => import("./SubPages/SelectionPage/Select"));
 
 function App() {
   const dispatch = useDispatch();
@@ -85,7 +86,8 @@ function App() {
                 component={FinancialPayments}
               />
               <Route path="/student/uczen" component={UserInfoPage} />
-              <Route path="/student/wybor" component={SelectionPage} />
+              <Route path="/student/wybor" exact component={SelectionPage} />
+              <Route path="/student/wybor/:id" component={Select} />
             </Switch>
           </Suspense>
         </div>

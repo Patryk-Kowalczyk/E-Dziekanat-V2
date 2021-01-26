@@ -1,0 +1,76 @@
+@import "../../../../global_variables";
+
+.selectionpage {
+  @include customH1;
+  width: 100%;
+
+  &-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-top: 2rem;
+    max-height: calc(100% - 5rem);
+
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &-list {
+    background-color: darken(white, 5);
+    padding: 1rem 0.5rem;
+    border-radius: 5px;
+
+    @media screen and (max-width: 768px) {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    & ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      & li {
+        padding: 0.4rem 0.6rem;
+        margin: 0.3rem 0;
+        background-color: white;
+        font-size: 0.8rem;
+        cursor: pointer;
+
+        &.active {
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+  &-answers {
+    color: white;
+    padding: 1rem 0.5rem;
+    background-color: $primary-color;
+    border-radius: 5px;
+    @media screen and (max-width: 1000px) {
+      margin-top: 2rem;
+    }
+  }
+  &-answer {
+    padding: 0.3rem 0.4rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    &.chosen {
+      border: 1px solid white;
+      border-radius: 2px;
+    }
+  }
+
+  button {
+    color: $primary-color;
+    background-color: white;
+    &:hover {
+      background-color: darken(white, 10);
+    }
+  }
+}
