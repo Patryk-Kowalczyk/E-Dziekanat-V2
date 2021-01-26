@@ -25,11 +25,7 @@ export default function Menu() {
         name="Wiadomości"
         icon={<MdForum />}
       />
-      <SingleLink
-        to="/student/ankiety-egzaminy"
-        name="Ankiety/ Egzaminy"
-        icon={<MdList />}
-      />
+      <SingleLink to="/student/ankiety" name="Ankiety" icon={<MdList />} />
       <SingleLink to="/student/wybor" name="Wybór" icon={<MdCheckCircle />} />
       <SingleLink
         to="/student/e-learning"

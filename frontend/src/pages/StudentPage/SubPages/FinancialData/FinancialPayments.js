@@ -44,6 +44,9 @@ export default function FinancialPayments() {
       .post(API_URL + "paymentDetails", { payment_id: id }, config)
       .then((response) => {
         setData(response.data.payments);
+      })
+      .catch(() => {
+        window.location = "/student/dane-finansowe";
       });
   }, []);
 

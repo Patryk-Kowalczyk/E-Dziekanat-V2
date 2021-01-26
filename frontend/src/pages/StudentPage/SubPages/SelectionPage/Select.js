@@ -7,7 +7,6 @@ import API_URL from "../../../../services/API_URL";
 
 export default function Select({ answers, resetAnswers }) {
   const [chosen, setChosen] = useState(null);
-
   useEffect(() => {
     setChosen(answers.chosenValue);
   }, [answers.chosenValue]);

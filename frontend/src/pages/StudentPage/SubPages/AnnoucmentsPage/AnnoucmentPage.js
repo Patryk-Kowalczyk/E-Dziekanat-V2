@@ -5,7 +5,6 @@ import axios from "axios";
 import header from "../../../../services/auth-header";
 import API_URL from "../../../../services/API_URL";
 
-
 export default function AnnoucmentPage() {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -18,6 +17,9 @@ export default function AnnoucmentPage() {
       .post(API_URL + "messageDetails", { id: id }, config)
       .then((response) => {
         setData(response.data.message);
+      })
+      .catch(() => {
+        window.location = "/student/wiadomosci";
       });
   }, []);
   return (

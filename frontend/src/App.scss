@@ -34,6 +34,10 @@ GLOBAL CLASS ELEMENTS
   &:hover {
     background-color: $primary-color-lighter;
   }
+
+  &:disabled {
+    background-color: $font-gray;
+  }
 }
 
 .apexcharts-toolbar {

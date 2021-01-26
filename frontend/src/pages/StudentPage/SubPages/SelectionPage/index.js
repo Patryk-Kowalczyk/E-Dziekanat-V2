@@ -37,14 +37,13 @@ function SelectionPage() {
   };
   useEffect(() => {
     axios.get(API_URL + "student/choiceSubject", config).then((response) => {
-      setData(response.data);
+      setData(response.data.subject_choose);
     });
   }, []);
 
   function resetAnswers() {
     setAnswers(null);
   }
-
   return (
     <div className="selectionpage">
       <h1>Wybór bloków/ specjalizacji</h1>
