@@ -48,24 +48,26 @@ function FinancialData() {
       <div className="financialdata-container">
         <h2>Należności</h2>
         {data ? (
-          <table className="primary-table">
-            <thead>
-              <tr>
-                <th>Tytuł opłaty</th>
-                <th>Subkonto</th>
-                <th>Szczegóły</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data ? (
-                data.map((single, index) => (
-                  <TableRow data={single} key={index} />
-                ))
-              ) : (
-                <div className="loading"></div>
-              )}
-            </tbody>
-          </table>
+          <div className="table-container">
+            <table className="primary-table">
+              <thead>
+                <tr>
+                  <th>Tytuł opłaty</th>
+                  <th>Subkonto</th>
+                  <th>Szczegóły</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data ? (
+                  data.map((single, index) => (
+                    <TableRow data={single} key={index} />
+                  ))
+                ) : (
+                  <div className="loading"></div>
+                )}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <h3>Brakt danych dla danego studenta</h3>
         )}

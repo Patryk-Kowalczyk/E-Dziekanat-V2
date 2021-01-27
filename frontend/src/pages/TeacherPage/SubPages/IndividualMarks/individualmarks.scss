@@ -16,16 +16,14 @@
   height: 100%;
   border-radius: 5px;
   margin: 0 auto;
-
-
 }
 
 .buttonForm,
 .divPlus {
   background: linear-gradient(
-                  60deg,
-                  $primary-color,
-                  lighten($primary-color, 10%)
+    60deg,
+    $primary-color,
+    lighten($primary-color, 10%)
   );
   width: 15%;
   height: 25px;
@@ -35,7 +33,7 @@
   text-align: center;
   text-transform: uppercase;
   border-radius: 5px;
-  transition: .2s;
+  transition: 0.2s;
   margin-top: 10px;
   cursor: pointer;
 
@@ -43,7 +41,7 @@
     background: white;
     color: black;
   }
-  @media(max-width: 500px){
+  @media (max-width: 500px) {
     width: 80px;
   }
 }
@@ -57,9 +55,9 @@
   margin: auto;
   margin-top: 10px;
   background: linear-gradient(
-                  60deg,
-                  $tertiary-color,
-                  lighten($tertiary-color, 10%)
+    60deg,
+    $tertiary-color,
+    lighten($tertiary-color, 10%)
   );
 }
 
@@ -71,20 +69,16 @@
   margin-top: 5px;
   margin-right: 10px;
 
-
-
-
-  @media(max-width: 690px) {
+  @media (max-width: 690px) {
     max-width: 90px;
   }
-  @media(max-width: 550px) {
+  @media (max-width: 550px) {
     max-width: 80px;
   }
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     max-width: 60px;
     font-size: 10px;
   }
-
 }
 
 .inputForm:nth-child(odd) {
@@ -101,14 +95,14 @@
   line-height: 15px;
   padding: 10px;
   text-align: center;
-  transition: .2s;
+  transition: 0.2s;
   cursor: pointer;
 
   &:hover {
     background: linear-gradient(
-                    60deg,
-                    $secondary-color,
-                    lighten($secondary-color, 10%)
+      60deg,
+      $secondary-color,
+      lighten($secondary-color, 10%)
     );
     color: white;
   }
@@ -126,7 +120,6 @@
   text-align: center;
 }
 
-
 .classChoice {
   width: 90%;
   height: 80px;
@@ -143,9 +136,9 @@
     border-radius: 5px;
 
     background: linear-gradient(
-                    60deg,
-                    $secondary-color,
-                    lighten($secondary-color, 10%)
+      60deg,
+      $secondary-color,
+      lighten($secondary-color, 10%)
     );
 
     select {
@@ -157,20 +150,15 @@
       height: 50%;
       text-align: center;
       background: linear-gradient(
-                      60deg,
-                      $secondary-color,
-                      lighten($secondary-color, 10%)
+        60deg,
+        $secondary-color,
+        lighten($secondary-color, 10%)
       );
       border: 4px solid white;
       border-radius: 5px;
       text-transform: uppercase;
-      color: white;
+      color: black;
       font-size: 0.75rem;
-
     }
-
-
   }
-
 }
-

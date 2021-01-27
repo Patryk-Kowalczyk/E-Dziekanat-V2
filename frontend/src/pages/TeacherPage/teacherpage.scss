@@ -13,10 +13,16 @@
   width: 100%;
   max-width: 1000px;
   padding: 1rem;
-  overflow-y: auto;
   display: flex;
-  justify-self: center;
+  justify-content: center;
   max-height: 100vh;
+
+  &-box {
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+  }
 
   @media screen and (max-width: 768px) {
     margin-top: 3.5rem;
