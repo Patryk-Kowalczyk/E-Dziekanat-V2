@@ -27,11 +27,15 @@ export default function Menu() {
       />
       <SingleLink to="/student/ankiety" name="Ankiety" icon={<MdList />} />
       <SingleLink to="/student/wybor" name="Wybór" icon={<MdCheckCircle />} />
-      <SingleLink
-        to="/student/e-learning"
-        name="E-learning"
-        icon={<MdComputer />}
-      />
+      <a
+        href="https://e-edukacja.zut.edu.pl/"
+        target="_blank"
+        rel="noreferrer"
+        className="menu__item"
+      >
+        <MdComputer />
+        E-learning
+      </a>
       <SingleLink to="/student/uczen" name="Uczeń" icon={<FaUserGraduate />} />
     </div>
   );

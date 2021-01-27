@@ -31,15 +31,15 @@ import API_URL from "../../../../services/API_URL";
 //     paidDate: "20.07.2020",
 //   },
 // ];
+const config = {
+  headers: header(),
+};
 
 export default function FinancialPayments() {
   const { id } = useParams();
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const config = {
-      headers: header(),
-    };
     axios
       .post(API_URL + "paymentDetails", { payment_id: id }, config)
       .then((response) => {

@@ -6,21 +6,21 @@ import axios from "axios";
 import header from "../../../../services/auth-header";
 import API_URL from "../../../../services/API_URL";
 
-const data = [
-  {
-    id: 423,
-    title: "Ankiety",
-    date: "21-10-2020",
-    text: "No byczki klikajcie w ankiety",
-  },
-  {
-    id: 613,
-    title: "Rozpoczęcie roku",
-    date: "01-10-2020",
-    text:
-      "No hejka, co tam się z Tobą dzieje? Skąd to zwątpienie? Dlaczego chcesz teraz się poddać, tylko dlatego, że raz czy drugi Ci nie wyszło? To nie jest żaden powód. Musisz iść i walczyć. Osiągniesz cel. Prędzej czy później go osiągniesz,",
-  },
-];
+// const data = [
+//   {
+//     id: 423,
+//     title: "Ankiety",
+//     date: "21-10-2020",
+//     text: "No byczki klikajcie w ankiety",
+//   },
+//   {
+//     id: 613,
+//     title: "Rozpoczęcie roku",
+//     date: "01-10-2020",
+//     text:
+//       "No hejka, co tam się z Tobą dzieje? Skąd to zwątpienie? Dlaczego chcesz teraz się poddać, tylko dlatego, że raz czy drugi Ci nie wyszło? To nie jest żaden powód. Musisz iść i walczyć. Osiągniesz cel. Prędzej czy później go osiągniesz,",
+//   },
+// ];
 
 const Annoucment = ({ data }) => {
   return (
