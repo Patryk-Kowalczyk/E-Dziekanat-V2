@@ -6,7 +6,6 @@ Frontend został utworzony jak Progressive Web App przy pomocy React.js
 
 Frontend projektu przechowywany jest na branchu [frontend](https://github.com/Patryk-Kowalczyk/E-Dziekanat-V2/tree/frontend)
 Natomiast backend na branchu [backend](https://github.com/Patryk-Kowalczyk/E-Dziekanat-V2/tree/backend)
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Gotowa wersja projektu
 
