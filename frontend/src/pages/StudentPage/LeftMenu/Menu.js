@@ -19,7 +19,6 @@ export default function Menu() {
         name="Dane finansowe"
         icon={<MdAccountBalanceWallet />}
       />
-      <SingleLink to="/student/dyplom" name="Dyplom" icon={<MdAssignment />} />
       <SingleLink
         to="/student/wiadomosci"
         name="Wiadomości"

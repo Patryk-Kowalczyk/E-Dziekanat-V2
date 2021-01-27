@@ -63,6 +63,10 @@
     }
 
     & td {
+      & button,
+      a {
+        display: inline-table;
+      }
     }
 
     & th,
