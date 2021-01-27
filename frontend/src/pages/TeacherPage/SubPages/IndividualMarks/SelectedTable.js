@@ -10,7 +10,7 @@ const SelectedTable = ({selected}) => {
             return (
                 item.squad.map((element, i) => {
                         return (
-                            <Form key={Number(element.album)}
+                            <Form key={"form" + element.album}
                                   selected={Number(selected)}
                                   element={element}
                                   infoGroup={element.group}

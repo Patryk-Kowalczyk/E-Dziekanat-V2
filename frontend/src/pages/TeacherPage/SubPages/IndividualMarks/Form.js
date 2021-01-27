@@ -101,7 +101,7 @@ const Form = ({element,infoGroup,infoForm,s_id}) => {
                         <input className="inputForm" value={"Komentarz"} disabled/>
                         {[...formMarks].map((e, i) => {
                             return (
-                                <div>
+                                <div key={e.id}>
                                     <Input valueI={i}
                                            valueInput={formMarks[i].category}
                                            handleOnChange={handleOnChangeCategory
