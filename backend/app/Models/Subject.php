@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Subject extends Model
 {
     protected $fillable = [
-
+        'id','name'
     ];
 
     protected $hidden = ['pivot','educator_id','first_term','first_repeat','second_repeat','committee','promotion','ECTS'];

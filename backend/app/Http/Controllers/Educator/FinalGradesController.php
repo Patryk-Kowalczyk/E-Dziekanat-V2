@@ -50,7 +50,6 @@ class FinalGradesController extends Controller
             $result['squad'] = $tempStudent;
             $finalGrades[] = $result;
             $result = [];
-
         }
 
         return response()->json(['finalGrades' => $finalGrades]);

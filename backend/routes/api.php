@@ -51,6 +51,12 @@ Route::group([
     Route::get('dashboard', 'DashboardController@index');
     Route::get('partialGrades', 'PartialGradesController@index');
     Route::get('finalGrade', 'FinalGradeController@index');
+    Route::get('choiceSubject', 'ChoiceSubjectController@index');
+    Route::post('choiceStore', 'ChoiceSubjectController@store');
+    Route::get('pollList', 'PollController@list');
+    Route::post('pollShow', 'PollController@show');
+    Route::post('pollStore', 'PollController@store');
+
 });
 
 Route::group([
@@ -63,7 +69,7 @@ Route::group([
     Route::post('partialGradesStore', 'PartialGradesController@store');
     Route::get('finalGradesList', 'FinalGradesController@index');
     Route::post('finalGradesStore', 'FinalGradesController@store');
-
+    Route::get('pollStats', 'PollStatsController@index');
 });
 
 

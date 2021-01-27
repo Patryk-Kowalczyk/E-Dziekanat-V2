@@ -2,21 +2,27 @@
 
 namespace App\Models\SelectSubjectModels;
 
-use App\Models\SelectSubjectModels;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Option extends Model
+class Studentchoice extends Model
 {
+
+    public function option()
+    {
+        return $this->hasOne(Option::class);
+    }
 
     public function choice()
     {
         return $this->belongsTo(Choice::class);
     }
 
-    public function studentchoice()
+    public function student()
     {
-        return $this->belongsTo(Studentchoice::class);
+        return $this->belongsTo(Student::class);
     }
+
 
 }

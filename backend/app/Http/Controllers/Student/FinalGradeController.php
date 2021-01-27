@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\SubjectTransformer;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\FinalGrade;
 use App\Models\Educator;
 use App\Models\Grade;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use League\Fractal;
+use League\Fractal\TransformerAbstract;
 
 class FinalGradeController extends Controller
 {
@@ -23,6 +27,10 @@ class FinalGradeController extends Controller
 
     public function index()
     {
+
+
+
+
         $subjectsWithFinalGrades = Subject::with(['finalgrades' => function ($q) {
             $q->where('final_grades.student_id', $this->student->id);
         }])->get();

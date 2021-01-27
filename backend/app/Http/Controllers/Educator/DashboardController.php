@@ -31,7 +31,7 @@ class DashboardController extends Controller
             ], 200);
     }
 
-    private function dataEducator(): array
+    private function dataEducator()
     {
         $educatorData['first_name'] = $this->educator->user->first_name;
         $educatorData['last_name'] = $this->educator->user->last_name;
@@ -40,13 +40,13 @@ class DashboardController extends Controller
         return $educatorData;
     }
 
-    private function dayPlan(): array
+    private function dayPlan()
     {
         $plans = Plan::with(['subjects', 'group'])
             ->where('plans.educator_id', $this->educator->id)
             ->where('date',Carbon::now()->format('Y-m-d'))
             ->get();
-
+        $dayPlan=[];
         foreach ($plans as $plan) {
             $resultDayPlan['name'] = $plan->subjects[0]->name;
             $resultDayPlan['since'] = $plan->since;

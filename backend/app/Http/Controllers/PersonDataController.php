@@ -12,22 +12,28 @@ class PersonDataController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api',['except' => 'info']);
     }
 
     public function info()
     {
-        $user=User::findorfail(Auth::id());
-        return response()->json([
-            'name'=>$user->first_name,
-            'status'=>$user->status,
-        ]);
+        try {
+            $user = User::findorfail(Auth::id());
+            return response()->json([
+                'name' => $user->first_name,
+                'status' => $user->status,
+            ]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response([
+                'status' => 'Not authorized',
+            ], 401);
+        }
     }
 
     public function index()
     {
-        $data = User::with(['Student','Educator'])->find(Auth::id());
-        if($data->status=="student") {
+        $data = User::with(['Student', 'Educator'])->find(Auth::id());
+        if ($data->status == "student") {
             $userData['id'] = $data->id;
             $userData['name'] = $data->getName();
             $userData['album'] = $data->student->album;
@@ -39,7 +45,7 @@ class PersonDataController extends Controller
             $userData['phone'] = $data->phone;
             $userData['email'] = $data->email;
         }
-        if($data->status=="educator") {
+        if ($data->status == "educator") {
             $userData['id'] = $data->id;
             $userData['name'] = $data->educator->getFullName();
             $userData['album'] = $data->educator->album;
@@ -49,7 +55,7 @@ class PersonDataController extends Controller
             $userData['address'] = $data->address;
         }
 
-        return response()->json(['user_data'=>$userData]);
+        return response()->json(['user_data' => $userData]);
     }
 
     public function update(Request $request)
@@ -63,8 +69,8 @@ class PersonDataController extends Controller
         }
         $user = User::find(Auth::id());
 
-        if($request['email']) $user->email=$request['email'];
-        if($request['phone']) $user->phone=$request['phone'];
+        if ($request['email']) $user->email = $request['email'];
+        if ($request['phone']) $user->phone = $request['phone'];
         $user->save();
 
         $response = [

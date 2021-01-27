@@ -47,7 +47,6 @@ class DashboardController extends Controller
 
     private function dayPlan()
     {
-
         $plans = Plan::with(['subjects', 'educator'])
             ->where('plans.group_id', $this->student->group->id)
             ->where('date',Carbon::now()->format('Y-m-d'))

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Plan;
+use App\Models\PollModels\Pollstudent;
 use Faker\Factory;
 use Illuminate\Support\Carbon;
 
@@ -14,6 +15,16 @@ class FakerController extends Controller
     {
 
 //        $faker=Factory::create();
+//
+//        for ($i = 0; $i < 30; $i++) {
+//            $poll = new Pollstudent;
+//            $poll->poll_id=2;
+//            $poll->question_id=5;
+//            $poll->answer_id=$faker->randomElement($array = [21,22, 23, 24, 25]);
+//            $poll->status=1;
+//            $poll->student_id=999;
+//            $poll->save();
+//        }
 //
 //        for ($i = 0; $i < 30; $i++) {
 //            $plans=new Plan;

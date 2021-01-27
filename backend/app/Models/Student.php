@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\PollModels\Pollstudent;
+use App\Models\SelectSubjectModels\Studentchoice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -32,6 +34,17 @@ class Student extends Model
     {
 
         return $this->hasMany(FinalGrade::class);
+    }
+
+    public function studentchoices()
+    {
+
+        return $this->hasMany(Studentchoice::class);
+    }
+
+    public function pollstudents()
+    {
+        return $this->hasMany(Pollstudent::class);
     }
 
 
