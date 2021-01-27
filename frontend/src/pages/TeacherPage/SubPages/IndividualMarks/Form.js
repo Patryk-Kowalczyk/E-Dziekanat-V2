@@ -121,6 +121,7 @@ const Form = ({element,infoGroup,infoForm,s_id}) => {
                         })}
                         {isVisible === true ? (
                                 <>
+                                    <br/>
                                     <input type="text" className="inputForm"
                                            value={visibleValueCategory}
                                            onChange={(e) => setVisibleValueCategory(e.target.value)}
