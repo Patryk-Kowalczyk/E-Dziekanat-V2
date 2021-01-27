@@ -27,6 +27,8 @@ const AnnoucmentPage = lazy(() =>
 );
 const TeacherInfo = lazy(() => import("./SubPages/TeacherInfoPage"));
 const PollsPage = lazy(() => import("./SubPages/PollsPage"));
+const DPage = lazy(() => import("./SubPages/DPage"));
+
 function App() {
   const dispatch = useDispatch();
 
@@ -107,6 +109,7 @@ function App() {
             <Route path="/educator/wiadomosci/:id" component={AnnoucmentPage} />
             <Route path="/educator/ustawienia/" component={TeacherInfo} />
             <Route path="/educator/ankiety" component={PollsPage} />
+            <Route path="/educator/dyplomanci" component={DPage} />
           </Switch>
         </Suspense>
       </div>

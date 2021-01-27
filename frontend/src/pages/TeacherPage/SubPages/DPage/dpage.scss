@@ -1,0 +1,13 @@
+@import "../../../../global_variables";
+
+.dpage {
+  @include customH1;
+  width: 100%;
+  &-container {
+    margin-top: 2rem;
+    background-color: darken(white, 4);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  }
+}
