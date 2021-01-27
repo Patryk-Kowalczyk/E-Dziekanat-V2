@@ -31,6 +31,7 @@ export default function Menu() {
       />
       <SingleLink to="/educator/ankiety" name="Ankiety" icon={<MdList />} />
       <SingleLink to="/educator" name="E-learning" icon={<MdComputer />} href />
+
       <SingleLink
         to="/educator/ustawienia"
         name="Ustawienia"

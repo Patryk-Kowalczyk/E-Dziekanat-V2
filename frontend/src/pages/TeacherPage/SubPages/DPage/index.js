@@ -7,7 +7,7 @@ function DPage() {
     return (
         <div className="dpage">
             <h1>Dyplomanci</h1>
-            <div className="dpage">
+            <div className="dpage-container">
                     <h3>Aktualnie brak dyplomantów</h3>
             </div>
         </div>

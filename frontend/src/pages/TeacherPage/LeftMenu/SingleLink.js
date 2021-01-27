@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -10,7 +10,7 @@ function SingleLink({ to, name, icon,href }) {
         }
     }
     return (
-        <NavLink to={to} activeClassName="current" className="menu__item" onClick={hrefFunction}>
+        <NavLink to={to} activeClassName={href ? "" : "current"} className="menu__item" onClick={hrefFunction}>
             {icon}
             {name}
         </NavLink>
