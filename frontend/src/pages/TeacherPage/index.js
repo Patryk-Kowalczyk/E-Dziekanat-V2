@@ -39,6 +39,7 @@ function App() {
       .get(API_URL + "educator/dashboard", config)
       .then((response) => {
         const data = response.data.teacher_data;
+        console.log(response);
         dispatch(login(data));
         dispatch(
           setInfo({
