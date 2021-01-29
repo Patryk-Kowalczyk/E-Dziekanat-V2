@@ -36,74 +36,73 @@ import parseDateFormat from "./parseDateFormat";
 // ];
 
 const getDate = (date, changeState) => {
-    const config = {
-        headers: header(),
-    };
-    axios
-        .post(API_URL + "planDay", { dateOfDay: date }, config)
-        .then((response) => {
-            changeState(response.data.plan_day);
-        });
+  const config = {
+    headers: header(),
+  };
+  axios
+    .post(API_URL + "planDay", { dateOfDay: date }, config)
+    .then((response) => {
+      changeState(response.data.plan_day);
+    });
 };
 
 export default function DaysTable() {
-    const [isCalendar, setIsCalendar] = React.useState(false);
-    const [data, setData] = useState(null);
-    const [date, setDate] = useState(new Date());
+  const [isCalendar, setIsCalendar] = React.useState(false);
+  const [data, setData] = useState(null);
+  const [date, setDate] = useState(new Date());
 
-    useEffect(() => {
-        const dateText = parseDateFormat(date);
-        getDate(dateText, setData);
-    }, [date]);
-    return (
-        <div className="daystable">
-            <button
-                className="button primary"
-                onClick={() => setIsCalendar(!isCalendar)}
-            >
-                Wybierz datę
-            </button>
-            {isCalendar && (
-                <motion.div
-                    className="calendar"
-                    initial={{ opacity: 0, y: 300 }}
-                    animate={{ opacity: 1, y: 0 }}
-                >
-                    <Calendar
-                        value={date}
-                        onChange={(value) => {
-                            setDate(value);
-                            setIsCalendar(false);
-                        }}
-                    />
-                </motion.div>
+  useEffect(() => {
+    const dateText = parseDateFormat(date);
+    getDate(dateText, setData);
+  }, [date]);
+  return (
+    <div className="daystable">
+      <button
+        className="button primary"
+        onClick={() => setIsCalendar(!isCalendar)}
+      >
+        Wybierz datę
+      </button>
+      {isCalendar && (
+        <motion.div
+          className="calendar"
+          initial={{ opacity: 0, y: 300 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <Calendar
+            value={date}
+            onChange={(value) => {
+              setDate(value);
+              setIsCalendar(false);
+            }}
+          />
+        </motion.div>
+      )}
+      <br />
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Od</th>
+              <th>Do</th>
+              <th>Nazwa</th>
+              <th>Sala</th>
+              <th>Forma</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data && data.length > 0 ? (
+              data.map((item, index) => {
+                return <DayTable data={item} key={index} />;
+              })
+            ) : (
+              <tr>
+                <td colSpan={6}>Brak zajęć w podanym dniu</td>
+              </tr>
             )}
-            <br />
-            <div className="table-container">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Od</th>
-                        <th>Do</th>
-                        <th>Nazwa</th>
-                        <th>Prowadzący</th>
-                        <th>Sala</th>
-                        <th>Forma</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {data && data.length > 0 ? (
-                        data.map((item, index) => {
-                            return <DayTable data={item} key={index} />;
-                        })
-                    ) : (
-                        <tr>
-                            <td colSpan={6}>Brak zajęć w podanym dniu</td>
-                        </tr>
-                    )}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
