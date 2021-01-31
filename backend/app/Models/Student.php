@@ -6,6 +6,7 @@ use App\Models\PollModels\Pollstudent;
 use App\Models\SelectSubjectModels\Studentchoice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class Student extends Model
 {

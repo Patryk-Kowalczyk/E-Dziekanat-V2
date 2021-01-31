@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
@@ -72,6 +73,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->first_name.' '.$this->last_name;
     }
+
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
