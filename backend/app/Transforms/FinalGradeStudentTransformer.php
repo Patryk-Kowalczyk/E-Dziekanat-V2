@@ -23,6 +23,4 @@ class FinalGradeStudentTransformer extends TransformerAbstract
             'ECTS' => $finalGrade->subject->ECTS,
         ];
     }
-
-
 }

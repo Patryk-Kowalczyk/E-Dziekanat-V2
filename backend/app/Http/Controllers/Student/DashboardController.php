@@ -4,14 +4,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Http\Traits\dateFormatTrait;
-use App\Models\Grade;
-use App\Models\Student;
-use App\Models\Plan;
 use App\Services\DashboardService;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 
 class DashboardController extends Controller
@@ -26,6 +19,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+
         return response()->json($this->dashboardService->getStudentDashboard(), 200);
     }
 }

@@ -1,20 +1,10 @@
 <?php
 
-
 namespace App\Services;
 
-use App\Models\Student;
-use App\Models\User;
 use App\Repositories\FinalGradeRepository;
 use App\Repositories\UserRepository;
-use App\Transforms\FinalGradeStudentTransformer;
 use App\Transforms\TranformsUtil;
-use Exception;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
-use InvalidArgumentException;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
