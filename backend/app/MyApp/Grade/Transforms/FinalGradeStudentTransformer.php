@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Transforms;
+namespace App\MyApp\Grade\Transforms;
 
 use App\Models\FinalGrade;
 use League\Fractal\TransformerAbstract;
 
 class FinalGradeStudentTransformer extends TransformerAbstract
 {
-    public function transform(FinalGrade $finalGrade)
+    public function transform(FinalGrade $finalGrade):array
     {
         return [
             'name'=> (string) $finalGrade->subject->name,

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\MyApp\User\Repositories;
 
 
 use App\Models\Educator;

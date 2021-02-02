@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
-use App\Repositories\PartialGradeRepository;
-use App\Repositories\PlanRepository;
-use App\Repositories\UserRepository;
-use App\Transforms\TranformsUtil;
+namespace App\MyApp\User\Services;
+
+use App\MyApp\Grade\Repositories\PartialGradeRepository;
+use App\MyApp\Plan\Repositories\PlanRepository;
+use App\MyApp\User\Repositories\UserRepository;
+use App\MyApp\Utility\TranformsUtil;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
@@ -32,7 +34,7 @@ class DashboardService
         $this->tranformsUtil=$tranformsUtil;
     }
 
-    public function getStudentDashboard()
+    public function getStudentDashboard(): array
     {
 
         $id=$this->userRepository->getStudentId();

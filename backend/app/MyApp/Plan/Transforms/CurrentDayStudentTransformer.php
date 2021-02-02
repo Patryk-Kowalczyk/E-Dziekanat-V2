@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Transforms\Plan;
+namespace App\MyApp\Plan\Transforms;
 
 use App\Models\Plan;
 use League\Fractal\TransformerAbstract;

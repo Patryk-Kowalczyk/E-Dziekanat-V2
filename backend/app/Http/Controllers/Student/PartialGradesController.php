@@ -4,36 +4,24 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Http\Traits\dateFormatTrait;
-use App\Models\Grade;
-use App\Models\Student;
-use App\Models\Plan;
-use App\Models\Subject;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Http\Response;
+use App\MyApp\Grade\Services\PartialGradeService;
+use Illuminate\Http\JsonResponse;
 
 
 class PartialGradesController extends Controller
 {
-    public $student;
+    protected $partialGradeService;
 
-    public function __construct()
+    public function __construct(PartialGradeService $partialGradeService)
     {
         $this->middleware('auth:api');
-        $this->student = Student::where('students.user_id', Auth::id())->first();
+        $this->partialGradeService=$partialGradeService;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
-        $partialGrades = Subject::with(['grades' => function ($q) {
-            $q->select(
-                ['grades.category', 'grades.value', 'grades.comments', 'grades.created_at as date']
-            )->where('grades.student_id', $this->student->id);
-        }])->where('subjects.form', '!=', 'OK')->get();
-
-
-        return response()->json(['partial_grades' => $partialGrades]);  //Pobranie ocen cząstkowych studenta
+        return Response::build($this->partialGradeService->getAllStudentPartialGrades(),200);
     }
 
 }

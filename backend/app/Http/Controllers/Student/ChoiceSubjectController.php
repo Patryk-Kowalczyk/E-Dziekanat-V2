@@ -19,12 +19,11 @@ class ChoiceSubjectController extends Controller
     {
         $this->middleware('auth:api');
         $this->student = Student::where('user_id', Auth::id())->first();
-        $this->studentChoices = Studentchoice::where('student_id', $this->student->id)->get();
+       // $this->studentChoices = Studentchoice::where('student_id', $this->student->id)->get();
     }
 
     public function index()
     {
-
         $final = [];
         $resultOptions = [];
         foreach ($this->studentChoices as $studentChoice) {

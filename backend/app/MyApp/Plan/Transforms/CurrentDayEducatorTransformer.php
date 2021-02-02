@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Transforms\Plan;
+namespace App\MyApp\Plan\Transforms;
 
 class CurrentDayEducatorTransformer
 {

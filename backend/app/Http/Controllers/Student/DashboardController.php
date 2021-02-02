@@ -4,7 +4,9 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Services\DashboardService;
+use App\Http\Response;
+use App\MyApp\User\Services\DashboardService;
+use Illuminate\Http\JsonResponse;
 
 
 class DashboardController extends Controller
@@ -17,9 +19,8 @@ class DashboardController extends Controller
         $this->dashboardService=$dashboardService;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
-
-        return response()->json($this->dashboardService->getStudentDashboard(), 200);
+        return Response::build($this->dashboardService->getStudentDashboard(),200);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\MyApp\Grade\Repositories;
 
 use App\Models\Grade;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +31,15 @@ class PartialGradeRepository
     {
         return $this->getStudentGrades($id)->latest()->paginate(5);
     }
+
+    public function getAllStudentGrades($id)
+    {
+        return $this->getStudentGrades($id)->get();
+    }
+
+
+
+
 
     public function getAvgGrades($id)
     {

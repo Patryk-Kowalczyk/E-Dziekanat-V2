@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\MyApp\Grade\Repositories;
 
 use App\Models\FinalGrade;
 use App\Models\Student;
@@ -26,6 +26,7 @@ class FinalGradeRepository
     {
         return $this->getAll()->where('student_id',$id);
     }
+
 
 
 

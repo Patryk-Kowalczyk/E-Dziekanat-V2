@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Transforms;
+namespace App\MyApp\User\Transforms;
 
 
 use App\Models\Student;
@@ -9,7 +9,7 @@ use League\Fractal\TransformerAbstract;
 
 class StudentDataTransformer extends TransformerAbstract
 {
-    public function transform(Student $student)
+    public function transform(Student $student): array
     {
         return [
             'first_name'=> (string) $student->user->first_name,

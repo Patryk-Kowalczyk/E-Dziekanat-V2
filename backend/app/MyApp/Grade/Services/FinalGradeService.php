@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\MyApp\Grade\Services;
 
-use App\Repositories\FinalGradeRepository;
-use App\Repositories\UserRepository;
-use App\Transforms\TranformsUtil;
+use App\MyApp\Grade\Repositories\FinalGradeRepository;
+use App\MyApp\User\Repositories\UserRepository;
+use App\MyApp\Utility\TranformsUtil;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
@@ -23,7 +23,7 @@ class FinalGradeService
         $this->tranformsUtil=$tranformsUtil;
     }
 
-    public function getAllStudentFinalGrades()
+    public function getAllStudentFinalGrades(): object
     {
         $id=$this->userRepository->getStudentId();
         $finalGrades = new Collection($this->finalGradeRepository->getByStudentId($id),$this->tranformsUtil->getTransformer(3));

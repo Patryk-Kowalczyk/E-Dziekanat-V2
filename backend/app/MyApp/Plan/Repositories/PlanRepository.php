@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace App\MyApp\Plan\Repositories;
 
-use App\Http\Traits\dateFormatTrait;
+use App\Http\Traits\DateFormatTrait;
 use App\Models\Plan;
 use Carbon\Carbon;
 
@@ -36,7 +36,7 @@ class PlanRepository
 
     private function currentDay()
     {
-        return dateFormatTrait::format_Ymd(Carbon::now());
+        return DateFormatTrait::format_Ymd(Carbon::now());
     }
 
 

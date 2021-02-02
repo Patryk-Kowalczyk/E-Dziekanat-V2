@@ -25,7 +25,7 @@ class FakerController extends Controller
 //            $poll->student_id=999;
 //            $poll->save();
 //        }
-//
+//php artisan se
 //        for ($i = 0; $i < 30; $i++) {
 //            $plans=new Plan;
 //            $since = $faker->randomElement($array = ['08', '10', '12', '14', '16', '18']) . ':00:00';

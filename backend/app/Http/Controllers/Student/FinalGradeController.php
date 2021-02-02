@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Services\FinalGradeService;
+use App\MyApp\Grade\Services\FinalGradeService;
+use App\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 
 class FinalGradeController extends Controller
@@ -16,9 +18,9 @@ class FinalGradeController extends Controller
         $this->finalGradeService=$finalGradeService;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json(['final_grade'=>$this->finalGradeService->getAllStudentFinalGrades()]);
+        return Response::build($this->finalGradeService->getAllStudentFinalGrades(),200);
     }
 
 }

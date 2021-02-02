@@ -2,7 +2,7 @@
 
 namespace App\Http\Traits;
 
-trait dateFormatTrait
+trait DateFormatTrait
 {
     public static function format_Ymd_Hi($date)
     {
