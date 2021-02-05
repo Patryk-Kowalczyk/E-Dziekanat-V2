@@ -21,7 +21,7 @@ class PartialGradesController extends Controller
 
     public function index(): JsonResponse
     {
-        return Response::build($this->partialGradeService->getAllStudentPartialGrades(),200);
+        return $this->partialGradeService->getAllStudentPartialGrades();
     }
 
 }

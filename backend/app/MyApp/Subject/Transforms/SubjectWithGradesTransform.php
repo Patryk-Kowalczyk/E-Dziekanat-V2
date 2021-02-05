@@ -2,35 +2,30 @@
 
 
 namespace App\MyApp\Subject\Transforms;
+use App\Models\Grade;
 use League\Fractal\Manager;
-
-use App\Models\Subject;
 use App\MyApp\Grade\Transforms\PartialGradeStudentTransformer;
-use League\Fractal\Resource\Collection;
+use League\Fractal\Scope;
 use League\Fractal\TransformerAbstract;
 
 class SubjectWithGradesTransform extends TransformerAbstract
 {
-    protected $availableIncludes = [
-        'grades'
-    ];
-
-
-    public function transform(Subject $subject): array
+    public function transform(Grade $grade): array
     {
         return [
-            'name'=> (string) $subject->name,
-            'form'=> (string) $subject->form,
-            'test' => $this->includeGrades($subject)
+            'id'=> (int) $grade->subjects[0]->id,
+            'name'=> (string) $grade->subjects[0]->name,
+            'form'=> (string) $grade->subjects[0]->form,
+            'hours'=> (int) $grade->subjects[0]->hours,
+            'grades' => $this->includeGrades($grade)
         ];
     }
 
-    public function includeGrades(Subject $subject): \League\Fractal\Scope
+    public function includeGrades(Grade $grade): Scope
     {
-        $fractal = new Manager ;
-        $grades=$subject->grades;
-        $x= $this->collection($grades, new PartialGradeStudentTransformer);
-        return $fractal->createData($x);
+        $fractal = new Manager;
+        $test= $this->item($grade, new PartialGradeStudentTransformer);
+        return $fractal->createData($test);
     }
-
 }
+

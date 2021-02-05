@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\MyApp\Grade\Services\FinalGradeService;
-use App\Http\Response;
 use Illuminate\Http\JsonResponse;
 
 
@@ -20,7 +19,7 @@ class FinalGradeController extends Controller
 
     public function index(): JsonResponse
     {
-        return Response::build($this->finalGradeService->getAllStudentFinalGrades(),200);
+        return $this->finalGradeService->getAllStudentFinalGrades();
     }
 
 }

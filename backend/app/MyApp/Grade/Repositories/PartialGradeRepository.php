@@ -29,17 +29,8 @@ class PartialGradeRepository
 
     public function getLastGradesStudent($id)
     {
-        return $this->getStudentGrades($id)->latest()->paginate(5);
+        return $this->getStudentGrades($id)->latest('created_at')->paginate(5);
     }
-
-    public function getAllStudentGrades($id)
-    {
-        return $this->getStudentGrades($id)->get();
-    }
-
-
-
-
 
     public function getAvgGrades($id)
     {

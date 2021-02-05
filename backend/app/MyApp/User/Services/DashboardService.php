@@ -7,7 +7,9 @@ namespace App\MyApp\User\Services;
 use App\MyApp\Grade\Repositories\PartialGradeRepository;
 use App\MyApp\Plan\Repositories\PlanRepository;
 use App\MyApp\User\Repositories\UserRepository;
+use App\MyApp\Utility\Response;
 use App\MyApp\Utility\TranformsUtil;
+use Illuminate\Http\JsonResponse;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
@@ -34,7 +36,7 @@ class DashboardService
         $this->tranformsUtil=$tranformsUtil;
     }
 
-    public function getStudentDashboard(): array
+    public function getStudentDashboard(): JsonResponse
     {
 
         $id=$this->userRepository->getStudentId();
@@ -44,11 +46,12 @@ class DashboardService
         $lastGradesStudent = new Collection($this->partialGradeRepository->getLastGradesStudent($id),$this->tranformsUtil->getTransformer(2));
         $avgGradesStudent = $this->partialGradeRepository->getAvgGrades($id);
 
-        return ['student_data'=> $this->fractal->createData($studentData),
-                'day_plan'=> $this->fractal->createData($dayPlanStudent),
-                'last_grades'=> $this->fractal->createData($lastGradesStudent),
-                'avg_grades'=> $avgGradesStudent
+        $result = ['studentData'=> $this->fractal->createData($studentData),
+                'dayPlan'=> $this->fractal->createData($dayPlanStudent),
+                'lastGrades'=> $this->fractal->createData($lastGradesStudent),
+                'avgGrades'=> $avgGradesStudent
         ];
+        return Response::build($result, 200);
 
     }
 }

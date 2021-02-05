@@ -8,15 +8,15 @@ use App\Http\Traits\DateFormatTrait;
 use App\Models\Grade;
 use League\Fractal\TransformerAbstract;
 
-class PartialGradeStudentTransformer extends TransformerAbstract
+class DashboardPartialGradeStudentTransformer extends TransformerAbstract
 {
     public function transform(Grade $grade): array
     {
         return [
-            'category'=>  $grade->category,
+            'name'=>  $grade->subjects[0]->name,
+            'form'=>  $grade->subjects[0]->form,
             'value'=>  $grade->value,
-            'comments'=>  $grade->comments,
-            'date' => DateFormatTrait::format_Ymd($grade->created_at)
+            'date' => DateFormatTrait::format_Ymd_Hi($grade->created_at)
         ];
     }
 

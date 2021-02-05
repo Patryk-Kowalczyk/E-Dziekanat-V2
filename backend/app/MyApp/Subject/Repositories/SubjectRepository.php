@@ -21,4 +21,12 @@ class SubjectRepository
         return $this->subject->get();
     }
 
+    public function getStudentSubjectsWithPartialGrades($id)
+    {
+        return $this->subject->with(['grades' => function ($q) use ($id) {
+            $q->select(['grades.category', 'grades.value', 'grades.comments', 'grades.created_at as date'])
+                ->where('grades.student_id', $id);
+        }])->get();
+    }
+
 }

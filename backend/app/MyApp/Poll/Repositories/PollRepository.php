@@ -1,0 +1,58 @@
+<?php
+
+namespace App\MyApp\Poll\Repositories;
+
+use App\Models\PollModels\Pollanswer;
+use App\Models\PollModels\Pollname;
+use App\Models\PollModels\Pollquestion;
+use App\Models\PollModels\Pollstudent;
+
+class PollRepository
+{
+    protected $pollstudent;
+    protected $pollname;
+    protected $pollquestion;
+    protected $pollanswer;
+
+
+    public function __construct(Pollstudent $pollstudent, Pollanswer $pollanswer, Pollquestion $pollquestion, Pollname $pollname)
+    {
+        $this->pollstudent = $pollstudent;
+        $this->pollname = $pollname;
+        $this->pollquestion = $pollquestion;
+        $this->pollanswer = $pollanswer;
+
+    }
+
+    public function getPollStudent()
+    {
+        return $this->pollstudent->get();
+    }
+
+    public function getListForStudent($idPoll)
+    {
+        return $this->pollstudent
+            ->where('student_id', $idPoll)->select('poll_id','status')
+            ->groupBy('poll_id','status')
+            ->get();
+    }
+
+    public function getStatusActivityPollForStudent($idPoll, $idStudent)
+    {
+        return $this->pollstudent
+            ->where('poll_id',$idPoll)
+            ->where('student_id',$idStudent)
+            ->select('status')
+            ->first();
+    }
+
+    public function getPollDetails($idPoll)
+    {
+        return $this->pollquestion->with('pollanswers')
+            ->where('pollquestions.poll_id',$idPoll)
+            ->get();
+    }
+
+
+
+}

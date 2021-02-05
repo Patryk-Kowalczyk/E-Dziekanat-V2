@@ -4,6 +4,7 @@ namespace App\MyApp\Grade\Services;
 
 use App\MyApp\Grade\Repositories\FinalGradeRepository;
 use App\MyApp\User\Repositories\UserRepository;
+use App\MyApp\Utility\Response;
 use App\MyApp\Utility\TranformsUtil;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
@@ -27,7 +28,7 @@ class FinalGradeService
     {
         $id=$this->userRepository->getStudentId();
         $finalGrades = new Collection($this->finalGradeRepository->getByStudentId($id),$this->tranformsUtil->getTransformer(3));
-        return $this->fractal->createData($finalGrades);
+        return Response::build($this->fractal->createData($finalGrades), 200);
     }
 
 
