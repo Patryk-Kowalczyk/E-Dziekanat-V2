@@ -21,7 +21,6 @@ class PollRepository
         $this->pollname = $pollname;
         $this->pollquestion = $pollquestion;
         $this->pollanswer = $pollanswer;
-
     }
 
     public function getPollStudent()
@@ -51,6 +50,18 @@ class PollRepository
         return $this->pollquestion->with('pollanswers')
             ->where('pollquestions.poll_id',$idPoll)
             ->get();
+    }
+
+    public function updateAnswers($data,$idStudent)
+    {
+        return $this->pollstudent
+            ->where('student_id',$idStudent)
+            ->where('question_id',$data['question_id'])
+            ->where('poll_id',$data['poll_id'])
+            ->update([
+                'answer_id'=>$data['answer_id'],
+                'status'=>1
+            ]);
     }
 
 

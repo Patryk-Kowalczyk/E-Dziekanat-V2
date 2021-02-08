@@ -4,7 +4,6 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Http\Response;
 use App\MyApp\Grade\Services\PartialGradeService;
 use Illuminate\Http\JsonResponse;
 

@@ -8,6 +8,7 @@ use App\Models\PollModels\Pollquestion;
 use App\Models\PollModels\Pollstudent;
 use App\Models\Student;
 use App\MyApp\Poll\Requests\ShowPollByIdRequest;
+use App\MyApp\Poll\Requests\StoreAnswersRequest;
 use App\MyApp\Poll\Services\PollServices;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -23,8 +24,8 @@ class PollController extends Controller
     public function __construct(PollServices $pollServices)
     {
         $this->middleware('auth:api');
-        $this->pollServices=$pollServices;
-        $this->pollServices=$pollServices;
+        $this->pollServices = $pollServices;
+        $this->pollServices = $pollServices;
 
     }
 
@@ -38,27 +39,9 @@ class PollController extends Controller
         return $this->pollServices->showPoll($request->validated());
     }
 
-    public function store(Request $request)
+    public function store(StoreAnswersRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            '*.poll_id' => 'required|int',
-            '*.question_id' => 'required|int',
-            '*.answers_id' => 'required|int',
-        ]);
-        $data=$request->all();
-
-        foreach($data as $record)
-        {
-            $pollsstudent = Pollstudent::where('student_id', $this->student->id)
-                ->where('poll_id',2,$record['poll_id'])
-                ->where('question_id',$record['question_id'])
-                ->first();
-            $pollsstudent->answer_id=$record['answer_id'];
-            $pollsstudent->status=1;
-            $pollsstudent->save();
-        }
-
-        return $data;
+        return $this->pollServices->storeAnswersPoll($request->validated());
     }
 
 

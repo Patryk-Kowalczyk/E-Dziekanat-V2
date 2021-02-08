@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\SelectSubjectModels\Option;
 use App\Models\SelectSubjectModels\Studentchoice;
 use App\Models\Student;
+use App\MyApp\Subject\Services\SubjectServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -13,36 +14,19 @@ use Illuminate\Support\Facades\Validator;
 class ChoiceSubjectController extends Controller
 {
     public $student;
-    public $studentChoices;
+    public $subjectServices;
 
-    public function __construct()
+    public function __construct(SubjectServices $subjectServices)
     {
         $this->middleware('auth:api');
+        $this->subjectServices=$subjectServices;
         $this->student = Student::where('user_id', Auth::id())->first();
        // $this->studentChoices = Studentchoice::where('student_id', $this->student->id)->get();
     }
 
     public function index()
     {
-        $final = [];
-        $resultOptions = [];
-        foreach ($this->studentChoices as $studentChoice) {
-
-            $result['id_question'] = $studentChoice->choice->id;
-            $result['name_question'] = $studentChoice->choice->name;
-            $result['chosen'] = $studentChoice->option_id;
-            $options = Option::where("choice_id", $studentChoice->choice->id)->get();
-            foreach ($options as $option) {
-
-                $resultOneOption['option_id'] = $option->id;
-                $resultOneOption['option'] = $option->name;
-                $resultOptions[] = $resultOneOption;
-            }
-            $result['answers'] = $resultOptions;
-            $resultOptions = [];
-            $final[] = $result;
-        }
-        return response()->json(['subject_choose' => $final]);
+        return $this->subjectServices->listSubjectChooseServices();
     }
 
     public function store(Request $request)
