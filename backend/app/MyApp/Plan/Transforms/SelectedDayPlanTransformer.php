@@ -6,7 +6,7 @@ namespace App\MyApp\Plan\Transforms;
 use App\Models\Plan;
 use League\Fractal\TransformerAbstract;
 
-class CurrentDayStudentTransformer extends TransformerAbstract
+class SelectedDayPlanTransformer extends TransformerAbstract
 {
     public function transform(Plan $plan)
     {
@@ -16,7 +16,8 @@ class CurrentDayStudentTransformer extends TransformerAbstract
             'to' => $plan->to,
             'room' => $plan->room,
             'form' => $plan->subjects[0]->form,
-            'educator' => $plan->educator->getFullName()
+            'group' => $plan->group->name,
+            'educator' => $plan->educator->getFullName() ?? null
         ];
 
     }

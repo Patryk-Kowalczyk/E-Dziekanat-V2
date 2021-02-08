@@ -40,7 +40,6 @@ class DashboardService
     {
 
         $id=$this->userRepository->getStudentId();
-
         $studentData = new Item($this->userRepository->getStudentData(),$this->tranformsUtil->getTransformer(0));
         $dayPlanStudent = new Collection($this->planRepository->getCurrentDayPlanStudent($id),$this->tranformsUtil->getTransformer(1));
         $lastGradesStudent = new Collection($this->partialGradeRepository->getLastGradesStudent($id),$this->tranformsUtil->getTransformer(2));

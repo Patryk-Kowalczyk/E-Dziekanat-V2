@@ -6,17 +6,25 @@ namespace App\MyApp\User\Repositories;
 
 use App\Models\Educator;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {
     protected $student;
     protected $educator;
+    protected $user;
 
-    public function __construct(Student $student, Educator $educator)
+    public function __construct(Student $student, Educator $educator, User $user)
     {
+        $this->user=$user;
         $this->student=$student;
         $this->educator=$educator;
+    }
+
+    public function getUserData()
+    {
+        return $this->user->find(Auth::id());
     }
 
     #============================ STUDENT ============================#
