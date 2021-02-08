@@ -2,54 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
-use Illuminate\Http\Request;
-use Validator;
+use App\MyApp\Message\Request\ShowByIdMessageRequest;
+use App\MyApp\Message\Services\MessageService;
+use Illuminate\Http\JsonResponse;
+
 
 class MessageController extends Controller
 {
-    public function __construct()
+    protected $messageService;
+
+    public function __construct(MessageService $messageService)
     {
         $this->middleware('auth:api');
+        $this->messageService=$messageService;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
-        $messages=Message::all();
-
-        $allMessage=[];
-        foreach($messages as $message)
-        {
-            $result['id']=$message->id;
-            $result['title']=$message->title;
-            $result['date']=$message->date;
-            $textCut=strpos($message->text, ' ', 200);
-            $result['text']=substr($message->text,0,$textCut ).'..'; ;
-            $allMessage[]=$result;
-        }
-
-        return response()->json(['message' => $allMessage]);
+        return $this->messageService->getMessages();
     }
 
-    public function show(Request $request)
+    public function show(ShowByIdMessageRequest $request):JsonResponse
     {
-
-        $validator = Validator::make($request->all(), [
-            'id' => 'required|int',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-        $message=Message::find($request['id']);
-
-        $result['id']=$message->id;
-        $result['title']=$message->title;
-        $result['date']=$message->date;
-        $result['text']=$message->text;
-        $result['added_by']=$message->educator->getFullName();
-
-        return response()->json(['message' => $result]);
+        return $this->messageService->getMessageDetails($request->validated());
     }
 
 }

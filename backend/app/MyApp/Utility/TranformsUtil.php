@@ -5,8 +5,11 @@ namespace App\MyApp\Utility;
 
 use App\MyApp\Grade\Transforms\DashboardPartialGradeStudentTransformer;
 use App\MyApp\Grade\Transforms\FinalGradeStudentTransformer;
+use App\MyApp\Message\Transforms\AllMessagesTransformer;
+use App\MyApp\Message\Transforms\MessageDetailsTransformer;
 use App\MyApp\Poll\Transforms\PollListTransformer;
 use App\MyApp\Plan\Transforms\CurrentDayStudentTransformer;
+use App\MyApp\Subject\Transforms\SubjectChoiceQuestionDetailsTransform;
 use App\MyApp\Subject\Transforms\SubjectWithGradesTransform;
 use App\MyApp\User\Transforms\StudentDataTransformer;
 
@@ -18,6 +21,9 @@ class TranformsUtil
     const FINAL_GRADE = 3;
     const SUBJECTS_WITH_PARTIAL_GRADES = 4;
     const POLL_LIST = 5;
+    const CHOICE_OPTION = 6;
+    const MESSAGES_LIST = 7;
+    const MESSAGE_DETAILS = 8;
 
     public function getTransformer(int $transformerId)
     {
@@ -35,6 +41,12 @@ class TranformsUtil
                 return new SubjectWithGradesTransform;
             case self::POLL_LIST:
                 return new PollListTransformer;
+            case self::CHOICE_OPTION:
+                return new SubjectChoiceQuestionDetailsTransform;
+            case self::MESSAGES_LIST:
+                return new AllMessagesTransformer;
+                case self::MESSAGE_DETAILS:
+                return new MessageDetailsTransformer;
             default:
                 return false;
         }

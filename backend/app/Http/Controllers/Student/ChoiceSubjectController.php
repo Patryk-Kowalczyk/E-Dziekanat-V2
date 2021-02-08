@@ -3,53 +3,34 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\SelectSubjectModels\Option;
-use App\Models\SelectSubjectModels\Studentchoice;
-use App\Models\Student;
-use App\MyApp\Subject\Services\SubjectServices;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\MyApp\Subject\Request\StoreChoiceSubjectRequest;
+use App\MyApp\Subject\Services\SubjectChoiceServices;
+use Illuminate\Http\JsonResponse;
+
+
 
 class ChoiceSubjectController extends Controller
 {
     public $student;
-    public $subjectServices;
+    public $subjectChoiceServices;
 
-    public function __construct(SubjectServices $subjectServices)
+    public function __construct(SubjectChoiceServices $subjectChoiceServices)
     {
         $this->middleware('auth:api');
-        $this->subjectServices=$subjectServices;
-        $this->student = Student::where('user_id', Auth::id())->first();
-       // $this->studentChoices = Studentchoice::where('student_id', $this->student->id)->get();
+        $this->subjectChoiceServices=$subjectChoiceServices;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
-        return $this->subjectServices->listSubjectChooseServices();
+        return $this->subjectChoiceServices->listOfSubjectToChooseForStudent();
     }
 
-    public function store(Request $request)
+    public function store(StoreChoiceSubjectRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            '*.choice_id' => 'required|int',
-            '*.option_id' => 'required|int'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-        $data=$request->all();
-        foreach($data as $record) {
-            $choice = $this->studentChoices->where('choice_id', $record['choice_id'])->first();
-            $choice->option_id = $record['option_id'];
-            $choice->save();
-        }
-
-        return 'success';
-
-
+        return $this->subjectChoiceServices->storeSubjectChoiceStudent($request->validated());
     }
+
+
 
 
 }

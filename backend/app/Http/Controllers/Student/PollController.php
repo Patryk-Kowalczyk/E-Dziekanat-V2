@@ -25,8 +25,6 @@ class PollController extends Controller
     {
         $this->middleware('auth:api');
         $this->pollServices = $pollServices;
-        $this->pollServices = $pollServices;
-
     }
 
     public function list(): JsonResponse

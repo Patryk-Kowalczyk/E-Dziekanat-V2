@@ -1,10 +1,10 @@
 <?php
 
-namespace App\MyApp\Subject\Request;
+namespace App\MyApp\Message\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreChoiceSubjectRequest extends FormRequest
+class ShowByIdMessageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,14 @@ class StoreChoiceSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            '*.choice_id' => 'required|int',
-            '*.option_id' => 'required|int',
+            'id' => 'required|int',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'choice_id.required' => 'Choice ID is required!',
-            'option_id.required' => 'Option ID is required!',
+            'id.required' => 'Message ID is required!',
         ];
     }
 }

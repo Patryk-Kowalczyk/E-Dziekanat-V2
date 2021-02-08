@@ -2,41 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
-use App\Models\Paymentsdetails;
-use App\Models\Student;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Validator;
+
+use App\MyApp\Payment\Request\ShowByIdPaymentRequest;
+use App\MyApp\Payment\Services\PaymentService;
+
 
 class PaymentController extends Controller
 {
-    public function __construct()
+    protected $paymentService;
+
+    public function __construct(PaymentService $paymentService)
     {
         $this->middleware('auth:api');
+        $this->paymentService=$paymentService;
     }
 
     public function index()
     {
-
-        $payments = Payment::where('user_id', Auth::id())->get()->makeHidden('user_id');
-
-        return response()->json(['payments' => $payments]);
+        return $this->paymentService->getPayments();
     }
 
-    public function show(Request $request)
+    public function show(ShowByIdPaymentRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'payment_id' => 'required|int',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-        $idPayment=$request['payment_id'];
-        $paymentDetails = Paymentsdetails::where('payment_id', $idPayment)->get()->makeHidden(['id','payment_id']);
-
-        return response()->json(['payments' => $paymentDetails]);
-
+       return $this->paymentService->getPaymentDetails($request->validated());
     }
 
 }

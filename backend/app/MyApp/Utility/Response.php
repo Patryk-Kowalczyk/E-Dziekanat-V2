@@ -14,8 +14,6 @@ class Response
             'status'=>$status
         ],$status);
     }
-
-
 }
 
 

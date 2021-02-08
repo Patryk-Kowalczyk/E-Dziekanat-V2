@@ -24,8 +24,8 @@ class SubjectWithGradesTransform extends TransformerAbstract
     public function includeGrades(Grade $grade): Scope
     {
         $fractal = new Manager;
-        $test= $this->item($grade, new PartialGradeStudentTransformer);
-        return $fractal->createData($test);
+        $gradesStudent= $this->item($grade, new PartialGradeStudentTransformer);
+        return $fractal->createData($gradesStudent);
     }
 }
 
