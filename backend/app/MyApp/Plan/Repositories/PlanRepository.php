@@ -20,7 +20,12 @@ class PlanRepository
 
     public function getCurrentDayPlanStudent($id)
     {
-        return $this->getDayPlan($this->currentDay())->where('group_id',$id);
+        return $this->getDay($this->currentDay())->where('group_id',$id);
+    }
+
+    public function getCurrentDayPlanEducator($id)
+    {
+        return $this->getDay($this->currentDay())->where('educator_id',$id);
     }
 
     public function getDay($day)
@@ -33,10 +38,8 @@ class PlanRepository
 
     public function getWeek($from,$to)
     {
-        return $this->plan->whereBetween('date', [$from, $to])->get();
+        return $this->plan->whereBetween('date', [$from, $to])->orderBy('since')->get();
     }
-
-
 
 
     private function currentDay()

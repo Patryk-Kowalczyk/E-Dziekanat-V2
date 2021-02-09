@@ -22,10 +22,34 @@ class UserRepository
         $this->educator=$educator;
     }
 
+    public function getUserId()
+    {
+        return $this->user->where('id',Auth::id())->select('id')->first();
+    }
+
     public function getUserData()
     {
         return $this->user->find(Auth::id());
     }
+
+    public function getUserStatus()
+    {
+        return $this->user->where('id',Auth::id())->select('status')->first();
+    }
+
+    public function updateData($data)
+    {
+        $user = $this->getUserData();
+        $user->phone = $data['phone'] ?? $user->phone;;
+        $user->email = $data['email'] ?? $user->email;
+        return $user->save();
+    }
+
+    public function findOrFailUser()
+    {
+        return $this->user->findOrFail(Auth::id());
+    }
+
 
     #============================ STUDENT ============================#
 
@@ -46,6 +70,11 @@ class UserRepository
 
 
     #============================ EDUCATOR ============================#
+
+    public function getEducatorData()
+    {
+        return $this->educator->where('id',$this->getEducatorId())->first();
+    }
 
     public function getEducatorId()
     {

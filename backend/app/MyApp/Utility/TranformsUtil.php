@@ -11,11 +11,12 @@ use App\MyApp\Plan\Transforms\SelectedDayPlanTransformer;
 use App\MyApp\Poll\Transforms\PollListTransformer;
 use App\MyApp\Subject\Transforms\SubjectChoiceQuestionDetailsTransform;
 use App\MyApp\Subject\Transforms\SubjectWithGradesTransform;
+use App\MyApp\User\Transforms\EducatorDataTransformer;
 use App\MyApp\User\Transforms\StudentDataTransformer;
 
 class TranformsUtil
 {
-    const STUDENT_DATA = 0;
+
     const SELECTED_DAY = 1;
     const DASHBOARD_PARTIAL_GRADE = 2;
     const FINAL_GRADE = 3;
@@ -24,12 +25,13 @@ class TranformsUtil
     const CHOICE_OPTION = 6;
     const MESSAGES_LIST = 7;
     const MESSAGE_DETAILS = 8;
+    const STUDENT_DATA = 9;
+    const EDUCATOR_DATA = 10;
 
     public function getTransformer(int $transformerId)
     {
         switch ($transformerId) {
-            case self::STUDENT_DATA:
-                return new StudentDataTransformer;
+
             case self::SELECTED_DAY:
                 return new SelectedDayPlanTransformer();
             case self::DASHBOARD_PARTIAL_GRADE:
@@ -46,6 +48,10 @@ class TranformsUtil
                 return new AllMessagesTransformer;
             case self::MESSAGE_DETAILS:
                 return new MessageDetailsTransformer;
+            case self::STUDENT_DATA:
+                return new StudentDataTransformer;
+            case self::EDUCATOR_DATA:
+                return new EducatorDataTransformer;
             default:
                 return false;
         }

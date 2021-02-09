@@ -6,6 +6,7 @@ use App\Models\PollModels\Pollanswer;
 use App\Models\PollModels\Pollname;
 use App\Models\PollModels\Pollquestion;
 use App\Models\PollModels\Pollstudent;
+use Illuminate\Support\Facades\DB;
 
 class PollRepository
 {
@@ -62,6 +63,22 @@ class PollRepository
                 'answer_id'=>$data['answer_id'],
                 'status'=>1
             ]);
+    }
+
+    public function getPollQuestions($id)
+    {
+        return $this->pollquestion->where('poll_id',$id)->get();
+    }
+
+    public function getCountAnswers($id)
+    {
+        return $this->pollstudent
+            ->where('poll_id', 2)
+            ->where('question_id', $id)
+            ->where('answer_id', '!=', 'null')
+            ->select(DB::raw("count(answer_id) as count"), 'answer_id')
+            ->groupBy('answer_id')
+            ->get();
     }
 
 

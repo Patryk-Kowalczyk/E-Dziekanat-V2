@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Services;
-
 namespace App\MyApp\User\Services;
 
 use App\MyApp\Grade\Repositories\PartialGradeRepository;
+use App\MyApp\Meeting\Repositories\MeetingRepository;
 use App\MyApp\Plan\Repositories\PlanRepository;
 use App\MyApp\User\Repositories\UserRepository;
 use App\MyApp\Utility\Response;
@@ -19,6 +18,7 @@ class DashboardService
     protected $planRepository;
     protected $partialGradeRepository;
     protected $userRepository;
+    protected $meetingRepository;
     protected $fractal;
     protected $tranformsUtil;
 
@@ -26,10 +26,12 @@ class DashboardService
     public function __construct(PlanRepository $planRepository,
                                 PartialGradeRepository $partialGradeRepository,
                                 UserRepository $userRepository,
+                                MeetingRepository $meetingRepository,
                                 Manager $fractal,
                                 TranformsUtil $tranformsUtil)
     {
         $this->planRepository=$planRepository;
+        $this->meetingRepository=$meetingRepository;
         $this->partialGradeRepository=$partialGradeRepository;
         $this->userRepository=$userRepository;
         $this->fractal=$fractal;
@@ -38,9 +40,8 @@ class DashboardService
 
     public function getStudentDashboard(): JsonResponse
     {
-
         $id=$this->userRepository->getStudentId();
-        $studentData = new Item($this->userRepository->getStudentData(),$this->tranformsUtil->getTransformer(0));
+        $studentData = new Item($this->userRepository->getStudentData(),$this->tranformsUtil->getTransformer(9));
         $dayPlanStudent = new Collection($this->planRepository->getCurrentDayPlanStudent($id),$this->tranformsUtil->getTransformer(1));
         $lastGradesStudent = new Collection($this->partialGradeRepository->getLastGradesStudent($id),$this->tranformsUtil->getTransformer(2));
         $avgGradesStudent = $this->partialGradeRepository->getAvgGrades($id);
@@ -51,6 +52,19 @@ class DashboardService
                 'avgGrades'=> $avgGradesStudent
         ];
         return Response::build($result, 200);
-
     }
+
+    public function getEducatorDashboard(): JsonResponse
+    {
+        $id=$this->userRepository->getEducatorId();
+        $educatorData = new Item($this->userRepository->getEducatorData(),$this->tranformsUtil->getTransformer(10));
+        $dayPlanEducator = new Collection($this->planRepository->getCurrentDayPlanEducator($id),$this->tranformsUtil->getTransformer(1));
+        $meetings = $this->meetingRepository->getEducatorMeetings($id);
+        $result = ['educatorData'=> $this->fractal->createData($educatorData),
+            'dayPlan'=> $this->fractal->createData($dayPlanEducator),
+            'meetings'=> $meetings,
+            ];
+        return Response::build($result, 200);
+    }
+
 }

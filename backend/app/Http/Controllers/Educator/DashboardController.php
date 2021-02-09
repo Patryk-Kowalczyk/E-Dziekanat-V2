@@ -3,67 +3,24 @@
 namespace App\Http\Controllers\Educator;
 
 use App\Http\Controllers\Controller;
-use App\Models\Educator;
-use App\Models\Meeting;
-use App\Models\Plan;
-use App\Models\Student;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\MyApp\User\Services\DashboardService;
+use Illuminate\Http\JsonResponse;
+
 
 class DashboardController extends Controller
 {
-    public $educator;
+    public $dashboardService;
 
-    public function __construct()
+    public function __construct(DashboardService $dashboardService)
     {
         $this->middleware('auth:api');
-        $this->educator = Educator::with(['User'])->where('educators.user_id', Auth::id())->first();
+        $this->dashboardService=$dashboardService;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json(
-            [
-                'teacher_data' => $this->dataEducator(), //Pobranie danych nauczyciela
-                'day_plan' => $this->dayPlan(), //Pobranie planu z Current Day (Brak warunku)
-                'meetings' => $this->meetings(),  //Pobranie ostatnich ocen
-            ], 200);
+        return $this->dashboardService->getEducatorDashboard();
     }
 
-    private function dataEducator()
-    {
-        $educatorData['first_name'] = $this->educator->user->first_name;
-        $educatorData['last_name'] = $this->educator->user->last_name;
-        $educatorData['degree'] = $this->educator->title;
-        $educatorData['profile_picture'] = $this->educator->user->profile_picture;
-        return $educatorData;
-    }
-
-    private function dayPlan()
-    {
-        $plans = Plan::with(['subjects', 'group'])
-            ->where('plans.educator_id', $this->educator->id)
-            ->where('date',Carbon::now()->format('Y-m-d'))
-            ->get();
-        $dayPlan=[];
-        foreach ($plans as $plan) {
-            $resultDayPlan['name'] = $plan->subjects[0]->name;
-            $resultDayPlan['since'] = $plan->since;
-            $resultDayPlan['to'] = $plan->to;
-            $resultDayPlan['group'] = $plan->group->name;
-            $resultDayPlan['room'] = $plan->room;
-            $resultDayPlan['form'] = $plan->subjects[0]->form;
-            $dayPlan[] = $resultDayPlan;
-        }
-        return $dayPlan;
-    }
-
-    private function meetings()
-    {
-        return  Meeting::where('meetings.educator_id', $this->educator->id)
-            ->get()->makeHidden('id','educator_id');
-
-    }
 
 }

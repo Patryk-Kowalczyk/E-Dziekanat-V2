@@ -2,7 +2,7 @@
 
 namespace App\MyApp\Message\Services;
 
-use App\MyApp\Message\Repositories\MessageRepository;
+use App\MyApp\Message\Repositories\MeetingRepository;
 use App\MyApp\Utility\Response;
 use App\MyApp\Utility\TranformsUtil;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +19,7 @@ class MessageService
     protected $messageRepository;
 
 
-    public function __construct(MessageRepository $messageRepository,
+    public function __construct(MeetingRepository $messageRepository,
                                 Manager $fractal,
                                 TranformsUtil $tranformsUtil)
     {

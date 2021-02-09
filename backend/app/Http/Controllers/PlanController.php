@@ -27,7 +27,6 @@ class PlanController extends Controller
     public function dayIndex(DayPlanRequest $request):JsonResponse
     {
         return $this->planServices->getDayPlan($request->validated());
-
     }
 
 

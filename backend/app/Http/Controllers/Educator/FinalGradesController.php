@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Traits\dateFormatTrait;
 
 
-class FinalGradesController extends Controller
+class  FinalGradesController extends Controller
 {
     public $educator;
 
@@ -69,37 +69,6 @@ class FinalGradesController extends Controller
         $finalGrade->committee = $getFinalGrade['committee'];
         $finalGrade->promotion =  $getFinalGrade['promotion'];
         $finalGrade->save();
-
         return response()->json(['success' => 'pomyslnie dodano ocene'],200);
     }
-
-
-//
-//        $subjects = Subject::with('educator')->where('educator_id', $this->educator->id)->get();
-//        $students = Student::all();
-//
-//        $resultData = [];
-//        $resultGrade = [];
-//        $resultGradeOne = [];
-//        foreach ($subjects as $subject) {
-//            $result['id_subject'] = $subject->id;
-//            $result['name'] = $subject->name;
-//            $result['form'] = $subject->form;
-//            foreach ($students as $student) {
-//                $resultStudent['first_name'] = $student->user->first_name;
-//                $resultStudent['last_name'] = $student->user->last_name;
-//                $resultStudent['album'] = $student->album;
-//                $resultStudent['group'] = $student->group->name;
-//                $resultStudent['group_id'] = $student->group->id;
-//                $resultStudent['first_term'] = $student->;
-//                $resultStudent['marks'] = 2;
-//                $resultGradeOne = [];
-//                $resultDataStudent[] = $resultStudent;
-//            }
-//            $result['squad'] = $resultDataStudent;
-//            $resultDataStudent = [];
-//            $resultData[] = $result;
-//        }
-//        return response()->json(['groups' => $resultData]);
-
 }
