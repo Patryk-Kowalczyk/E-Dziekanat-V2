@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class FinalGrade extends Model
 {
-
+    protected $fillable = [
+        'id',
+        'first_term',
+        'first_repeat',
+        'second_repeat',
+        'committee',
+        'promotion'
+    ];
     public function student(){
         return $this->belongsTo(Student::class);
     }

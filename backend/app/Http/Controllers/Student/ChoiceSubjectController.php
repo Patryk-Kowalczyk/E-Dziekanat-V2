@@ -7,8 +7,6 @@ use App\MyApp\Subject\Request\StoreChoiceSubjectRequest;
 use App\MyApp\Subject\Services\SubjectChoiceServices;
 use Illuminate\Http\JsonResponse;
 
-
-
 class ChoiceSubjectController extends Controller
 {
     public $student;
@@ -29,8 +27,5 @@ class ChoiceSubjectController extends Controller
     {
         return $this->subjectChoiceServices->storeSubjectChoiceStudent($request->validated());
     }
-
-
-
 
 }

@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\MyApp\Grade\Services\PartialGradeService;
 use Illuminate\Http\JsonResponse;
 
-
 class PartialGradesController extends Controller
 {
     protected $partialGradeService;

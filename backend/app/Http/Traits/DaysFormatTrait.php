@@ -6,7 +6,7 @@ namespace App\Http\Traits;
 
 class DaysFormatTrait
 {
-    public static function weekFormat($from,$to)
+    public static function weekFormat($from,$to): array
     {
         $days = [];
         $stepVal = '+1 day';

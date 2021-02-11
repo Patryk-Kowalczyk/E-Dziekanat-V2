@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\MyApp\Plan\Request\DayPlanRequest;
 use App\MyApp\Plan\Request\WeekPlanRequest;
 use App\MyApp\Plan\Services\PlanServices;

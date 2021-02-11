@@ -68,7 +68,7 @@ Route::group([
     Route::get('partialGradesList', 'PartialGradesController@index');
     Route::post('partialGradesStore', 'PartialGradesController@store');
     Route::get('finalGradesList', 'FinalGradesController@index');
-    Route::post('finalGradesStore', 'FinalGradesController@store');
+    Route::post('finalGradesUpdate', 'FinalGradesController@update');
     Route::get('pollStats', 'PollStatsController@index');
 });
 

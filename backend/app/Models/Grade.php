@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Grade extends Model
 {
     protected $fillable = [
-        'value','student_id',
+        'value','student_id','category','comments'
     ];
 
     protected $hidden = ['pivot'];

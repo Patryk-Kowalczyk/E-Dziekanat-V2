@@ -15,6 +15,10 @@ class SubjectRepository
     {
         $this->subject = $subject;
     }
+    public function find($id)
+    {
+        return $this->subject->find($id);
+    }
 
     public function getAll()
     {
@@ -28,5 +32,15 @@ class SubjectRepository
                 ->where('grades.student_id', $id);
         }])->get();
     }
+
+    public function getSubjectsForPanelEducator($id)
+    {
+        return $this->getAll()->where('educator_id',$id);
+    }
+
+
+
+
+
 
 }

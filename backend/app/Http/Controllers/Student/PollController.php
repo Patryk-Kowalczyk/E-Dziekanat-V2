@@ -20,7 +20,6 @@ class PollController extends Controller
 {
     public $pollServices;
 
-
     public function __construct(PollServices $pollServices)
     {
         $this->middleware('auth:api');

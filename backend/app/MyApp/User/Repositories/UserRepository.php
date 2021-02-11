@@ -63,10 +63,12 @@ class UserRepository
         return $this->student->where('user_id',Auth::id())->first()->id;
     }
 
-    public function getStudentGroupId()
+    public function getStudentIdByAlbum($album)
     {
-        return $this->student->where('user_id',Auth::id())->first()->group_id;
+        return $this->student->where('album',$album)->first()->id;
     }
+
+
 
 
     #============================ EDUCATOR ============================#

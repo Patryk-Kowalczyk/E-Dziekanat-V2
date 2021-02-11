@@ -4,11 +4,14 @@ namespace App\MyApp\Utility;
 
 
 use App\MyApp\Grade\Transforms\DashboardPartialGradeStudentTransformer;
+use App\MyApp\Subject\Transforms\EducatorPanelSubjectsWithFinalGradesTransformer;
+use App\MyApp\Grade\Transforms\FinalGradeEducatorPanelTransformer;
 use App\MyApp\Grade\Transforms\FinalGradeStudentTransformer;
 use App\MyApp\Message\Transforms\AllMessagesTransformer;
 use App\MyApp\Message\Transforms\MessageDetailsTransformer;
 use App\MyApp\Plan\Transforms\SelectedDayPlanTransformer;
 use App\MyApp\Poll\Transforms\PollListTransformer;
+use App\MyApp\Subject\Transforms\EducatorPanelSubjectsWithPartialGradesTransformer;
 use App\MyApp\Subject\Transforms\SubjectChoiceQuestionDetailsTransform;
 use App\MyApp\Subject\Transforms\SubjectWithGradesTransform;
 use App\MyApp\User\Transforms\EducatorDataTransformer;
@@ -27,6 +30,8 @@ class TranformsUtil
     const MESSAGE_DETAILS = 8;
     const STUDENT_DATA = 9;
     const EDUCATOR_DATA = 10;
+    const EDUCATOR_PANEL_SUBJECTS_FINAL_GRADES = 11;
+    const EDUCATOR_PANEL_SUBJECTS_PARTIAL_GRADES = 12;
 
     public function getTransformer(int $transformerId)
     {
@@ -52,6 +57,10 @@ class TranformsUtil
                 return new StudentDataTransformer;
             case self::EDUCATOR_DATA:
                 return new EducatorDataTransformer;
+            case self::EDUCATOR_PANEL_SUBJECTS_FINAL_GRADES:
+                return new EducatorPanelSubjectsWithFinalGradesTransformer;
+            case self::EDUCATOR_PANEL_SUBJECTS_PARTIAL_GRADES:
+                return new EducatorPanelSubjectsWithPartialGradesTransformer;
             default:
                 return false;
         }

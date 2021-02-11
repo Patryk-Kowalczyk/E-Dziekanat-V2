@@ -36,6 +36,18 @@ class PlanServices
         return Response::build($this->fractal->createData($planTransform), 200);
     }
 
+    private function getPlanByStatus($plan)
+    {
+        $user = $this->userRepository->getUserData();
+        if ($user->status == "student") {
+            return $plan->where('group_id', $user->student->group->id);
+        } elseif ($user->status == "educator") {
+            return $plan->where('educator_id', $user->educator->id);
+        } else {
+            return Response::build([], 401, "Undefined status");
+        }
+    }
+
     public function getWeekPlan($data): JsonResponse
     {
 
@@ -60,16 +72,6 @@ class PlanServices
         return Response::build($planWeek, 200);
     }
 
-    private function getPlanByStatus($plan): Eloquent\Collection
-    {
-        $user = $this->userRepository->getUserData();
-        if ($user->status == "student") {
-            return $plan->where('group_id', $user->student->group->id);
-        } elseif ($user->status == "educator") {
-            return $plan->where('educator_id', $user->educator->id);
-        } else {
-            return Response::build([], 401, "Undefined status");
-        }
-    }
+
 
 }

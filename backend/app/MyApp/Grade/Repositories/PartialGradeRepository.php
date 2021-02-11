@@ -32,6 +32,23 @@ class PartialGradeRepository
         return $this->getStudentGrades($id)->latest('created_at')->paginate(5);
     }
 
+    public function createGrade($data,$studentId,$subject)
+    {
+        $grade = new $this->grade;
+        $grade->category=$data['category'];
+        $grade->value=$data['value'];
+        $grade->comments=$data['comments'];
+        $grade->student_id=$studentId;
+        $grade->save();
+        $grade->subjects()->attach($subject);
+        return $grade->fresh();
+    }
+
+    public function updateGrade($data)
+    {
+        $this->grade->find($data['id'])->update($data);
+    }
+
     public function getAvgGrades($id)
     {
         return $this->grade->where('student_id',$id)
