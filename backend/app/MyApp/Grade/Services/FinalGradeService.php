@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
+
 class FinalGradeService
 {
     protected $userRepository;
@@ -25,34 +26,42 @@ class FinalGradeService
                                 Manager $fractal,
                                 TranformsUtil $tranformsUtil)
     {
-        $this->userRepository=$userRepository;
-        $this->finalGradeRepository=$finalGradeRepository;
-        $this->subjectRepository=$subjectRepository;
-        $this->fractal=$fractal;
-        $this->tranformsUtil=$tranformsUtil;
+        $this->userRepository = $userRepository;
+        $this->finalGradeRepository = $finalGradeRepository;
+        $this->subjectRepository = $subjectRepository;
+        $this->fractal = $fractal;
+        $this->tranformsUtil = $tranformsUtil;
     }
 
     public function getAllStudentFinalGrades(): object
     {
         $id=$this->userRepository->getStudentId();
         $finalGrades = new Collection($this->finalGradeRepository->getByStudentId($id),$this->tranformsUtil->getTransformer(3));
-        return Response::build($this->fractal->createData($finalGrades), 200);
+        $finalGrades=$this->fractal->createData($finalGrades);
+        return Response::build($finalGrades, 200);
+
+//        try {
+//            $user=User::findOrFail(100);
+//            return Response::build($user, 200, 'success');
+//        } catch (\Exception $e) {
+//            Log::error("There was problem with FinalGradeService.getAllStudentFinalGrades(): ", ['error' => $e]);
+//            return Response::build([], 500, 'error');
+//        }
     }
 
     public function getFinalGradesForEducatorPanel(): JsonResponse
     {
-        $id=$this->userRepository->getEducatorId();
-        $educatorFinalGrades= $this->subjectRepository->getSubjectsForPanelEducator($id);
-        $educatorSubjectsWithFinalGradesTransform=new Collection($educatorFinalGrades,$this->tranformsUtil->getTransformer(11));
+        $id = $this->userRepository->getEducatorId();
+        $educatorFinalGrades = $this->subjectRepository->getSubjectsForPanelEducator($id);
+        $educatorSubjectsWithFinalGradesTransform = new Collection($educatorFinalGrades, $this->tranformsUtil->getTransformer(11));
         return Response::build($this->fractal->createData($educatorSubjectsWithFinalGradesTransform), 200);
     }
 
     public function updateFinalGrades($data): JsonResponse
     {
         $this->finalGradeRepository->updateFinalGrade($data);
-        return Response::build([], 200,'success');
+        return Response::build([], 200, 'success');
     }
-
 
 
 }

@@ -17,7 +17,7 @@ class CreateEducatorsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('album');
             $table->enum('title',['Inż.','Lic.','Mgr','Dr','Dr Hab.','Prof.']);
-            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');;;
         });
     }
 

@@ -19,7 +19,8 @@ class CreateSubjectsTable extends Migration
             $table->enum('form',['W','L','Lek','A','OK']);
             $table->integer('hours')->nullable();
             $table->integer('ECTS')->nullable();
-            $table->unsignedBigInteger('educator_id')->nullable();
+            $table->foreign('educator_id')->references('id')->on('educators')->nullable();
+
         });
     }
 

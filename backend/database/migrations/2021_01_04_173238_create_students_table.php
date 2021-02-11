@@ -20,8 +20,8 @@ class CreateStudentsTable extends Migration
             $table->string('field_of_study');
             $table->string('specialization')->nullable();
             $table->integer('semester');
-            $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('user_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('user_id')->references('id')->on('users');;
 
         });
     }

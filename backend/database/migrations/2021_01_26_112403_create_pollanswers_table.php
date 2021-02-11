@@ -16,7 +16,7 @@ class CreatePollanswersTable extends Migration
         Schema::create('pollanswers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('question_id');
+            $table->foreign('question_id')->references('id')->on('pollquestions');
             $table->timestamps();
         });
     }

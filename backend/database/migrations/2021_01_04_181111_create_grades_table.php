@@ -18,7 +18,7 @@ class CreateGradesTable extends Migration
             $table->string('category')->nullable();
             $table->string('value');
             $table->string('comments')->nullable();
-            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

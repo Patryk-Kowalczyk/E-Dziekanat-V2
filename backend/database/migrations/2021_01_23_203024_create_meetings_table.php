@@ -19,7 +19,7 @@ class CreateMeetingsTable extends Migration
             $table->string('who');
             $table->time('time');
             $table->date('date');
-            $table->integer('educator_id');
+            $table->foreign('educator_id')->references('id')->on('educators');
         });
     }
 

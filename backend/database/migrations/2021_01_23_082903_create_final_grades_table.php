@@ -20,8 +20,8 @@ class CreateFinalGradesTable extends Migration
             $table->float('second_repeat')->nullable();
             $table->float('committee')->nullable();
             $table->float('promotion')->nullable();
-            $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('subject_id');
+            $table->foreign('student_id')->references('id')->on('students');;
+            $table->foreign('subject_id')->references('id')->on('subjects');;
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
 

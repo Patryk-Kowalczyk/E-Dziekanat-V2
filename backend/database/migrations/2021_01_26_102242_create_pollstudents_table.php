@@ -15,11 +15,11 @@ class CreatePollstudentsTable extends Migration
     {
         Schema::create('pollstudents', function (Blueprint $table) {
             $table->id();
-            $table->integer('poll_id')->nullable();
-            $table->integer('question_id')->nullable();
-            $table->integer('answer_id')->nullable();
+            $table->foreign('poll_id')->references('id')->on('pollnames')->nullable();
+            $table->foreign('question_id')->references('id')->on('pollquestions')->nullable();
+            $table->foreign('answer_id')->references('id')->on('pollanswers')->nullable();
             $table->boolean('status')->default(0);
-            $table->integer('student_id');
+            $table->foreign('student_id')->references('id')->on('students')->nullable();
             $table->timestamps();
         });
     }

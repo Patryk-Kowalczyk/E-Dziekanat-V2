@@ -19,8 +19,9 @@ class CreatePlansTable extends Migration
             $table->time('to');
             $table->string('room');
             $table->date('date');
-            $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('educator_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('educator_id')->references('id')->on('educators');
+
         });
     }
 

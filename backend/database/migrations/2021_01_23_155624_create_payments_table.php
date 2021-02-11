@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('sub_account');
-            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -15,9 +15,9 @@ class CreateStudentchoicesTable extends Migration
     {
         Schema::create('studentchoices', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
-            $table->integer('choice_id')->nullable();;
-            $table->integer('option_id')->nullable();;
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('choice_id')->references('id')->on('choices')->nullable();
+            $table->foreign('option_id')->references('id')->on('options')->nullable();
             $table->timestamps();
         });
     }

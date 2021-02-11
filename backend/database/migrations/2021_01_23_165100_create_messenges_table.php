@@ -18,7 +18,7 @@ class CreateMessagesTable extends Migration
             $table->string('title');
             $table->date('date')->useCurrent();
             $table->text('text');
-            $table->integer('educator_id');
+            $table->foreign('educator_id')->references('id')->on('educators');
         });
     }
 
