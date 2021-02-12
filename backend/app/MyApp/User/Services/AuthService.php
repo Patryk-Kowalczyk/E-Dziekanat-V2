@@ -7,8 +7,8 @@ use App\MyApp\User\Repositories\UserRepository;
 use App\MyApp\Utility\Response;
 use App\MyApp\Utility\TranformsUtil;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use League\Fractal\Manager;
-
 
 class AuthService
 {
@@ -22,44 +22,54 @@ class AuthService
         $this->fractal = $fractal;
         $this->tranformsUtil = $tranformsUtil;
     }
+
     public function loginAction($data): JsonResponse
     {
-        if (!$token = auth()->attempt($data)) {
-            return Response::build([], 401,'Unauthorized');
+        if ($token = auth()->attempt($data)) {
+            $newToken = $this->createNewToken($token);
+            return Response::build($newToken, 401, __('msg/success.login'));
+        } else {
+            Log::error("There was problem with AuthService.loginAction(): ");
+            return Response::build([], 500, __('msg/error.login'));
         }
-        return $this->createNewToken($token);
     }
 
     public function registerAction($data): JsonResponse
     {
-        $user = User::create(array_merge(
-            $data,
-            ['password' => bcrypt($data['password'])]
-        ));
-        return Response::build([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
+        try {
+            $user = User::create(array_merge(
+                $data,
+                ['password' => bcrypt($data['password'])]
+            ));
+            return Response::build([
+                'message' => 'User successfully registered',
+                'user' => $user
+            ], 201, __('msg/success.create'));
+        } catch (\Exception $e) {
+            Log::error("There was problem with AuthService.registerAction(): ", ['error' => $e]);
+            return Response::build([], 500, __('msg/error.create'));
+        }
     }
 
-    public function logoutAction():JsonResponse
+    public function logoutAction(): JsonResponse
     {
         auth()->logout();
-        return Response::build([],200,'success');
+        return Response::build([], 200, __('msg/success.logout'));
     }
 
     public function refreshAction(): JsonResponse
     {
-        return $this->createNewToken(auth()->refresh());
+        $refreshToken=$this->createNewToken(auth()->refresh());
+        return Response::build($refreshToken, 200, __('msg/success.refresh'));
     }
 
-    protected function createNewToken($token): JsonResponse
+    protected function createNewToken($token): array
     {
-        return Response::build([
+        return [
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL(),
-        ],200);
+        ];
     }
 
 }

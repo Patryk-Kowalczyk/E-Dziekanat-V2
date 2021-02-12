@@ -7,6 +7,7 @@ use App\MyApp\User\Repositories\UserRepository;
 use App\MyApp\Utility\Response;
 use App\MyApp\Utility\TranformsUtil;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
@@ -27,24 +28,34 @@ class SubjectChoiceServices
 
     public function listOfSubjectToChooseForStudent(): JsonResponse
     {
-        $id = $this->userRepository->getStudentId();
-        $studentChoiceList = $this->subjectChoiceRepository->getAllStudentChoiceList($id)->toArray();
-        $index = 0;
-        foreach ($studentChoiceList as $record) {
-            $subjectList = $this->subjectChoiceRepository->getChoiceOptionsSubject($record['choice_id']);
-            $subjectList = new Collection($subjectList, $this->tranformsUtil->getTransformer(6));
-            $record['answer'] = $this->fractal->createData($subjectList);
-            $studentChoiceList[$index++] = $record;
+        try {
+            $id = $this->userRepository->getStudentId();
+            $studentChoiceList = $this->subjectChoiceRepository->getAllStudentChoiceList($id)->toArray();
+            $index = 0;
+            foreach ($studentChoiceList as $record) {
+                $subjectList = $this->subjectChoiceRepository->getChoiceOptionsSubject($record['choice_id']);
+                $subjectList = new Collection($subjectList, $this->tranformsUtil->getTransformer(6));
+                $record['answer'] = $this->fractal->createData($subjectList);
+                $studentChoiceList[$index++] = $record;
+            }
+            return Response::build($studentChoiceList, 200, __('msg/success.list'));
+        } catch (\Exception $e) {
+            Log::error("There was problem with SubjectChoiceServices.listOfSubjectToChooseForStudent(): ", ['error' => $e]);
+            return Response::build([], 500, __('msg/error.list'));
         }
-        return Response::build($studentChoiceList, 200);
     }
 
-    public function storeSubjectChoiceStudent($data)
+    public function storeSubjectChoiceStudent($data): JsonResponse
     {
-        $idStudent = $this->userRepository->getStudentId();
-        foreach ($data as $choiceSubject) {
-            $this->subjectChoiceRepository->updateChoiceSubjectByStudent($choiceSubject, $idStudent);
+        try {
+            $idStudent = $this->userRepository->getStudentId();
+            foreach ($data as $choiceSubject) {
+                $this->subjectChoiceRepository->updateChoiceSubjectByStudent($choiceSubject, $idStudent);
+            }
+            return Response::build([], 200, __('msg/success.store'));
+        } catch (\Exception $e) {
+            Log::error("There was problem with SubjectChoiceServices.storeSubjectChoiceStudent(): ", ['error' => $e]);
+            return Response::build([], 500, __('msg/error.store'));
         }
-        return Response::build([],200, "Pomyślnie umieszczono");
     }
 }

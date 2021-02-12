@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "Edziekanat V2",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Its a simply school ERP",
     "keywords": [
-        "framework",
-        "laravel"
+        "Edziekanat V2",
+        "laravel",
+        "School ERP"
     ],
     "license": "MIT",
     "require": {
