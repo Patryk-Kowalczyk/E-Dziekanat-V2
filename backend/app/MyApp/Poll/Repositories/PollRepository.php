@@ -6,6 +6,7 @@ use App\Models\PollModels\Pollanswer;
 use App\Models\PollModels\Pollname;
 use App\Models\PollModels\Pollquestion;
 use App\Models\PollModels\Pollstudent;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class PollRepository
@@ -15,7 +16,6 @@ class PollRepository
     protected $pollquestion;
     protected $pollanswer;
 
-
     public function __construct(Pollstudent $pollstudent, Pollanswer $pollanswer, Pollquestion $pollquestion, Pollname $pollname)
     {
         $this->pollstudent = $pollstudent;
@@ -24,53 +24,53 @@ class PollRepository
         $this->pollanswer = $pollanswer;
     }
 
-    public function getPollStudent()
+    public function getPollStudent(): Collection
     {
         return $this->pollstudent->get();
     }
 
-    public function getListForStudent($idPoll)
+    public function getListForStudent($idPoll): Collection
     {
         return $this->pollstudent
-            ->where('student_id', $idPoll)->select('poll_id','status')
-            ->groupBy('poll_id','status')
+            ->where('student_id', $idPoll)->select('poll_id', 'status')
+            ->groupBy('poll_id', 'status')
             ->get();
     }
 
-    public function getStatusActivityPollForStudent($idPoll, $idStudent)
+    public function getStatusActivityPollForStudent($idPoll, $idStudent): Collection
     {
         return $this->pollstudent
-            ->where('poll_id',$idPoll)
-            ->where('student_id',$idStudent)
+            ->where('poll_id', $idPoll)
+            ->where('student_id', $idStudent)
             ->select('status')
             ->first();
     }
 
-    public function getPollDetails($idPoll)
+    public function getPollDetails($idPoll): Collection
     {
         return $this->pollquestion->with('pollanswers')
-            ->where('pollquestions.poll_id',$idPoll)
+            ->where('pollquestions.poll_id', $idPoll)
             ->get();
     }
 
-    public function updateAnswers($data,$idStudent)
+    public function updateAnswers($data, $idStudent): bool
     {
         return $this->pollstudent
-            ->where('student_id',$idStudent)
-            ->where('question_id',$data['question_id'])
-            ->where('poll_id',$data['poll_id'])
+            ->where('student_id', $idStudent)
+            ->where('question_id', $data['question_id'])
+            ->where('poll_id', $data['poll_id'])
             ->update([
-                'answer_id'=>$data['answer_id'],
-                'status'=>1
+                'answer_id' => $data['answer_id'],
+                'status' => 1
             ]);
     }
 
-    public function getPollQuestions($id)
+    public function getPollQuestions($id): Collection
     {
-        return $this->pollquestion->where('poll_id',$id)->get();
+        return $this->pollquestion->where('poll_id', $id)->get();
     }
 
-    public function getCountAnswers($id)
+    public function getCountAnswers($id): Collection
     {
         return $this->pollstudent
             ->where('poll_id', 2)
@@ -80,7 +80,4 @@ class PollRepository
             ->groupBy('answer_id')
             ->get();
     }
-
-
-
 }

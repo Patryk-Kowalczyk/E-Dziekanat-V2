@@ -3,7 +3,7 @@
 namespace App\MyApp\Meeting\Repositories;
 
 use App\Models\Meeting;
-
+use Illuminate\Database\Eloquent\Collection;
 
 class MeetingRepository
 {
@@ -14,15 +14,13 @@ class MeetingRepository
         $this->meeting = $meeting;
     }
 
-    public function getAll()
+    public function getAll(): Collection
     {
         return $this->meeting->get();
     }
 
-    public function getEducatorMeetings($id)
+    public function getEducatorMeetings($id): Collection
     {
         return $this->getAll()->where('educator_id', $id);
     }
-
-
 }

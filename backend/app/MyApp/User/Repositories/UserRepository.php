@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\MyApp\User\Repositories;
-
 
 use App\Models\Educator;
 use App\Models\Student;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository
@@ -17,27 +16,27 @@ class UserRepository
 
     public function __construct(Student $student, Educator $educator, User $user)
     {
-        $this->user=$user;
-        $this->student=$student;
-        $this->educator=$educator;
+        $this->user = $user;
+        $this->student = $student;
+        $this->educator = $educator;
     }
 
-    public function getUserId()
+    public function getUserId(): int
     {
-        return $this->user->where('id',Auth::id())->select('id')->first();
+        return $this->user->where('id', Auth::id())->select('id')->first();
     }
 
-    public function getUserData()
+    public function getUserData(): Model
     {
         return $this->user->find(Auth::id());
     }
 
-    public function getUserStatus()
+    public function getUserStatus(): int
     {
-        return $this->user->where('id',Auth::id())->select('status')->first();
+        return $this->user->where('id', Auth::id())->select('status')->first();
     }
 
-    public function updateData($data)
+    public function updateData($data): bool
     {
         $user = $this->getUserData();
         $user->phone = $data['phone'] ?? $user->phone;;
@@ -45,42 +44,37 @@ class UserRepository
         return $user->save();
     }
 
-    public function findOrFailUser()
+    public function findOrFailUser(): object
     {
         return $this->user->findOrFail(Auth::id());
     }
 
-
     #============================ STUDENT ============================#
 
-    public function getStudentData()
+    public function getStudentData(): object
     {
-        return $this->student->where('id',$this->getStudentId())->first();
+        return $this->student->where('id', $this->getStudentId())->first();
     }
 
-    public function getStudentId()
+    public function getStudentId(): int
     {
-        return $this->student->where('user_id',Auth::id())->first()->id;
+        return $this->student->where('user_id', Auth::id())->first()->id;
     }
 
-    public function getStudentIdByAlbum($album)
+    public function getStudentIdByAlbum($album): int
     {
-        return $this->student->where('album',$album)->first()->id;
+        return $this->student->where('album', $album)->first()->id;
     }
-
-
-
 
     #============================ EDUCATOR ============================#
 
-    public function getEducatorData()
+    public function getEducatorData(): object
     {
-        return $this->educator->where('id',$this->getEducatorId())->first();
+        return $this->educator->where('id', $this->getEducatorId())->first();
     }
 
-    public function getEducatorId()
+    public function getEducatorId(): int
     {
-        return $this->educator->where('user_id',Auth::id())->first()->id;
+        return $this->educator->where('user_id', Auth::id())->first()->id;
     }
-
 }

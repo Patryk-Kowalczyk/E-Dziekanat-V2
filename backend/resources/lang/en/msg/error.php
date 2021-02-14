@@ -7,5 +7,5 @@ return [
     'create' => 'Records was not created',
     'login' => 'Login failed',
     'register' => 'Register failed',
-      'refresh' => 'Refresh token failed'
+    'refresh' => 'Refresh token failed'
 ];

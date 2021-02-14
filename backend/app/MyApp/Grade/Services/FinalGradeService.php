@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Log;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
-
 class FinalGradeService
 {
     protected $userRepository;
@@ -40,10 +39,10 @@ class FinalGradeService
             $id = $this->userRepository->getStudentId();
             $finalGrades = new Collection($this->finalGradeRepository->getByStudentId($id), $this->tranformsUtil->getTransformer(3));
             $finalGrades = $this->fractal->createData($finalGrades);
-            return Response::build($finalGrades, 200, __(__('msg/success.list')));
+            return Response::build([], 200, 'msg/success.list');
         } catch (\Exception $e) {
             Log::error("There was problem with FinalGradeService.getAllStudentFinalGrades(): ", ['error' => $e]);
-            return Response::build([], 500, __('msg/error.list'));
+            return Response::build([], 500, 'msg/error.list');
         }
     }
 
@@ -71,6 +70,4 @@ class FinalGradeService
             return Response::build([], 500, __('msg/error.update'));
         }
     }
-
-
 }

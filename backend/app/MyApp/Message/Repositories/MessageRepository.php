@@ -1,8 +1,8 @@
 <?php
 
 namespace App\MyApp\Message\Repositories;
-
 use App\Models\Message;
+use Illuminate\Database\Eloquent\Collection;
 
 class MessageRepository
 {
@@ -13,12 +13,12 @@ class MessageRepository
         $this->message = $message;
     }
 
-    public function getAll()
+    public function getAll(): Collection
     {
         return $this->message->get();
     }
 
-    public function showMessage($id)
+    public function showMessage($id):Object
     {
         return $this->message->find($id);
     }

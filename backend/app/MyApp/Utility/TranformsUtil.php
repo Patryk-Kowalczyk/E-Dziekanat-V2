@@ -2,10 +2,8 @@
 
 namespace App\MyApp\Utility;
 
-
 use App\MyApp\Grade\Transforms\DashboardPartialGradeStudentTransformer;
 use App\MyApp\Subject\Transforms\EducatorPanelSubjectsWithFinalGradesTransformer;
-use App\MyApp\Grade\Transforms\FinalGradeEducatorPanelTransformer;
 use App\MyApp\Grade\Transforms\FinalGradeStudentTransformer;
 use App\MyApp\Message\Transforms\AllMessagesTransformer;
 use App\MyApp\Message\Transforms\MessageDetailsTransformer;
@@ -19,7 +17,6 @@ use App\MyApp\User\Transforms\StudentDataTransformer;
 
 class TranformsUtil
 {
-
     const SELECTED_DAY = 1;
     const DASHBOARD_PARTIAL_GRADE = 2;
     const FINAL_GRADE = 3;
@@ -33,10 +30,9 @@ class TranformsUtil
     const EDUCATOR_PANEL_SUBJECTS_FINAL_GRADES = 11;
     const EDUCATOR_PANEL_SUBJECTS_PARTIAL_GRADES = 12;
 
-    public function getTransformer(int $transformerId)
+    public function getTransformer(int $transformerId): object
     {
         switch ($transformerId) {
-
             case self::SELECTED_DAY:
                 return new SelectedDayPlanTransformer();
             case self::DASHBOARD_PARTIAL_GRADE:
@@ -65,5 +61,4 @@ class TranformsUtil
                 return false;
         }
     }
-
 }
