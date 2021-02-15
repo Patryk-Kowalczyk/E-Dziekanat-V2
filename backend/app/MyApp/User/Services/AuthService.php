@@ -27,10 +27,10 @@ class AuthService
     {
         if ($token = auth()->attempt($data)) {
             $newToken = $this->createNewToken($token);
-            return Response::build($newToken, 401, __('msg/success.login'));
+            return Response::build($newToken, 401, 'msg/success.login');
         } else {
             Log::error("There was problem with AuthService.loginAction(): ");
-            return Response::build([], 500, __('msg/error.login'));
+            return Response::build([], 500, 'msg/error.login');
         }
     }
 
@@ -44,23 +44,23 @@ class AuthService
             return Response::build([
                 'message' => 'User successfully registered',
                 'user' => $user
-            ], 201, __('msg/success.create'));
+            ], 201, 'msg/success.create');
         } catch (\Exception $e) {
             Log::error("There was problem with AuthService.registerAction(): ", ['error' => $e]);
-            return Response::build([], 500, __('msg/error.create'));
+            return Response::build([], 500, 'msg/error.create');
         }
     }
 
     public function logoutAction(): JsonResponse
     {
         auth()->logout();
-        return Response::build([], 200, __('msg/success.logout'));
+        return Response::build([], 200, 'msg/success.logout');
     }
 
     public function refreshAction(): JsonResponse
     {
         $refreshToken=$this->createNewToken(auth()->refresh());
-        return Response::build($refreshToken, 200, __('msg/success.refresh'));
+        return Response::build($refreshToken, 200, 'msg/success.refresh');
     }
 
     protected function createNewToken($token): array
@@ -71,5 +71,4 @@ class AuthService
             'expires_in' => auth()->factory()->getTTL(),
         ];
     }
-
 }

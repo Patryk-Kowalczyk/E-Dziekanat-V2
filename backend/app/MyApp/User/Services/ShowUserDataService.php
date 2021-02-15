@@ -5,12 +5,11 @@ namespace App\MyApp\User\Services;
 use App\MyApp\User\Repositories\UserRepository;
 use App\MyApp\Utility\Response;
 use App\MyApp\Utility\TranformsUtil;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Item;
 
-class SettingsUserService
+class ShowUserDataService
 {
     protected $userRepository;
     protected $fractal;
@@ -23,7 +22,7 @@ class SettingsUserService
         $this->tranformsUtil = $tranformsUtil;
     }
 
-    public function showUserData(): JsonResponse
+    public function execute(): JsonResponse
     {
         $user = $this->userRepository->getUserStatus();
         if ($user->status == "student") {
@@ -31,29 +30,8 @@ class SettingsUserService
         } elseif ($user->status == "educator") {
             $userDataTransform = new Item($this->userRepository->getEducatorData(), $this->tranformsUtil->getTransformer(10));
         } else {
-            return Response::build([], 401, 'Undefined status');
+            return Response::build([], 401, 'msg/error.role');
         }
         return Response::build($this->fractal->createData($userDataTransform), 200);
-    }
-
-    public function updateUserData($data): JsonResponse
-    {
-        $this->userRepository->updateData($data);
-        return Response::build([], 200, 'Udalo sie');
-    }
-
-    public function infoSession()
-    {
-        try {
-            $user = $this->userRepository->findOrFailUser();
-            return Response::build([
-                'name' => $user->first_name,
-                'status' => $user->status,
-            ], 200, 'Udalo sie');
-        } catch (ModelNotFoundException $e) {
-            return response([
-                'status' => 'Not authorized',
-            ], 401);
-        }
     }
 }

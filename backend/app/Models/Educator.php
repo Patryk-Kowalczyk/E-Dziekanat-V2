@@ -40,7 +40,7 @@ class Educator extends Model
 
     public function getFullName()
     {
-        return $this->title.' '. $this->user->first_name. ' '.$this->user->last_name;
+        return join(' ',[$this->title, $this->user->first_name,$this->user->last_name]);
     }
 
 }

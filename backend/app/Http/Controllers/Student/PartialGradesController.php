@@ -1,25 +1,25 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\MyApp\Grade\Services\PartialGradeService;
+use App\MyApp\Grade\Services\ListPartialGradesForStudentService;
 use Illuminate\Http\JsonResponse;
 
 class PartialGradesController extends Controller
 {
-    protected $partialGradeService;
+    protected $listPartialGradesForStudentService;
 
-    public function __construct(PartialGradeService $partialGradeService)
+    public function __construct(ListPartialGradesForStudentService $listPartialGradesForStudentService)
     {
         $this->middleware('auth:api');
-        $this->partialGradeService=$partialGradeService;
+        $this->listPartialGradesForStudentService = $listPartialGradesForStudentService;
     }
 
     public function index(): JsonResponse
     {
-        return $this->partialGradeService->getAllStudentPartialGrades();
+        return $this->listPartialGradesForStudentService->execute();
     }
-
 }

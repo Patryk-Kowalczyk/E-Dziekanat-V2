@@ -69,18 +69,18 @@ class User extends Authenticatable implements JWTSubject
 
     //========================================//
 
-    public function getName()
+    public function getName(): string
     {
-        return $this->first_name.' '.$this->last_name;
+        return join(' ',[$this->first_name, $this->last_name]);
     }
-
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed
      */
-    public function getJWTIdentifier() {
+    public function getJWTIdentifier()
+    {
         return $this->getKey();
     }
 
@@ -89,7 +89,8 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return array
      */
-    public function getJWTCustomClaims() {
+    public function getJWTCustomClaims()
+    {
         return [];
     }
 }

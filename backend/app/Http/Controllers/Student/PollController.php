@@ -1,45 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\PollModels\Pollname;
-use App\Models\PollModels\Pollquestion;
-use App\Models\PollModels\Pollstudent;
-use App\Models\Student;
 use App\MyApp\Poll\Requests\ShowPollByIdRequest;
 use App\MyApp\Poll\Requests\StoreAnswersRequest;
-use App\MyApp\Poll\Services\PollServices;
+use App\MyApp\Poll\Services\ListPollsService;
+use App\MyApp\Poll\Services\ShowPollService;
+use App\MyApp\Poll\Services\StoreAnswersPollService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-
 
 class PollController extends Controller
 {
-    public $pollServices;
+    protected $listPollsService;
+    protected $showPollService;
+    protected $storeAnswersPollService;
 
-    public function __construct(PollServices $pollServices)
+    public function __construct(ListPollsService $listPollsService,
+                                ShowPollService $showPollService,
+                                StoreAnswersPollService $storeAnswersPollService)
     {
         $this->middleware('auth:api');
-        $this->pollServices = $pollServices;
+        $this->listPollsService = $listPollsService;
+        $this->showPollService = $showPollService;
+        $this->storeAnswersPollService = $storeAnswersPollService;
     }
 
     public function list(): JsonResponse
     {
-        return $this->pollServices->getListStudentPolls();
+        return $this->listPollsService->execute();
     }
 
     public function show(ShowPollByIdRequest $request): JsonResponse
     {
-        return $this->pollServices->showPoll($request->validated());
+        return $this->showPollService->execute($request->validated());
     }
 
     public function store(StoreAnswersRequest $request): JsonResponse
     {
-        return $this->pollServices->storeAnswersPoll($request->validated());
+        return $this->storeAnswersPollService->execute($request->validated());
     }
-
-
 }

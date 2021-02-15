@@ -7,6 +7,7 @@ use App\Models\PollModels\Pollname;
 use App\Models\PollModels\Pollquestion;
 use App\Models\PollModels\Pollstudent;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class PollRepository
@@ -37,7 +38,7 @@ class PollRepository
             ->get();
     }
 
-    public function getStatusActivityPollForStudent($idPoll, $idStudent): Collection
+    public function getStatusActivityPollForStudent($idPoll, $idStudent): Model
     {
         return $this->pollstudent
             ->where('poll_id', $idPoll)

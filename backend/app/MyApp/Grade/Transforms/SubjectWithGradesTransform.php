@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\MyApp\Subject\Transforms;
 use App\Models\Grade;

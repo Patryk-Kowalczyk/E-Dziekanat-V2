@@ -21,7 +21,6 @@ class PlanRepository
 
     public function getCurrentDayPlanStudent($id): Collection
     {
-        var_dump($this->currentDay());
         return $this->getDay($this->currentDay())->where('group_id', $id);
     }
 

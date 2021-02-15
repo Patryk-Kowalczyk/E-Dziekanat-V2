@@ -1,25 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\MyApp\Grade\Services\FinalGradeService;
+use App\MyApp\Grade\Services\ListFinalGradeForStudentService;
 use Illuminate\Http\JsonResponse;
-
 
 class FinalGradeController extends Controller
 {
-    protected $finalGradeService;
+    protected $listFinalGradeForStudentService;
 
-    public function __construct(FinalGradeService $finalGradeService)
+    public function __construct(ListFinalGradeForStudentService $listFinalGradeForStudentService)
     {
         $this->middleware('auth:api');
-        $this->finalGradeService=$finalGradeService;
+        $this->listFinalGradeForStudentService = $listFinalGradeForStudentService;
     }
 
     public function index(): JsonResponse
     {
-        return $this->finalGradeService->getAllStudentFinalGrades();
+        return $this->listFinalGradeForStudentService->execute();
     }
-
 }

@@ -13,8 +13,7 @@ class StudentDataTransformer extends TransformerAbstract
     {
         return [
             'id'=> (int) $student->user->id,
-            'first_name'=> (string) $student->user->first_name,
-            'last_name'=> (string) $student->user->last_name,
+            'full_name'=> (string) $student->getFullName(),
             'album'=> (string) $student->album,
             'profile_picture'=> (string) $student->user->profile_picture,
             'group'=> (string) $student->group->name,

@@ -3,24 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class Subject extends Model
 {
     protected $fillable = [
-        'id','name'
+        'id', 'name'
     ];
-
-
 
     public function plans()
     {
-        return $this->belongsToMany(Plan::class,'plans_subjects');
+        return $this->belongsToMany(Plan::class, 'plans_subjects');
     }
 
     public function grades()
     {
-        return $this->belongsToMany(Grade::class,'subjects_grades');
+        return $this->belongsToMany(Grade::class, 'subjects_grades');
     }
 
     public function educator()
@@ -35,9 +32,6 @@ class Subject extends Model
 
     public function groups()
     {
-        return $this->belongsToMany(Group::class,'subjects_groups');
+        return $this->belongsToMany(Group::class, 'subjects_groups');
     }
-
-
-
 }

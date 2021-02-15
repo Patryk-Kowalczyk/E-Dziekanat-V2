@@ -1,32 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\MyApp\Plan\Request\DayPlanRequest;
 use App\MyApp\Plan\Request\WeekPlanRequest;
-use App\MyApp\Plan\Services\PlanServices;
+use App\MyApp\Plan\Services\DayPlanService;
+use App\MyApp\Plan\Services\WeekPlanService;
 use Illuminate\Http\JsonResponse;
-
 
 class PlanController extends Controller
 {
-    protected $planServices;
+    protected $dayPlanService;
+    protected $weekPlanService;
 
-    public function __construct(PlanServices $planServices)
+    public function __construct(DayPlanService $dayPlanService, WeekPlanService $weekPlanService)
     {
         $this->middleware('auth:api');
-        $this->planServices=$planServices;
+        $this->dayPlanService = $dayPlanService;
+        $this->weekPlanService = $weekPlanService;
     }
 
     public function weekIndex(WeekPlanRequest $request): JsonResponse
     {
-        return $this->planServices->getWeekPlan($request->validated());
+        return $this->weekPlanService->execute($request->validated());
     }
 
-    public function dayIndex(DayPlanRequest $request):JsonResponse
+    public function dayIndex(DayPlanRequest $request): JsonResponse
     {
-        return $this->planServices->getDayPlan($request->validated());
+        return $this->dayPlanService->execute($request->validated());
     }
-
-
 }

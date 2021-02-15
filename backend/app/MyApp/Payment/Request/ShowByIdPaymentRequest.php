@@ -2,7 +2,9 @@
 
 namespace App\MyApp\Payment\Request;
 
+use App\MyApp\Utility\Response;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
 
 class ShowByIdPaymentRequest extends FormRequest
 {

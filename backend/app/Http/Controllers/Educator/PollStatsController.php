@@ -1,25 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Educator;
 
 use App\Http\Controllers\Controller;
-use App\MyApp\Poll\Services\StatsServices;
+use App\MyApp\Poll\Services\StatsForEducatorService;
 use Illuminate\Http\JsonResponse;
-
 
 class PollStatsController extends Controller
 {
-    protected $statsServices;
+    protected $statsForEducatorService;
 
-    public function __construct(StatsServices $statsServices)
+    public function __construct(StatsForEducatorService $statsForEducatorService)
     {
         $this->middleware('auth:api');
-        $this->statsServices=$statsServices;
+        $this->statsForEducatorService=$statsForEducatorService;
     }
 
     public function index(): JsonResponse
     {
-        return $this->statsServices->getStatsPoll();
+        return $this->statsForEducatorService->execute();
     }
 
 }

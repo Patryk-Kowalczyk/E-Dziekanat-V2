@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
-class SubjectChoiceServices
+class ListSubjectChoice
 {
     public $userRepository;
     public $subjectChoiceRepository;
@@ -28,7 +28,7 @@ class SubjectChoiceServices
         $this->fractal = $fractal;
     }
 
-    public function listOfSubjectToChooseForStudent(): JsonResponse
+    public function execute(): JsonResponse
     {
         try {
             $id = $this->userRepository->getStudentId();
@@ -42,22 +42,9 @@ class SubjectChoiceServices
             }
             return Response::build($studentChoiceList, 200, __('msg/success.list'));
         } catch (\Exception $e) {
-            Log::error("There was problem with SubjectChoiceServices.listOfSubjectToChooseForStudent(): ", ['error' => $e]);
+            Log::error("There was problem with ListSubjectChoice.execute(): ", ['error' => $e]);
             return Response::build([], 500, __('msg/error.list'));
         }
     }
 
-    public function storeSubjectChoiceStudent($data): JsonResponse
-    {
-        try {
-            $idStudent = $this->userRepository->getStudentId();
-            foreach ($data as $choiceSubject) {
-                $this->subjectChoiceRepository->updateChoiceSubjectByStudent($choiceSubject, $idStudent);
-            }
-            return Response::build([], 200, __('msg/success.store'));
-        } catch (\Exception $e) {
-            Log::error("There was problem with SubjectChoiceServices.storeSubjectChoiceStudent(): ", ['error' => $e]);
-            return Response::build([], 500, __('msg/error.store'));
-        }
-    }
 }

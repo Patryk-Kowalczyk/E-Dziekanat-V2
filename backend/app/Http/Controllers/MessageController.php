@@ -1,30 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\MyApp\Message\Request\ShowByIdMessageRequest;
-use App\MyApp\Message\Services\MessageService;
+use App\MyApp\Message\Services\ListMessagesService;
+use App\MyApp\Message\Services\ShowMessageService;
 use Illuminate\Http\JsonResponse;
-
 
 class MessageController extends Controller
 {
-    protected $messageService;
+    protected $listMessagesService;
+    protected $showMessageService;
 
-    public function __construct(MessageService $messageService)
+    public function __construct(ListMessagesService $listMessagesService,
+                                ShowMessageService $showMessageService
+    )
     {
         $this->middleware('auth:api');
-        $this->messageService=$messageService;
+        $this->listMessagesService = $listMessagesService;
+        $this->showMessageService = $showMessageService;
     }
 
     public function index(): JsonResponse
     {
-        return $this->messageService->getMessages();
+        return $this->listMessagesService->execute();
     }
 
-    public function show(ShowByIdMessageRequest $request):JsonResponse
+    public function show(ShowByIdMessageRequest $request): JsonResponse
     {
-        return $this->messageService->getMessageDetails($request->validated());
+        return $this->showMessageService->execute($request->validated());
     }
-
 }

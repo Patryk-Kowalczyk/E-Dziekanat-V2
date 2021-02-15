@@ -31,7 +31,7 @@ class UserRepository
         return $this->user->find(Auth::id());
     }
 
-    public function getUserStatus(): int
+    public function getUserStatus(): object
     {
         return $this->user->where('id', Auth::id())->select('status')->first();
     }

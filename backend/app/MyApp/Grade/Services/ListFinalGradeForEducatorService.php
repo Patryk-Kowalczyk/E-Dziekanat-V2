@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\MyApp\Grade\Services;
 
 use App\MyApp\Grade\Repositories\FinalGradeRepository;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
-class FinalGradeService
+class ListFinalGradeForEducatorService
 {
     protected $userRepository;
     protected $finalGradeRepository;
@@ -21,8 +23,8 @@ class FinalGradeService
     protected $tranformsUtil;
 
     public function __construct(UserRepository $userRepository,
-                                FinalGradeRepository $finalGradeRepository,
                                 SubjectRepository $subjectRepository,
+                                FinalGradeRepository $finalGradeRepository,
                                 Manager $fractal,
                                 TranformsUtil $tranformsUtil)
     {
@@ -33,41 +35,17 @@ class FinalGradeService
         $this->tranformsUtil = $tranformsUtil;
     }
 
-    public function getAllStudentFinalGrades(): object
-    {
-        try {
-            $id = $this->userRepository->getStudentId();
-            $finalGrades = new Collection($this->finalGradeRepository->getByStudentId($id), $this->tranformsUtil->getTransformer(3));
-            $finalGrades = $this->fractal->createData($finalGrades);
-            return Response::build([], 200, 'msg/success.list');
-        } catch (\Exception $e) {
-            Log::error("There was problem with FinalGradeService.getAllStudentFinalGrades(): ", ['error' => $e]);
-            return Response::build([], 500, 'msg/error.list');
-        }
-    }
-
-    public function getFinalGradesForEducatorPanel(): JsonResponse
+    public function execute(): JsonResponse
     {
         try {
             $id = $this->userRepository->getEducatorId();
             $educatorFinalGrades = $this->subjectRepository->getSubjectsForPanelEducator($id);
             $educatorSubjectsWithFinalGradesTransform = new Collection($educatorFinalGrades, $this->tranformsUtil->getTransformer(11));
             $educatorSubjectsWithFinalGradesTransform = $this->fractal->createData($educatorSubjectsWithFinalGradesTransform);
-            return Response::build($educatorSubjectsWithFinalGradesTransform, 200, __('msg/success.list'));
+            return Response::build($educatorSubjectsWithFinalGradesTransform, 200, 'msg/success.list');
         } catch (\Exception $e) {
             Log::error("There was problem with FinalGradeService.getFinalGradesForEducatorPanel(): ", ['error' => $e]);
-            return Response::build([], 500, __('msg/error.list'));
-        }
-    }
-
-    public function updateFinalGrades($data): JsonResponse
-    {
-        try {
-            $this->finalGradeRepository->updateFinalGrade($data);
-            return Response::build([], 200, __('msg/success.update'));
-        } catch (\Exception $e) {
-            Log::error("There was problem with FinalGradeService.updateFinalGrades(): ", ['error' => $e]);
-            return Response::build([], 500, __('msg/error.update'));
+            return Response::build([], 500, 'msg/error.list');
         }
     }
 }

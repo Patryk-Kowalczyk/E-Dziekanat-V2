@@ -1,32 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Educator;
 
 use App\Http\Controllers\Controller;
 use App\MyApp\Grade\Request\StorePartialGradeRequest;
-use App\MyApp\Grade\Services\PartialGradeService;
+use App\MyApp\Grade\Services\ListPartialGradesForEducatorService;
+use App\MyApp\Grade\Services\StorePartialGradesService;
 use Illuminate\Http\JsonResponse;
 
 class PartialGradesController extends Controller
 {
-    public $partialGradeService;
+    protected $listPartialGradesForEducatorService;
+    protected $storePartialGradesService;
 
-    public function __construct(PartialGradeService $partialGradeService)
+    public function __construct(ListPartialGradesForEducatorService $listPartialGradesForEducatorService,
+                                StorePartialGradesService $storePartialGradesService
+    )
     {
         $this->middleware('auth:api');
-        $this->partialGradeService=$partialGradeService;
+        $this->listPartialGradesForEducatorService = $listPartialGradesForEducatorService;
+        $this->storePartialGradesService = $storePartialGradesService;
     }
 
-    public function index():JsonResponse
+    public function index(): JsonResponse
     {
-        return $this->partialGradeService->getPartialGradesForEducatorPanel();
+        return $this->listPartialGradesForEducatorService->execute();
     }
 
     public function store(StorePartialGradeRequest $request): JsonResponse
     {
-        return $this->partialGradeService->storePartialGrades($request->validated());
+        return $this->storePartialGradesService->execute($request->validated());
     }
-
-
 }
 

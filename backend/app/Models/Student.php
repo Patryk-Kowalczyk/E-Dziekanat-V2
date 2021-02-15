@@ -48,12 +48,16 @@ class Student extends Model
         return $this->hasMany(Pollstudent::class);
     }
 
-
-
     //===================================================//
+
     public function getGroupId()
     {
         return $this->group->id;
+    }
+
+    public function getFullName()
+    {
+        return join(' ',[$this->user->first_name,$this->user->last_name]);
     }
 
 }
