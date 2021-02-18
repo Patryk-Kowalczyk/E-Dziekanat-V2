@@ -27,11 +27,4 @@ class ShowPollByIdRequest extends FormRequest
             'poll_id' => 'required|int',
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'poll_id.required' => 'Poll ID is required!',
-        ];
-    }
 }

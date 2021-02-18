@@ -27,11 +27,4 @@ class ShowByIdMessageRequest extends FormRequest
             'id' => 'required|int',
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'id.required' => 'Message ID is required!',
-        ];
-    }
 }

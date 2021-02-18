@@ -28,12 +28,4 @@ class StoreChoiceSubjectRequest extends FormRequest
             '*.option_id' => 'required|int',
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'choice_id.required' => 'Choice ID is required!',
-            'option_id.required' => 'Option ID is required!',
-        ];
-    }
 }

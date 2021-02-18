@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\MyApp\User\Services;
 
 use App\Models\User;
@@ -59,7 +61,7 @@ class AuthService
 
     public function refreshAction(): JsonResponse
     {
-        $refreshToken=$this->createNewToken(auth()->refresh());
+        $refreshToken = $this->createNewToken(auth()->refresh());
         return Response::build($refreshToken, 200, 'msg/success.refresh');
     }
 

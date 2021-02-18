@@ -29,13 +29,4 @@ class LoginRequest extends FormRequest
             'status' => 'required|string'
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'email.required' => 'Email is required!',
-            'password.required' => 'Password is required!',
-            'status.required' => 'Status is required!',
-        ];
-    }
 }

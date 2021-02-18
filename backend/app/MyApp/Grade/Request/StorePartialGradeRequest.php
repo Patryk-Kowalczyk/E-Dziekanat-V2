@@ -33,5 +33,4 @@ class StorePartialGradeRequest extends FormRequest
             '*.date'=>'date'
         ];
     }
-
 }

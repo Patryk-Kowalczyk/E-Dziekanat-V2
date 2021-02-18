@@ -28,12 +28,4 @@ class WeekPlanRequest extends FormRequest
             'dateEnd' => 'required|date'
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'dateStart.required' => 'Date start is required!',
-            'dateEnd.required' => 'Date end is required!',
-        ];
-    }
 }

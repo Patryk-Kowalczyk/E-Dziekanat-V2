@@ -29,13 +29,4 @@ class StoreAnswersRequest extends FormRequest
             '*.answer_id' => 'required|int',
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'poll_id.required' => 'Poll ID is required!',
-            'question_id.required' => 'Question ID is required!',
-            'answer_id.required' => 'Answer ID is required!',
-        ];
-    }
 }

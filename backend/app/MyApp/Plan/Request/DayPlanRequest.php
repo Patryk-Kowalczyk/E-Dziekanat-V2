@@ -27,11 +27,4 @@ class DayPlanRequest extends FormRequest
             'dateOfDay' => 'required|date',
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'dateOfDay.required' => 'Date is required!',
-        ];
-    }
 }

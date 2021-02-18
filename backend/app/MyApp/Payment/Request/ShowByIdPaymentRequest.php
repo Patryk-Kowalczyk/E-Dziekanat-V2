@@ -30,10 +30,4 @@ class ShowByIdPaymentRequest extends FormRequest
         ];
     }
 
-    public function messages(): array
-    {
-        return [
-            'id.required' => 'Message ID is required!',
-        ];
-    }
 }

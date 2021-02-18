@@ -32,11 +32,4 @@ class UpdateFinalGradeRequest extends FormRequest
             'promotion' => 'regex:/^\d+(\.\d{1,2})?$/|nullable',
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'id.required' => 'Final Grade ID is required!',
-        ];
-    }
 }

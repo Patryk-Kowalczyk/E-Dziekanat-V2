@@ -35,19 +35,4 @@ class RegisterRequest extends FormRequest
             'gender' => 'required|string',
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'first_name.required' => 'First name is required!',
-            'last_name.required' => 'Last name is required!',
-            'email.required' => 'Status is required!',
-            'password.required' => 'Password is required!',
-            'status.required' => 'Status is required!',
-            'phone.required' => 'Phone is required!',
-            'date_of_birth.required' => 'Date of birth is required!',
-            'address.required' => 'Address is required!',
-            'gender.required' => 'Gender is required!',
-        ];
-    }
 }
